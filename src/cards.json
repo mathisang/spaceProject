@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "categorie": "jetable",
+    "text": {
+      "intitule": "Question 1",
+      "reponse_un": "Réponse 1",
+      "reponse_deux": "Réponse 2"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": 20,
+        "recherche": 10,
+        "opinion": -10
+      },
+      "reponse_deux": {
+        "argent": 10,
+        "recherche": 0,
+        "opinion": 20
+      }
+    }
+  },
+  {
+    "id": 1,
+    "categorie": "jetable",
+    "text": {
+      "intitule": "Question 2",
+      "reponse_un": "Réponse 1",
+      "reponse_deux": "Réponse 2"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": 10,
+        "recherche": 40,
+        "opinion": 10
+      },
+      "reponse_deux": {
+        "argent": 30,
+        "recherche": 0,
+        "opinion": 0
+      }
+    }
+  }
+]
