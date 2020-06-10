@@ -9,14 +9,9 @@ export default function () {
     const {gauge, setGauge} = useContext(GaugeContext);
     /*const [cardPercentEffect, setCardPercentEffect] = useState({argent: 0, opinion: 0, recherche: 0});*/
 
-    function submitAnswer() {
-        setGauge({argent: gauge.argent + 30, opinion: 10, recherche: 10});
-    }
     useEffect(() => {
-        console.log('argent');
-        /*setGauge({argent: gauge.argent + 30});*/
-        console.log(gauge.argent);
-    }, [gauge]);
+        console.log(gauge.argent)
+    }, [gauge.argent]);
 
     return (
         <div className="">
@@ -26,7 +21,7 @@ export default function () {
                         {card.text.intitule}
                         <div>
                             <button onClick={() => setGauge({argent: gauge.argent + card.value.reponse_un.argent, opinion: gauge.opinion + card.value.reponse_un.opinion, recherche: gauge.recherche + card.value.reponse_un.recherche})}>{card.text.reponse_un}</button>
-                            <button>{card.text.reponse_deux}</button>
+                            <button onClick={() => setGauge({argent: gauge.argent + card.value.reponse_deux.argent, opinion: gauge.opinion + card.value.reponse_deux.opinion, recherche: gauge.recherche + card.value.reponse_deux.recherche})}>{card.text.reponse_deux}</button>
                         </div>
                     </div>
                 )
