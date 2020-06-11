@@ -9,59 +9,63 @@ export default function () {
     const {gauge, setGauge} = useContext(GaugeContext);
     const [isSuccess, setSuccess] = useState(null);
     const [selectedCardId, setSelectedCardId] = useState(null);
-    const [idButton, setIdButton] = useState(null);
+    const [nextCard, setNextCard] = useState(null);
+    const [idButton, setIdButton] = useState(0);
     const arrayFull = [];
     for (let i = 0; i < cards.length; i++) {
         arrayFull.push(i);
     }
     const [cardUnused, setCardUnused] = useState(arrayFull);
 
-    function trySuccess() {
+    function trySuccess(e) {
+
+        console.log(e);
+
+        e == 1 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_un.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche});
+        e == 2 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_deux.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_deux.recherche})
+        
         let r = Math.random();
-        (r < 0.5) ? setSuccess(true) : setSuccess(false);
+        (r < cards[nextCard].consequence.success.percent) ? setSuccess(true) : setSuccess(false);
+
     }
 
     function nextIdCard() {
 
-        return Math.floor(Math.random() * cards.length+1);
+        return cardUnused[Math.floor(Math.random()*cardUnused.length)];
 
     }
 
     function randomCard() {
-
-        console.log(cardUnused);
 
         for( var i = 0; i < cardUnused.length; i++){
              if ( cardUnused[i] === selectedCardId) {
                     cardUnused.splice(i, 1); 
                 }
             }
-        
         console.log(cardUnused);
 
-        //const newCardId = nextIdCard();
+        const newCardId = nextIdCard();
+        console.log(newCardId);
 
-        
-        /*while (n < 3) {
-            n++;
-        }
-
-        if(cardUnused.includes(newCardId)){
-            nextIdCard();
-        } else {
-            return newCardId;
-        } */
+        return newCardId;
 
     }
+    
 
     useEffect(() => {
 
         idButton == 1 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_un.recherche});
         idButton == 2 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche});
+        
+        idButton == 3 && (isSuccess ? setGauge({argent: gauge.argent + cards[nextCard].consequence.success.argent, opinion: gauge.opinion + cards[nextCard].consequence.success.opinion, recherche: gauge.recherche + cards[nextCard].consequence.success.recherche}) :
+        setGauge({argent: gauge.argent + cards[nextCard].consequence.fail.argent, opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion, recherche: gauge.recherche + cards[nextCard].consequence.fail.recherche}))
 
-        randomCard();
-        
-        
+        setSuccess(null);
+
+        setNextCard(randomCard());
+
+        // Avancement USA / URSS
+        // Afficher la date
 
     }, [selectedCardId]);
 
@@ -70,14 +74,18 @@ export default function () {
         <div className="">
             <ul>
                 {cards.map((card, index) =>
+                nextCard === card.id &&
                     <div className="card-container" key={index} >
                         {card.text.intitule}
                         <div>
-                            <button onClick={() => { card.consequence.exist && trySuccess(); setSelectedCardId(card.id); setIdButton(1);}}>{card.text.reponse_un}</button>
-                            <button onClick={() => { setSelectedCardId(card.id); setIdButton(2);}}>{card.text.reponse_deux}</button>
+                            <button onClick={() => { setIdButton(1); (card.consequence.exist && card.consequence.button == "reponse_un") ? trySuccess(1) : setSelectedCardId(card.id);}}>{card.text.reponse_un}</button>
+                            <button onClick={() => { setIdButton(2); (card.consequence.exist && card.consequence.button == "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);}}>{card.text.reponse_deux}</button>
                         </div>
                         {
-                            card.consequence.exist && <div>consequence : {(isSuccess !== null) && ( isSuccess ? (<p>succès</p> /*&& (() => setGauge({argent: gauge.argent + card.consequence.success.argent, opinion: gauge.opinion + card.consequence.success.opinion, recherche: gauge.recherche + card.consequence.success.recherche}))*/ ) : <p>échec</p>)}</div>
+                            card.consequence.exist && 
+                                <div>consequence : {(isSuccess !== null) && ( isSuccess ? (<p>succès</p> ) : <p>échec</p>)}
+                                <button onClick={() => { setSelectedCardId(card.id); setIdButton(3);}}>SUIVANT</button>  
+                                </div>
                         }
                     </div>
                 )

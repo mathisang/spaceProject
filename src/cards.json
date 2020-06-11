@@ -21,6 +21,7 @@
     },
     "consequence": {
       "exist": true,
+      "button": "reponse_un",
       "success": {
         "percent": 0.5,
         "argent": 0,
@@ -105,6 +106,7 @@
     },
     "consequence": {
       "exist": true,
+      "button": "reponse_un",
       "success": {
         "percent": 0.8,
         "argent": 0,
