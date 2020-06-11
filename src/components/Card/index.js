@@ -2,11 +2,13 @@ import React, {useContext, useEffect, useState} from 'react';
 import cards from '../../cards.json'
 import './card.scss'
 import GaugeContext from "../Gauge/GaugeContext";
+import TimelineContext from "../Timeline/TimelineContext";
 
 
 
 export default function () {
     const {gauge, setGauge} = useContext(GaugeContext);
+    const {timeline, setTimeline} = useContext(TimelineContext);
     const [isSuccess, setSuccess] = useState(null);
     const [selectedCardId, setSelectedCardId] = useState(null);
     const [nextCard, setNextCard] = useState(null);
@@ -59,6 +61,15 @@ export default function () {
         
         idButton == 3 && (isSuccess ? setGauge({argent: gauge.argent + cards[nextCard].consequence.success.argent, opinion: gauge.opinion + cards[nextCard].consequence.success.opinion, recherche: gauge.recherche + cards[nextCard].consequence.success.recherche}) :
         setGauge({argent: gauge.argent + cards[nextCard].consequence.fail.argent, opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion, recherche: gauge.recherche + cards[nextCard].consequence.fail.recherche}))
+
+        let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
+        console.log(totalJauge);
+
+        let avanceUsa = 4;
+
+        totalJauge < 140 ? avanceUsa = 2 : totalJauge >= 155 ? avanceUsa = 7 : avanceUsa = 4;
+
+        setTimeline({urss: timeline.urss + 4, usa: timeline.usa + avanceUsa});
 
         setSuccess(null);
 
