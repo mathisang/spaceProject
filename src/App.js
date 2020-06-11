@@ -16,7 +16,7 @@ function App() {
         <GaugeContext.Provider value={gaugeContextValue}>
             <TimelineContext.Provider value={timelineContextValue}>
                 <div className="App">
-                    <div>
+                    <div className="head-container">
                     <SeasonTimeline/>
                     <Gauge/>
                     </div>

@@ -64,11 +64,8 @@ export default function () {
 
         let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
         console.log(totalJauge);
-
         let avanceUsa = 4;
-
-        totalJauge < 140 ? avanceUsa = 2 : totalJauge >= 155 ? avanceUsa = 7 : avanceUsa = 4;
-
+        totalJauge <= 140 ? avanceUsa = 2 : totalJauge >= 155 ? avanceUsa = 7 : avanceUsa = 4;
         setTimeline({urss: timeline.urss + 4, usa: timeline.usa + avanceUsa});
 
         setSuccess(null);
@@ -93,6 +90,7 @@ export default function () {
                             <button onClick={() => { setIdButton(2); (card.consequence.exist && card.consequence.button == "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);}}>{card.text.reponse_deux}</button>
                         </div>
                         {
+                            isSuccess &&
                             card.consequence.exist && 
                                 <div>consequence : {(isSuccess !== null) && ( isSuccess ? (<p>succès</p> ) : <p>échec</p>)}
                                 <button onClick={() => { setSelectedCardId(card.id); setIdButton(3);}}>SUIVANT</button>  
