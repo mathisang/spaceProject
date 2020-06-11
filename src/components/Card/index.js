@@ -85,12 +85,21 @@ export default function () {
                 nextCard === card.id &&
                     <div className="card-container" key={index} >
                         {card.text.intitule}
-                        <div>
-                            <button onClick={() => { setIdButton(1); (card.consequence.exist && card.consequence.button == "reponse_un") ? trySuccess(1) : setSelectedCardId(card.id);}}>{card.text.reponse_un}</button>
-                            <button onClick={() => { setIdButton(2); (card.consequence.exist && card.consequence.button == "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);}}>{card.text.reponse_deux}</button>
-                        </div>
                         {
-                            isSuccess &&
+                            isSuccess == null &&
+                            <div>
+                                <button onClick={() => {
+                                    setIdButton(1);
+                                    (card.consequence.exist && card.consequence.button == "reponse_un") ? trySuccess(1) : setSelectedCardId(card.id);
+                                }}>{card.text.reponse_un}</button>
+                                <button onClick={() => {
+                                    setIdButton(2);
+                                    (card.consequence.exist && card.consequence.button == "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);
+                                }}>{card.text.reponse_deux}</button>
+                            </div>
+                        }
+                        {
+                            isSuccess !== null &&
                             card.consequence.exist && 
                                 <div>consequence : {(isSuccess !== null) && ( isSuccess ? (<p>succès</p> ) : <p>échec</p>)}
                                 <button onClick={() => { setSelectedCardId(card.id); setIdButton(3);}}>SUIVANT</button>  
