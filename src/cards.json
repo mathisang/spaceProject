@@ -120,5 +120,103 @@
         "opinion": 0
       }
     }
+  },
+  {
+    "id": 4,
+    "categorie": "recherche",
+    "text": {
+      "intitule": "Vos ingénieurs ont découvert un nouveau moyen de quitter l'atmosphère",
+      "reponse_un": " Financer la recherche",
+      "reponse_deux": "Ignorer"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": -10,
+        "recherche": 0,
+        "opinion": 0
+      },
+      "reponse_deux": {
+        "argent": 0,
+        "recherche": 0,
+        "opinion": 0
+      }
+    },
+    "consequence": {
+      "exist": true,
+      "button": "reponse_un",
+      "success": {
+        "percent": 0.8,
+        "argent": 0,
+        "recherche": 15,
+        "opinion": 5
+      },
+      "fail": {
+        "percent": 0.2,
+        "argent": 0,
+        "recherche": 5,
+        "opinion": 0
+      }
+    }
+  },
+  {
+    "id": 5,
+    "categorie": "espionnage",
+    "text": {
+      "intitule": "Vous apprenez qu'un espion russe s'est infiltré dans votre centre de recherche spatiale. Voulez-vous tenter de le débusquer ",
+      "reponse_un": "Oui",
+      "reponse_deux": "Fausse alerte, faire taire les rumeurs et se focaliser sur les recherches"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": -10,
+        "recherche": -5,
+        "opinion": 5
+      },
+      "reponse_deux": {
+        "argent": 0,
+        "recherche": -5,
+        "opinion": -5
+      }
+    },
+    "consequence": {
+      "exist": false
+    }
+  },
+  {
+    "id": 6,
+    "categorie": "investissement",
+    "text": {
+      "intitule": "Un chercheur au fort accent d'europe de l'est vous propose d'améliorer votre carburant et améliorer vos recherches. Il vous demande cependant un investissement. Prenez-vous le risque ?",
+      "reponse_un": "Oui",
+      "reponse_deux": "Non"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": -15,
+        "recherche": 0,
+        "opinion": 0
+      },
+      "reponse_deux": {
+        "argent": 0,
+        "recherche": 0,
+        "opinion": 0
+      }
+    },
+    "consequence": {
+      "exist": true,
+      "button": "reponse_un",
+      "success": {
+        "percent": 0.5,
+        "argent": 15,
+        "recherche": 15,
+        "opinion": 5
+      },
+      "fail": {
+        "percent": 0.5,
+        "argent": 0,
+        "recherche": 0,
+        "opinion": -5
+      }
+    }
   }
 ]
