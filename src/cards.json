@@ -1,42 +1,120 @@
 [
   {
     "id": 0,
-    "categorie": "jetable",
+    "categorie": "espionnage",
     "text": {
-      "intitule": "Question 1",
-      "reponse_un": "Réponse 1",
-      "reponse_deux": "Réponse 2"
+      "intitule": "Se lancer dans un projet d'espionnage industriel pour voler des technologies à l'URSS ? (risque de se faire repérer)",
+      "reponse_un": "Faire l'espionnage",
+      "reponse_deux": "Ne pas faire l'espionnage"
     },
     "value": {
       "reponse_un": {
-        "argent": 20,
-        "recherche": 10,
-        "opinion": -10
+        "argent": -10,
+        "recherche": 0,
+        "opinion": 0
       },
       "reponse_deux": {
-        "argent": 10,
+        "argent": 0,
         "recherche": 0,
-        "opinion": 20
+        "opinion": 0
+      }
+    },
+    "consequence": {
+      "exist": true,
+      "success": {
+        "percent": 0.5,
+        "argent": 0,
+        "recherche": 15,
+        "opinion": 0
+      },
+      "fail": {
+        "percent": 0.5,
+        "argent": 0,
+        "recherche": 0,
+        "opinion": -15
       }
     }
   },
   {
     "id": 1,
-    "categorie": "jetable",
+    "categorie": "communication & recherche",
     "text": {
-      "intitule": "Question 2",
-      "reponse_un": "Réponse 1",
-      "reponse_deux": "Réponse 2"
+      "intitule": "Des doutes dans l'opinion public quant à vos compétences commencent à émerger. Vos recherches sont de plus en plus questionnées et contestées",
+      "reponse_un": "Lancer une campagne de com de grande ampleur visant à redorer l'image de la conquête spatiale des Etats Unis",
+      "reponse_deux": "Pas d'argent à perdre dans la com, investir dans la recherche"
     },
     "value": {
       "reponse_un": {
-        "argent": 10,
-        "recherche": 40,
-        "opinion": 10
+        "argent": -10,
+        "recherche": 0,
+        "opinion": 15
       },
       "reponse_deux": {
-        "argent": 30,
+        "argent": -5,
+        "recherche": 10,
+        "opinion": -10
+      }
+    },
+    "consequence": {
+      "exist": false
+    }
+  },
+  {
+    "id": 2,
+    "categorie": "communication & recherche",
+    "text": {
+      "intitule": "Le bilan est tombé, votre programme dispose d'un bonus économique ce trimestre",
+      "reponse_un": "Utiliser les ressources pour la recherche",
+      "reponse_deux": "Profiter de cette occasion pour faire un peu de com"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": 0,
+        "recherche": 10,
+        "opinion": -5
+      },
+      "reponse_deux": {
+        "argent": 0,
+        "recherche": -5,
+        "opinion": 10
+      }
+    },
+    "consequence": {
+      "exist": false
+    }
+  },
+  {
+    "id": 3,
+    "categorie": "recherche",
+    "text": {
+      "intitule": "Les recherches avancent bien, vos chercheurs pensent être sur une piste prometteuse pour (vraie truc technique). Ils ont une chance de réussir",
+      "reponse_un": " Financer la recherche",
+      "reponse_deux": "Ignorer"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": -15,
         "recherche": 0,
+        "opinion": 0
+      },
+      "reponse_deux": {
+        "argent": 0,
+        "recherche": 0,
+        "opinion": 0
+      }
+    },
+    "consequence": {
+      "exist": true,
+      "success": {
+        "percent": 0.8,
+        "argent": 0,
+        "recherche": 15,
+        "opinion": 5
+      },
+      "fail": {
+        "percent": 0.2,
+        "argent": 0,
+        "recherche": 5,
         "opinion": 0
       }
     }
