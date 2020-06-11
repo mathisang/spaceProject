@@ -3,6 +3,7 @@ import cards from '../../cards.json'
 import './card.scss'
 import GaugeContext from "../Gauge/GaugeContext";
 import TimelineContext from "../Timeline/TimelineContext";
+import CardContext from "./CardContext";
 
 
 
@@ -10,7 +11,7 @@ export default function () {
     const {gauge, setGauge} = useContext(GaugeContext);
     const {timeline, setTimeline} = useContext(TimelineContext);
     const [isSuccess, setSuccess] = useState(null);
-    const [selectedCardId, setSelectedCardId] = useState(null);
+    const {selectedCardId, setSelectedCardId} = useContext(CardContext);
     const [nextCard, setNextCard] = useState(null);
     const [idButton, setIdButton] = useState(0);
     const arrayFull = [];
