@@ -8,6 +8,7 @@ import GaugeContext from "../Gauge/GaugeContext";
 export default function () {
     const {gauge, setGauge} = useContext(GaugeContext);
     const [isSuccess, setSuccess] = useState(null);
+    const [selectedCard, setSelectedCard] = useState(0);
     /*const card = cards.sort(() => Math.random() - Math.random())
         .find(() => true);*/
 
@@ -18,6 +19,10 @@ export default function () {
     function trySuccess() {
         let r = Math.random();
         (r < 0.5) ? setSuccess(true) : setSuccess(false);
+    }
+
+    function randomCard() {
+
     }
 
     /*useEffect(() => {
@@ -32,7 +37,7 @@ export default function () {
                     <div className="card-container" key={index} >
                         {card.text.intitule}
                         <div>
-                            <button onClick={() => {setGauge({argent: gauge.argent + card.value.reponse_un.argent, opinion: gauge.opinion + card.value.reponse_un.opinion, recherche: gauge.recherche + card.value.reponse_un.recherche}); card.consequence.exist && trySuccess();}}>{card.text.reponse_un}</button>
+                            <button onClick={() => {setGauge({argent: gauge.argent + card.value.reponse_un.argent, opinion: gauge.opinion + card.value.reponse_un.opinion, recherche: gauge.recherche + card.value.reponse_un.recherche}); card.consequence.exist && trySuccess(); randomCard();}}>{card.text.reponse_un}</button>
                             <button onClick={() => setGauge({argent: gauge.argent + card.value.reponse_deux.argent, opinion: gauge.opinion + card.value.reponse_deux.opinion, recherche: gauge.recherche + card.value.reponse_deux.recherche})}>{card.text.reponse_deux}</button>
                         </div>
                         {
