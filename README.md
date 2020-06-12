@@ -1,3 +1,11 @@
+## Stack utilisées
+React
+SASS
+ThreeJS
+React-three-fiber / react-spring
+
+## React Installation
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
