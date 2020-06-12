@@ -66,7 +66,7 @@ export default function () {
         let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
         console.log(totalJauge);
         let avanceUsa = 4;
-        totalJauge <= 140 ? avanceUsa = 2 : totalJauge >= 155 ? avanceUsa = 7 : avanceUsa = 4;
+        totalJauge <= 120 ? avanceUsa = 2 : totalJauge >= 155 ? avanceUsa = 7 : avanceUsa = 4;
         setTimeline({urss: timeline.urss + 4, usa: timeline.usa + avanceUsa});
 
         setSuccess(null);
