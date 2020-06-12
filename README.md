@@ -1,7 +1,7 @@
 ## Stack utilisées
-React
-SASS
-ThreeJS
+React<br />
+SASS<br />
+ThreeJS<br />
 React-three-fiber / react-spring
 
 ## React Installation
