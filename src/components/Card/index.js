@@ -24,8 +24,8 @@ export default function () {
 
         console.log(e);
 
-        e == 1 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_un.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche});
-        e == 2 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_deux.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_deux.recherche})
+        e === 1 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_un.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche});
+        e === 2 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_deux.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_deux.recherche})
         
         let r = Math.random();
         (r < cards[nextCard].consequence.success.percent) ? setSuccess(true) : setSuccess(false);
@@ -45,10 +45,10 @@ export default function () {
                     cardUnused.splice(i, 1); 
                 }
             }
-        console.log(cardUnused);
+        console.log('card pas utilisées', cardUnused);
 
         const newCardId = nextIdCard();
-        console.log(newCardId);
+        console.log('card', newCardId);
 
         return newCardId;
 
@@ -57,10 +57,10 @@ export default function () {
 
     useEffect(() => {
 
-        idButton == 1 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_un.recherche});
-        idButton == 2 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche});
+        idButton === 1 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_un.recherche});
+        idButton === 2 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche});
         
-        idButton == 3 && (isSuccess ? setGauge({argent: gauge.argent + cards[nextCard].consequence.success.argent, opinion: gauge.opinion + cards[nextCard].consequence.success.opinion, recherche: gauge.recherche + cards[nextCard].consequence.success.recherche}) :
+        idButton === 3 && (isSuccess ? setGauge({argent: gauge.argent + cards[nextCard].consequence.success.argent, opinion: gauge.opinion + cards[nextCard].consequence.success.opinion, recherche: gauge.recherche + cards[nextCard].consequence.success.recherche}) :
         setGauge({argent: gauge.argent + cards[nextCard].consequence.fail.argent, opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion, recherche: gauge.recherche + cards[nextCard].consequence.fail.recherche}))
 
         let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
@@ -91,11 +91,11 @@ export default function () {
                             <div>
                                 <button onClick={() => {
                                     setIdButton(1);
-                                    (card.consequence.exist && card.consequence.button == "reponse_un") ? trySuccess(1) : setSelectedCardId(card.id);
+                                    (card.consequence.exist && card.consequence.button === "reponse_un") ? trySuccess(1) : setSelectedCardId(card.id);
                                 }}>{card.text.reponse_un}</button>
                                 <button onClick={() => {
                                     setIdButton(2);
-                                    (card.consequence.exist && card.consequence.button == "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);
+                                    (card.consequence.exist && card.consequence.button === "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);
                                 }}>{card.text.reponse_deux}</button>
                             </div>
                         }
