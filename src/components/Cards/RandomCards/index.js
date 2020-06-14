@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import cards from '../../../cards.json'
+import cards from '../../../datas/randomCards.json'
 import '../cards.scss'
 import GaugeContext from "../../Gauge/GaugeContext";
 import TimelineContext from "../../Timeline/TimelineContext";
@@ -73,8 +73,6 @@ export default function () {
 
         setNextCard(randomCard());
 
-        // Avancement USA / URSS
-        // Afficher la date
 
     }, [selectedCardId]);
 
@@ -102,7 +100,7 @@ export default function () {
                         {
                             isSuccess !== null &&
                             card.consequence.exist && 
-                                <div>consequence : {(isSuccess !== null) && ( isSuccess ? (<p>succès</p> ) : <p>échec</p>)}
+                                <div>consequence : { isSuccess ? <p>succès</p> : <p>échec</p>}
                                 <button onClick={() => { setSelectedCardId(card.id); setIdButton(3);}}>SUIVANT</button>  
                                 </div>
                         }

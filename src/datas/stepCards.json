@@ -1,0 +1,18 @@
+[
+  {
+    "step": 1,
+    "name": "Premier homme dans l'espace",
+    "win": {
+      "message": "Félicitations, vous avez devancé l'URSS et envoyé le premier homme dans l'Espace ! En continuant comme ça, le premier pas sur la lune c'est pour vous ! ",
+      "argent": 15,
+      "recherche": 15,
+      "opinion": 15
+    },
+    "loose": {
+      "message": "Aie, l'URSS a été plus rapide que vous et est parvenue à envoyer un certain Youri Gagarine dans l'espace. Premier homme dans l'espace sacré événement ! Dommage que ça ne soit pas vous qui l'ayez réalisé... ",
+      "argent": -15,
+      "recherche": -15,
+      "opinion": -15
+    }
+  }
+]

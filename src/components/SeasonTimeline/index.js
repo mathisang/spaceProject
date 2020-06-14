@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import steps from '../../time.json'
+import steps from '../../datas/time.json'
 import CardContext from "../Cards/CardContext";
 
 
