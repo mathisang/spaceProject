@@ -8,6 +8,7 @@ import SeasonTimeline from "../SeasonTimeline"
 import CardContext from "../Cards/CardContext";
 import LooseCard from "../Cards/LooseCard";
 import StepCard from "../Cards/StepCard";
+import stepCards from "../../datas/stepCards.json"
 
 export default function () {
     const [gauge, setGauge] = useState({argent: 50, opinion: 50, recherche: 50});
@@ -17,7 +18,7 @@ export default function () {
     const [selectedCardId, setSelectedCardId] = useState(null);
     const cardContextValue = {selectedCardId, setSelectedCardId};
     const [isLoose, setLoose] = useState(false);
-    const [isStep, setStep] = useState(false);
+    const [step, setStep] = useState({isActive: false, id: 0})
 
 
     useEffect(() => {
@@ -25,8 +26,10 @@ export default function () {
     }, [gauge])
 
     useEffect(() => {
-        (timeline.usa >= 25 || timeline.urss >= 25) && setStep(true);
-    }, [timeline])
+        (timeline.usa >= stepCards[step.id].stepPercent || timeline.urss >= stepCards[step.id].stepPercent) && setStep(prevState => {
+            return { ...prevState, isActive: true }
+        });
+    }, [timeline]);
 
     return (
         <CardContext.Provider value={cardContextValue}>
@@ -40,8 +43,10 @@ export default function () {
                                     <Gauge/>
                                 </div>
                                 {
-                                    isStep && <StepCard setStep={setStep}/>
+                                    step.isActive && <StepCard step={step} setStep={setStep}/>
                                 }
+                                <p>Prochain événement à : {stepCards[step.id].stepPercent}%</p>
+
                                 <RandomCard/>
                                 <Timeline/>
                             </div>
