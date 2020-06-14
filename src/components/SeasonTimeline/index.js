@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import steps from '../../time.json'
-import CardContext from "../Card/CardContext";
+import CardContext from "../Cards/CardContext";
 
 
 export default function () {

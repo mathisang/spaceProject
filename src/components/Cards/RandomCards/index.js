@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import cards from '../../cards.json'
-import './card.scss'
-import GaugeContext from "../Gauge/GaugeContext";
-import TimelineContext from "../Timeline/TimelineContext";
-import CardContext from "./CardContext";
+import cards from '../../../cards.json'
+import '../cards.scss'
+import GaugeContext from "../../Gauge/GaugeContext";
+import TimelineContext from "../../Timeline/TimelineContext";
+import CardContext from "../CardContext";
 
 
 
