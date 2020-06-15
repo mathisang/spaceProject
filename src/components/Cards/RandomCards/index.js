@@ -6,7 +6,6 @@ import TimelineContext from "../../Timeline/TimelineContext";
 import CardContext from "../CardContext";
 
 
-
 export default function () {
     const {gauge, setGauge} = useContext(GaugeContext);
     const {timeline, setTimeline} = useContext(TimelineContext);
@@ -24,9 +23,17 @@ export default function () {
 
         console.log(e);
 
-        e === 1 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_un.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche});
-        e === 2 && setGauge({argent: gauge.argent + cards[nextCard].value.reponse_deux.argent, opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion, recherche: gauge.recherche + cards[nextCard].value.reponse_deux.recherche})
-        
+        e === 1 && setGauge({
+            argent: gauge.argent + cards[nextCard].value.reponse_un.argent,
+            opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion,
+            recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche
+        });
+        e === 2 && setGauge({
+            argent: gauge.argent + cards[nextCard].value.reponse_deux.argent,
+            opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion,
+            recherche: gauge.recherche + cards[nextCard].value.reponse_deux.recherche
+        })
+
         let r = Math.random();
         (r < cards[nextCard].consequence.success.percent) ? setSuccess(true) : setSuccess(false);
 
@@ -34,17 +41,17 @@ export default function () {
 
     function nextIdCard() {
 
-        return cardUnused[Math.floor(Math.random()*cardUnused.length)];
+        return cardUnused[Math.floor(Math.random() * cardUnused.length)];
 
     }
 
     function randomCard() {
 
-        for( var i = 0; i < cardUnused.length; i++){
-             if ( cardUnused[i] === selectedCardId) {
-                    cardUnused.splice(i, 1); 
-                }
+        for (var i = 0; i < cardUnused.length; i++) {
+            if (cardUnused[i] === selectedCardId) {
+                cardUnused.splice(i, 1);
             }
+        }
         console.log('card pas utilisées', cardUnused);
 
         const newCardId = nextIdCard();
@@ -53,15 +60,31 @@ export default function () {
         return newCardId;
 
     }
-    
+
 
     useEffect(() => {
 
-        idButton === 1 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_un.recherche});
-        idButton === 2 && setGauge({argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent, opinion: gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion, recherche: gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche});
-        
-        idButton === 3 && (isSuccess ? setGauge({argent: gauge.argent + cards[nextCard].consequence.success.argent, opinion: gauge.opinion + cards[nextCard].consequence.success.opinion, recherche: gauge.recherche + cards[nextCard].consequence.success.recherche}) :
-        setGauge({argent: gauge.argent + cards[nextCard].consequence.fail.argent, opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion, recherche: gauge.recherche + cards[nextCard].consequence.fail.recherche}))
+        idButton === 1 && setGauge({
+            argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent,
+            opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion,
+            recherche: gauge.recherche + cards[selectedCardId].value.reponse_un.recherche
+        });
+        idButton === 2 && setGauge({
+            argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent,
+            opinion: gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion,
+            recherche: gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche
+        });
+
+        idButton === 3 && (isSuccess ? setGauge({
+                argent: gauge.argent + cards[nextCard].consequence.success.argent,
+                opinion: gauge.opinion + cards[nextCard].consequence.success.opinion,
+                recherche: gauge.recherche + cards[nextCard].consequence.success.recherche
+            }) :
+            setGauge({
+                argent: gauge.argent + cards[nextCard].consequence.fail.argent,
+                opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion,
+                recherche: gauge.recherche + cards[nextCard].consequence.fail.recherche
+            }))
 
         let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
         console.log(totalJauge);
@@ -81,8 +104,8 @@ export default function () {
         <div className="">
             <ul>
                 {cards.map((card, index) =>
-                nextCard === card.id &&
-                    <div className="card-container" key={index} >
+                    nextCard === card.id &&
+                    <div className="card-container" key={index}>
                         {card.text.intitule}
                         {
                             isSuccess == null &&
@@ -99,10 +122,14 @@ export default function () {
                         }
                         {
                             isSuccess !== null &&
-                            card.consequence.exist && 
-                                <div>consequence : { isSuccess ? <p>succès</p> : <p>échec</p>}
-                                <button onClick={() => { setSelectedCardId(card.id); setIdButton(3);}}>SUIVANT</button>  
-                                </div>
+                            card.consequence.exist &&
+                            <div>consequence : {isSuccess ? <p>succès</p> : <p>échec</p>}
+                                <button onClick={() => {
+                                    setSelectedCardId(card.id);
+                                    setIdButton(3);
+                                }}>SUIVANT
+                                </button>
+                            </div>
                         }
                     </div>
                 )
