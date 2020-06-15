@@ -1,20 +1,19 @@
-import React, {useContext, useEffect, useState} from 'react';
-import steps from '../../datas/time.json'
+import React, {useContext, useEffect} from 'react';
+import timesSteps from '../../datas/time.json'
 import CardContext from "../Cards/CardContext";
 
 
-export default function () {
-    const[step, setStep] = useState(0);
+export default function ({timeStep, setTimeStep}) {
     const {selectedCardId, setSelectedCardId} = useContext(CardContext);
 
     useEffect(() => {
-        selectedCardId > 0 && setStep(step +1);
+        selectedCardId > 0 && setTimeStep(timeStep +1);
     }, [selectedCardId]);
 
     return (
         <div className="">
             {
-                steps[step].name
+                timesSteps[timeStep].name
             }
         </div>
     );

@@ -35,16 +35,10 @@
     "stepPercent": 40,
     "name": "Premier pas sur la lune",
     "win": {
-      "message": "Gagné !",
-      "argent": 15,
-      "recherche": 15,
-      "opinion": 15
+      "message": "Gagné ! Premier pas posé avant la l'URSS, belle perf"
     },
     "loose": {
-      "message": "Perdu !",
-      "argent": -15,
-      "recherche": -15,
-      "opinion": -15
+      "message": "Perdu ! L'URSS est parvenu à faire le premier pas sur la lune avant vous."
     }
   }
 ]

@@ -231,5 +231,42 @@
         "opinion": -5
       }
     }
+  },
+  {
+    "id": 7,
+    "categorie": "investissement",
+    "text": {
+      "intitule": "Un investisseur aux allures mafieuses vous propose de l'argent pour financer vos projets",
+      "reponse_un": "J'accepte",
+      "reponse_deux": "Jamais de la vie"
+    },
+    "value": {
+      "reponse_un": {
+        "argent": 0,
+        "recherche": 0,
+        "opinion": 0
+      },
+      "reponse_deux": {
+        "argent": 0,
+        "recherche": -5,
+        "opinion": 0
+      }
+    },
+    "consequence": {
+      "exist": true,
+      "button": "reponse_un",
+      "success": {
+        "percent": 0.7,
+        "argent": 15,
+        "recherche": 0,
+        "opinion": 0
+      },
+      "fail": {
+        "percent": 0.3,
+        "argent": 0,
+        "recherche": 0,
+        "opinion": -10
+      }
+    }
   }
 ]

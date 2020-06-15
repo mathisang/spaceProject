@@ -1,6 +1,9 @@
 .step-card {
   position: absolute;
   background: white;
-  width: 100%;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 45vh;
 }

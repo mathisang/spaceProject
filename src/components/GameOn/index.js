@@ -9,6 +9,7 @@ import CardContext from "../Cards/CardContext";
 import LooseCard from "../Cards/LooseCard";
 import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json"
+import EndCard from "../Cards/EndCard"
 
 export default function () {
     const [gauge, setGauge] = useState({argent: 50, opinion: 50, recherche: 50});
@@ -18,7 +19,9 @@ export default function () {
     const [selectedCardId, setSelectedCardId] = useState(null);
     const cardContextValue = {selectedCardId, setSelectedCardId};
     const [isLoose, setLoose] = useState(false);
-    const [step, setStep] = useState({isActive: false, id: 0})
+    const [step, setStep] = useState({isActive: false, id: 0});
+    const [isEnd, setEnd] = useState(false);
+    const[timeStep, setTimeStep] = useState(0);
 
 
     useEffect(() => {
@@ -27,7 +30,7 @@ export default function () {
 
     useEffect(() => {
         (timeline.usa >= stepCards[step.id].stepPercent || timeline.urss >= stepCards[step.id].stepPercent) && setStep(prevState => {
-            return { ...prevState, isActive: true }
+            return {...prevState, isActive: true}
         });
     }, [timeline]);
 
@@ -37,19 +40,21 @@ export default function () {
                 <TimelineContext.Provider value={timelineContextValue}>
                     {
                         isLoose ? <LooseCard/> :
-                            <div className="playing-container">
-                                <div className="head-container">
-                                    <SeasonTimeline/>
-                                    <Gauge/>
-                                </div>
-                                {
-                                    step.isActive && <StepCard step={step} setStep={setStep}/>
-                                }
-                                <p>Prochain événement à : {stepCards[step.id].stepPercent}%</p>
+                            isEnd ?
+                                <EndCard timeStep={timeStep}/> :
+                                <div className="playing-container">
+                                    <div className="head-container">
+                                        <SeasonTimeline setTimeStep={setTimeStep} timeStep={timeStep}/>
+                                        <Gauge/>
+                                    </div>
+                                    {
+                                        step.isActive && <StepCard step={step} setStep={setStep} setEnd={setEnd}/>
+                                    }
+                                    <p>Prochain événement à : {stepCards[step.id].stepPercent}%</p>
 
-                                <RandomCard/>
-                                <Timeline/>
-                            </div>
+                                    <RandomCard/>
+                                    <Timeline/>
+                                </div>
                     }
                 </TimelineContext.Provider>
             </GaugeContext.Provider>

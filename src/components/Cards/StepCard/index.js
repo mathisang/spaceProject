@@ -22,10 +22,12 @@ const Text = ({step}) => {
     )
 }
 
-const ContinueButton = ({setStep, step}) => {
+const ContinueButton = ({setStep, step, setEnd}) => {
     const {timeline, setTimeline} = useContext(TimelineContext);
     const {gauge, setGauge} = useContext(GaugeContext);
     const handleClick = () => {
+        step.id === cards.length - 1 ?
+            setEnd(true) :
         timeline.usa > timeline.urss ?
             setGauge({
                 argent: gauge.argent + cards[step.id].win.argent,
@@ -37,8 +39,6 @@ const ContinueButton = ({setStep, step}) => {
                 opinion: gauge.opinion + cards[step.id].loose.opinion,
                 recherche: gauge.recherche + cards[step.id].loose.recherche
             });
-        step.id === cards.length - 1 ?
-            console.log('no more steps') :
             setStep({isActive: false, id: step.id + 1});
     }
     return (
@@ -48,9 +48,9 @@ const ContinueButton = ({setStep, step}) => {
     );
 };
 
-export default ({step, setStep}) => (
+export default ({step, setStep, setEnd}) => (
     <div className="card-container step-card">
         <Text step={step}/>
-        <ContinueButton step={step} setStep={setStep}/>
+        <ContinueButton step={step} setStep={setStep} setEnd={setEnd}/>
     </div>
 )
