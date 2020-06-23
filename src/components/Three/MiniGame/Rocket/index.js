@@ -1,23 +1,13 @@
-import React, { useState } from "react"
-import { useSpring, a } from "react-spring/three"
+import React from "react"
+import { useBox } from 'use-cannon'
 
-const Rocket = () => {
-    const [hovered, setHovered] = useState(false)
-    const props = useSpring({
-        color: hovered ? "black" : "grey"
-    })
-
+const Rocket = (props) => {
+    const [ref] = useBox(() => ({ mass: 1, position: [0, 5, 0], ...props }))
     return (
-        <a.mesh
-            onPointerOver={() => setHovered(true)}
-            onPointerOut={() => setHovered(false)}
-            castShadow
-        >
-            <boxBufferGeometry
-                attach="geometry"
-                args={[1, 1, 1]}/>
-            <a.meshPhysicalMaterial attach="material" color={props.color}/>
-        </a.mesh>
+        <mesh ref={ref}>
+            <boxBufferGeometry attach="geometry" />
+            <meshLambertMaterial attach="material" color="grey" />
+        </mesh>
     )
 }
 

@@ -1,39 +1,17 @@
-import React, { useRef } from "react"
-import * as THREE from "three"
-import { Canvas, useThree, useFrame } from "react-three-fiber"
-import Rocket from './Rocket'
-
-const Controls = () => {
-    const { gl, camera } = useThree()
-    const orbitRef = useRef()
-
-    useFrame(() => {
-        //fonction appelée à chaque frame
-        orbitRef.current.update()
-    })
-
-    return (
-        <orbitControls
-            maxPolarAngle={Math.PI / 3}
-            minPolarAngle={Math.PI / 3}
-            args={[camera, gl.domElement]}
-            ref={orbitRef}
-        />
-    )
-}
+import React from 'react'
+import { Canvas } from 'react-three-fiber'
+import { Physics } from 'use-cannon'
+import Rocket from "./Rocket"
+import Ground from "./Ground"
 
 export default () => (
-    <div>
-        <Canvas camera={{ position: [0, 0, 5] }} onCreated={({ gl }) => {
-            /*permet utilisation de cast et receive shader*/
-            gl.shadowMap.enabled = true
-            gl.shadowMap.type = THREE.PCFSoftShadowMap
-        }}>
-            <ambientLight intensity={0.5}/>
-            <spotLight position={[15, 20, 5]} penumbra={1} castShadow/>
+    <Canvas shadowMap sRGB gl={{ alpha: false }} camera={{ position: [-1, 2, 5], fov: 50 }}>
+        <ambientLight intensity={0.2}/>
+        <spotLight position={[30, 10, 10]} penumbra={1} intensity={1} castShadow/>
+        <Physics>
             <Rocket/>
-            <Controls/>
-        </Canvas>
-    </div>
+            <Ground/>
+        </Physics>
+    </Canvas>
 )
 
