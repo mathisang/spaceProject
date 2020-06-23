@@ -3,7 +3,8 @@ import './App.css';
 import StartCard from "./components/Cards/StartCard";
 import GameOn from "./components/GameOn";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
-import Asteroid from '../src/components/Three/Asteroid'
+import Asteroid from './components/Three/Asteroid'
+import MiniGame from './components/Three/MiniGame'
 
 function App() {
 
@@ -14,6 +15,9 @@ function App() {
             <Switch>
                 <Route path="/asteroid-test">
                     <Asteroid/>
+                </Route>
+                <Route path="/minigame">
+                    <MiniGame/>
                 </Route>
                 <Route path="/">
                     <div className="App">
