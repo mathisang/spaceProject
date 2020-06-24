@@ -1,140 +1,163 @@
-import React, {useContext, useEffect, useState} from 'react';
-import cards from '../../../datas/randomCards.json'
-import '../cards.scss'
+import React, { useContext, useEffect, useState } from "react";
+import cards from "../../../datas/randomCards.json";
+import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import TimelineContext from "../../Timeline/TimelineContext";
 import CardContext from "../CardContext";
 
-
 export default function () {
-    const {gauge, setGauge} = useContext(GaugeContext);
-    const {timeline, setTimeline} = useContext(TimelineContext);
-    const [isSuccess, setSuccess] = useState(null);
-    const {selectedCardId, setSelectedCardId} = useContext(CardContext);
-    const [nextCard, setNextCard] = useState(null);
-    const [idButton, setIdButton] = useState(0);
-    const arrayFull = [];
-    for (let i = 0; i < cards.length; i++) {
-        arrayFull.push(i);
+  const { gauge, setGauge } = useContext(GaugeContext);
+  const { timeline, setTimeline } = useContext(TimelineContext);
+  const [isSuccess, setSuccess] = useState(null);
+  const { selectedCardId, setSelectedCardId } = useContext(CardContext);
+  const [nextCard, setNextCard] = useState(null);
+  const [idButton, setIdButton] = useState(0);
+  const arrayFull = [];
+  for (let i = 0; i < cards.length; i++) {
+    arrayFull.push(i);
+  }
+  const [cardUnused, setCardUnused] = useState(arrayFull);
+
+  function trySuccess(e) {
+    console.log(e);
+
+    e === 1 &&
+      setGauge({
+        argent: gauge.argent + cards[nextCard].value.reponse_un.argent,
+        opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion,
+        recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche,
+      });
+    e === 2 &&
+      setGauge({
+        argent: gauge.argent + cards[nextCard].value.reponse_deux.argent,
+        opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion,
+        recherche:
+          gauge.recherche + cards[nextCard].value.reponse_deux.recherche,
+      });
+
+    let r = Math.random();
+    r < cards[nextCard].consequence.success.percent
+      ? setSuccess(true)
+      : setSuccess(false);
+  }
+
+  function nextIdCard() {
+    return cardUnused[Math.floor(Math.random() * cardUnused.length)];
+  }
+
+  function randomCard() {
+    for (var i = 0; i < cardUnused.length; i++) {
+      if (cardUnused[i] === selectedCardId) {
+        cardUnused.splice(i, 1);
+      }
     }
-    const [cardUnused, setCardUnused] = useState(arrayFull);
+    console.log("card pas utilisées", cardUnused);
 
-    function trySuccess(e) {
+    const newCardId = nextIdCard();
+    console.log("card", newCardId);
 
-        console.log(e);
+    return newCardId;
+  }
 
-        e === 1 && setGauge({
-            argent: gauge.argent + cards[nextCard].value.reponse_un.argent,
-            opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion,
-            recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche
-        });
-        e === 2 && setGauge({
-            argent: gauge.argent + cards[nextCard].value.reponse_deux.argent,
-            opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion,
-            recherche: gauge.recherche + cards[nextCard].value.reponse_deux.recherche
-        })
+  useEffect(() => {
+    idButton === 1 &&
+      setGauge({
+        argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent,
+        opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion,
+        recherche:
+          gauge.recherche + cards[selectedCardId].value.reponse_un.recherche,
+      });
+    idButton === 2 &&
+      setGauge({
+        argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent,
+        opinion:
+          gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion,
+        recherche:
+          gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche,
+      });
 
-        let r = Math.random();
-        (r < cards[nextCard].consequence.success.percent) ? setSuccess(true) : setSuccess(false);
+    idButton === 3 &&
+      (isSuccess
+        ? setGauge({
+            argent: gauge.argent + cards[nextCard].consequence.success.argent,
+            opinion:
+              gauge.opinion + cards[nextCard].consequence.success.opinion,
+            recherche:
+              gauge.recherche + cards[nextCard].consequence.success.recherche,
+          })
+        : setGauge({
+            argent: gauge.argent + cards[nextCard].consequence.fail.argent,
+            opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion,
+            recherche:
+              gauge.recherche + cards[nextCard].consequence.fail.recherche,
+          }));
 
-    }
+    let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
+    console.log(totalJauge);
+    let avanceUsa = 4;
+    totalJauge <= 120
+      ? (avanceUsa = 2)
+      : totalJauge >= 155
+      ? (avanceUsa = 7)
+      : (avanceUsa = 4);
+    setTimeline({ urss: timeline.urss + 4, usa: timeline.usa + avanceUsa });
 
-    function nextIdCard() {
+    setSuccess(null);
 
-        return cardUnused[Math.floor(Math.random() * cardUnused.length)];
+    setNextCard(randomCard());
+  }, [selectedCardId]);
 
-    }
-
-    function randomCard() {
-
-        for (var i = 0; i < cardUnused.length; i++) {
-            if (cardUnused[i] === selectedCardId) {
-                cardUnused.splice(i, 1);
-            }
-        }
-        console.log('card pas utilisées', cardUnused);
-
-        const newCardId = nextIdCard();
-        console.log('card', newCardId);
-
-        return newCardId;
-
-    }
-
-
-    useEffect(() => {
-
-        idButton === 1 && setGauge({
-            argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent,
-            opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion,
-            recherche: gauge.recherche + cards[selectedCardId].value.reponse_un.recherche
-        });
-        idButton === 2 && setGauge({
-            argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent,
-            opinion: gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion,
-            recherche: gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche
-        });
-
-        idButton === 3 && (isSuccess ? setGauge({
-                argent: gauge.argent + cards[nextCard].consequence.success.argent,
-                opinion: gauge.opinion + cards[nextCard].consequence.success.opinion,
-                recherche: gauge.recherche + cards[nextCard].consequence.success.recherche
-            }) :
-            setGauge({
-                argent: gauge.argent + cards[nextCard].consequence.fail.argent,
-                opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion,
-                recherche: gauge.recherche + cards[nextCard].consequence.fail.recherche
-            }))
-
-        let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
-        console.log(totalJauge);
-        let avanceUsa = 4;
-        totalJauge <= 120 ? avanceUsa = 2 : totalJauge >= 155 ? avanceUsa = 7 : avanceUsa = 4;
-        setTimeline({urss: timeline.urss + 4, usa: timeline.usa + avanceUsa});
-
-        setSuccess(null);
-
-        setNextCard(randomCard());
-
-
-    }, [selectedCardId]);
-
-
-    return (
-        <div className="">
-            <ul>
-                {cards.map((card, index) =>
-                    nextCard === card.id &&
-                    <div className="card-container" key={index}>
-                        {card.text.intitule}
-                        {
-                            isSuccess == null &&
-                            <div>
-                                <button onClick={() => {
-                                    setIdButton(1);
-                                    (card.consequence.exist && card.consequence.button === "reponse_un") ? trySuccess(1) : setSelectedCardId(card.id);
-                                }}>{card.text.reponse_un}</button>
-                                <button onClick={() => {
-                                    setIdButton(2);
-                                    (card.consequence.exist && card.consequence.button === "reponse_deux") ? trySuccess(2) : setSelectedCardId(card.id);
-                                }}>{card.text.reponse_deux}</button>
-                            </div>
-                        }
-                        {
-                            isSuccess !== null &&
-                            card.consequence.exist &&
-                            <div>consequence : {isSuccess ? <p>succès</p> : <p>échec</p>}
-                                <button onClick={() => {
-                                    setSelectedCardId(card.id);
-                                    setIdButton(3);
-                                }}>SUIVANT
-                                </button>
-                            </div>
-                        }
-                    </div>
-                )
-                }
-            </ul>
-        </div>
-    );
+  return (
+    <div className="">
+      <ul>
+        {cards.map(
+          (card, index) =>
+            nextCard === card.id && (
+              <div className="card-container" key={index}>
+                {card.text.intitule}
+                {isSuccess == null && (
+                  <div>
+                    <button
+                      onClick={() => {
+                        setIdButton(1);
+                        card.consequence.exist &&
+                        card.consequence.button === "reponse_un"
+                          ? trySuccess(1)
+                          : setSelectedCardId(card.id);
+                      }}
+                    >
+                      {card.text.reponse_un}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIdButton(2);
+                        card.consequence.exist &&
+                        card.consequence.button === "reponse_deux"
+                          ? trySuccess(2)
+                          : setSelectedCardId(card.id);
+                      }}
+                    >
+                      {card.text.reponse_deux}
+                    </button>
+                  </div>
+                )}
+                {isSuccess !== null && card.consequence.exist && (
+                  <div>
+                    consequence : {isSuccess ? <p>succès</p> : <p>échec</p>}
+                    <button
+                      onClick={() => {
+                        setSelectedCardId(card.id);
+                        setIdButton(3);
+                      }}
+                    >
+                      SUIVANT
+                    </button>
+                  </div>
+                )}
+              </div>
+            )
+        )}
+      </ul>
+    </div>
+  );
 }
