@@ -6,7 +6,7 @@ const StartButton = ({ onChangeStatus }) => {
   return <button onClick={onChangeStatus}>Commencer l'aventure</button>;
 };
 
-export default ({ onChangeStatus }) => (
+  export default ({ onChangeStatus }) => (
   <div>
     <Text />
     <StartButton onChangeStatus={onChangeStatus} />
