@@ -30,5 +30,21 @@
   {
     "step": 8,
     "name": "Ete 1961"
+  },
+  {
+    "step": 9,
+    "name": "Automne 1962"
+  },
+  {
+    "step": 10,
+    "name": "Hiver 1962"
+  },
+  {
+    "step": 11,
+    "name": "Printemps 1962"
+  },
+  {
+    "step": 12,
+    "name": "Ete 1962"
   }
 ]
