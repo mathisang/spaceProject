@@ -1,14 +1,18 @@
 import React from "react";
-import { useSphere } from "use-cannon";
-import { Sphere } from "drei";
+import { usePlane } from "use-cannon";
 
-export default function Obstacle(props) {
-  const [ref] = useSphere(() => ({ mass: 1, position: [0, 5, 0], ...props }));
+const Ground = (props) => {
+  const [ref] = usePlane(() => ({
+    rotation: [-Math.PI / 2, 0, 0],
+    position: [0, -5, 0],
+    ...props,
+  }));
   return (
-    <mesh>
-      <Sphere receiveShadow castShadow ref={ref} args={[0.5]}>
-        <meshLambertMaterial attach="material" color="grey" />
-      </Sphere>
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <meshLambertMaterial attach="material" color="red" />
     </mesh>
   );
-}
+};
+
+export default () => <Ground />;
