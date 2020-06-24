@@ -26,14 +26,14 @@ const ContinueButton = ({ setStep, step, setEnd }) => {
       ? setEnd(true)
       : timeline.usa > timeline.urss
       ? setGauge({
-          argent: gauge.argent + cards[step.id].win.argent,
+          money: gauge.money + cards[step.id].win.money,
           opinion: gauge.opinion + cards[step.id].win.opinion,
-          recherche: gauge.recherche + cards[step.id].win.recherche,
+          search: gauge.search + cards[step.id].win.search,
         })
       : setGauge({
-          argent: gauge.argent + cards[step.id].loose.argent,
+          money: gauge.money + cards[step.id].loose.money,
           opinion: gauge.opinion + cards[step.id].loose.opinion,
-          recherche: gauge.recherche + cards[step.id].loose.recherche,
+          search: gauge.search + cards[step.id].loose.search,
         });
     setStep({ isActive: false, id: step.id + 1 });
   };

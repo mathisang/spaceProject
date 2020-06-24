@@ -4,55 +4,55 @@
     "categorie": "espionnage",
     "text": {
       "intitule": "Se lancer dans un projet d'espionnage industriel pour voler des technologies à l'URSS ? (risque de se faire repérer)",
-      "reponse_un": "Faire l'espionnage",
-      "reponse_deux": "Ne pas faire l'espionnage"
+      "first_answer": "Faire l'espionnage",
+      "second_answer": "Ne pas faire l'espionnage"
     },
     "value": {
-      "reponse_un": {
-        "argent": -10,
-        "recherche": 0,
+      "first_answer": {
+        "money": -10,
+        "search": 0,
         "opinion": 0
       },
-      "reponse_deux": {
-        "argent": 0,
-        "recherche": 0,
+      "second_answer": {
+        "money": 0,
+        "search": 0,
         "opinion": 0
       }
     },
     "consequence": {
       "exist": true,
-      "button": "reponse_un",
+      "button": "first_answer",
       "success": {
         "percent": 0.5,
-        "argent": 0,
-        "recherche": 15,
+        "money": 0,
+        "search": 15,
         "opinion": 0
       },
       "fail": {
         "percent": 0.5,
-        "argent": 0,
-        "recherche": 0,
+        "money": 0,
+        "search": 0,
         "opinion": -15
       }
     }
   },
   {
     "id": 1,
-    "categorie": "communication & recherche",
+    "categorie": "communication & search",
     "text": {
       "intitule": "Des doutes dans l'opinion public quant à vos compétences commencent à émerger. Vos recherches sont de plus en plus questionnées et contestées",
-      "reponse_un": "Lancer une campagne de com de grande ampleur visant à redorer l'image de la conquête spatiale des Etats Unis",
-      "reponse_deux": "Pas d'argent à perdre dans la com, investir dans la recherche"
+      "first_answer": "Lancer une campagne de com de grande ampleur visant à redorer l'image de la conquête spatiale des Etats Unis",
+      "second_answer": "Pas d'argent à perdre dans la com, investir dans la recherche"
     },
     "value": {
-      "reponse_un": {
-        "argent": -10,
-        "recherche": 0,
+      "first_answer": {
+        "money": -10,
+        "search": 0,
         "opinion": 15
       },
-      "reponse_deux": {
-        "argent": -5,
-        "recherche": 10,
+      "second_answer": {
+        "money": -5,
+        "search": 10,
         "opinion": -10
       }
     },
@@ -65,18 +65,18 @@
     "categorie": "communication & recherche",
     "text": {
       "intitule": "Le bilan est tombé, votre programme dispose d'un bonus économique ce trimestre",
-      "reponse_un": "Utiliser les ressources pour la recherche",
-      "reponse_deux": "Profiter de cette occasion pour faire un peu de com"
+      "first_answer": "Utiliser les ressources pour la recherche",
+      "second_answer": "Profiter de cette occasion pour faire un peu de com"
     },
     "value": {
-      "reponse_un": {
-        "argent": 10,
-        "recherche": 10,
+      "first_answer": {
+        "money": 10,
+        "search": 10,
         "opinion": -5
       },
-      "reponse_deux": {
-        "argent": 10,
-        "recherche": -5,
+      "second_answer": {
+        "money": 10,
+        "search": -5,
         "opinion": 10
       }
     },
@@ -89,34 +89,34 @@
     "categorie": "recherche",
     "text": {
       "intitule": "Les recherches avancent bien, vos chercheurs pensent être sur une piste prometteuse pour (vrai truc technique). Ils ont une chance de réussir",
-      "reponse_un": " Financer la recherche",
-      "reponse_deux": "Ignorer"
+      "first_answer": " Financer la recherche",
+      "second_answer": "Ignorer"
     },
     "value": {
-      "reponse_un": {
-        "argent": -15,
-        "recherche": 0,
+      "first_answer": {
+        "money": -15,
+        "search": 0,
         "opinion": 0
       },
-      "reponse_deux": {
-        "argent": 10,
-        "recherche": 0,
+      "second_answer": {
+        "money": 10,
+        "search": 0,
         "opinion": 0
       }
     },
     "consequence": {
       "exist": true,
-      "button": "reponse_un",
+      "button": "first_answer",
       "success": {
         "percent": 0.8,
-        "argent": 0,
-        "recherche": 15,
+        "money": 0,
+        "search": 15,
         "opinion": 5
       },
       "fail": {
         "percent": 0.2,
-        "argent": 0,
-        "recherche": 5,
+        "money": 0,
+        "search": 5,
         "opinion": 0
       }
     }
@@ -126,34 +126,34 @@
     "categorie": "recherche",
     "text": {
       "intitule": "Vos ingénieurs ont découvert un nouveau moyen de quitter l'atmosphère",
-      "reponse_un": " Financer la recherche",
-      "reponse_deux": "Ignorer"
+      "first_answer": " Financer la recherche",
+      "second_answer": "Ignorer"
     },
     "value": {
-      "reponse_un": {
-        "argent": -10,
-        "recherche": 0,
+      "first_answer": {
+        "money": -10,
+        "search": 0,
         "opinion": 0
       },
-      "reponse_deux": {
-        "argent": 10,
-        "recherche": 0,
+      "second_answer": {
+        "money": 10,
+        "search": 0,
         "opinion": 0
       }
     },
     "consequence": {
       "exist": true,
-      "button": "reponse_un",
+      "button": "first_answer",
       "success": {
         "percent": 0.8,
-        "argent": 0,
-        "recherche": 15,
+        "money": 0,
+        "search": 15,
         "opinion": 5
       },
       "fail": {
         "percent": 0.2,
-        "argent": 0,
-        "recherche": 5,
+        "money": 0,
+        "search": 5,
         "opinion": 0
       }
     }
@@ -163,34 +163,34 @@
     "categorie": "espionnage",
     "text": {
       "intitule": "Vous apprenez qu'un espion russe s'est infiltré dans votre centre de recherche spatiale. Voulez-vous tenter de le débusquer ",
-      "reponse_un": "Oui",
-      "reponse_deux": "Fausse alerte, faire taire les rumeurs et se focaliser sur les recherches"
+      "first_answer": "Oui",
+      "second_answer": "Fausse alerte, faire taire les rumeurs et se focaliser sur les recherches"
     },
     "value": {
-      "reponse_un": {
-        "argent": -10,
-        "recherche": -5,
+      "first_answer": {
+        "money": -10,
+        "search": -5,
         "opinion": 5
       },
-      "reponse_deux": {
-        "argent": 5,
-        "recherche": -5,
+      "second_answer": {
+        "money": 5,
+        "search": -5,
         "opinion": -5
       }
     },
     "consequence": {
       "exist": true,
-      "button": "reponse_un",
+      "button": "first_answer",
       "success": {
         "percent": 0.4,
-        "argent": 0,
-        "recherche": -5,
+        "money": 0,
+        "search": -5,
         "opinion": 10
       },
       "fail": {
         "percent": 0.6,
-        "argent": 0,
-        "recherche": -15,
+        "money": 0,
+        "search": -15,
         "opinion": -10
       }
     }
@@ -200,34 +200,34 @@
     "categorie": "investissement",
     "text": {
       "intitule": "Un chercheur au fort accent d'europe de l'est vous propose d'améliorer votre carburant et améliorer vos recherches. Il vous demande cependant un investissement. Prenez-vous le risque ?",
-      "reponse_un": "Oui",
-      "reponse_deux": "Non"
+      "first_answer": "Oui",
+      "second_answer": "Non"
     },
     "value": {
-      "reponse_un": {
-        "argent": -15,
-        "recherche": 0,
+      "first_answer": {
+        "money": -15,
+        "search": 0,
         "opinion": 0
       },
-      "reponse_deux": {
-        "argent": 5,
-        "recherche": 0,
+      "second_answer": {
+        "money": 5,
+        "search": 0,
         "opinion": 0
       }
     },
     "consequence": {
       "exist": true,
-      "button": "reponse_un",
+      "button": "first_answer",
       "success": {
         "percent": 0.5,
-        "argent": 15,
-        "recherche": 15,
+        "money": 15,
+        "search": 15,
         "opinion": 5
       },
       "fail": {
         "percent": 0.5,
-        "argent": 0,
-        "recherche": 0,
+        "money": 0,
+        "search": 0,
         "opinion": -5
       }
     }
@@ -237,34 +237,34 @@
     "categorie": "investissement",
     "text": {
       "intitule": "Un investisseur aux allures mafieuses vous propose de l'argent pour financer vos projets",
-      "reponse_un": "J'accepte",
-      "reponse_deux": "Jamais de la vie"
+      "first_answer": "J'accepte",
+      "second_answer": "Jamais de la vie"
     },
     "value": {
-      "reponse_un": {
-        "argent": 0,
-        "recherche": 0,
+      "first_answer": {
+        "money": 0,
+        "search": 0,
         "opinion": 0
       },
-      "reponse_deux": {
-        "argent": 0,
-        "recherche": -5,
+      "second_answer": {
+        "money": 0,
+        "search": -5,
         "opinion": 0
       }
     },
     "consequence": {
       "exist": true,
-      "button": "reponse_un",
+      "button": "first_answer",
       "success": {
         "percent": 0.7,
-        "argent": 15,
-        "recherche": 0,
+        "money": 15,
+        "search": 0,
         "opinion": 0
       },
       "fail": {
         "percent": 0.3,
-        "argent": 0,
-        "recherche": 0,
+        "money": 0,
+        "search": 0,
         "opinion": -10
       }
     }

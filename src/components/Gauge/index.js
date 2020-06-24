@@ -8,11 +8,11 @@ export default function () {
     <div className="">
       <div>
         Argent :{" "}
-        {gauge.argent > 100
-          ? (gauge.argent = 100)
-          : gauge.argent < 0
-          ? (gauge.argent = 0)
-          : gauge.argent}{" "}
+        {gauge.money > 100
+          ? (gauge.money = 100)
+          : gauge.money < 0
+          ? (gauge.money = 0)
+          : gauge.money}{" "}
         %
         <br />
         Opinion:{" "}
@@ -24,11 +24,11 @@ export default function () {
         %
         <br />
         Recherche:{" "}
-        {gauge.recherche > 100
-          ? (gauge.recherche = 100)
-          : gauge.recherche < 0
-          ? (gauge.recherche = 0)
-          : gauge.recherche}{" "}
+        {gauge.search > 100
+          ? (gauge.search = 100)
+          : gauge.search < 0
+          ? (gauge.search = 0)
+          : gauge.search}{" "}
         %
       </div>
     </div>

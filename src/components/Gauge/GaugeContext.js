@@ -3,9 +3,9 @@ import React from "react";
 // set the defaults
 const GaugeContext = React.createContext({
   gauge: {
-    argent: 50,
+    money: 50,
     opinion: 50,
-    recherche: 50,
+    search: 50,
   },
   setGauge: () => {},
 });

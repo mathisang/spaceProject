@@ -13,9 +13,9 @@ import EndCard from "../Cards/EndCard";
 
 export default function () {
   const [gauge, setGauge] = useState({
-    argent: 50,
+    money: 50,
     opinion: 50,
-    recherche: 50,
+    search: 50,
   });
   const gaugeContextValue = { gauge, setGauge };
   const [timeline, setTimeline] = useState({ urss: 5, usa: 0 });
@@ -28,7 +28,7 @@ export default function () {
   const [timeStep, setTimeStep] = useState(0);
 
   useEffect(() => {
-    (gauge.argent === 0 || gauge.opinion === 0 || gauge.recherche === 0) &&
+    (gauge.money === 0 || gauge.opinion === 0 || gauge.search === 0) &&
       setLoose(true);
   }, [gauge]);
 
