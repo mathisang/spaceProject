@@ -23,16 +23,15 @@ export default function () {
 
     e === 1 &&
       setGauge({
-        argent: gauge.argent + cards[nextCard].value.reponse_un.argent,
-        opinion: gauge.opinion + cards[nextCard].value.reponse_un.opinion,
-        recherche: gauge.recherche + cards[nextCard].value.reponse_un.recherche,
+        money: gauge.money + cards[nextCard].value.first_answer.money,
+        opinion: gauge.opinion + cards[nextCard].value.first_answer.opinion,
+        search: gauge.search + cards[nextCard].value.first_answer.search,
       });
     e === 2 &&
       setGauge({
-        argent: gauge.argent + cards[nextCard].value.reponse_deux.argent,
-        opinion: gauge.opinion + cards[nextCard].value.reponse_deux.opinion,
-        recherche:
-          gauge.recherche + cards[nextCard].value.reponse_deux.recherche,
+        money: gauge.money + cards[nextCard].value.second_answer.money,
+        opinion: gauge.opinion + cards[nextCard].value.second_answer.opinion,
+        search: gauge.search + cards[nextCard].value.second_answer.search,
       });
 
     let r = Math.random();
@@ -62,37 +61,34 @@ export default function () {
   useEffect(() => {
     idButton === 1 &&
       setGauge({
-        argent: gauge.argent + cards[selectedCardId].value.reponse_un.argent,
-        opinion: gauge.opinion + cards[selectedCardId].value.reponse_un.opinion,
-        recherche:
-          gauge.recherche + cards[selectedCardId].value.reponse_un.recherche,
+        money: gauge.money + cards[selectedCardId].value.first_answer.money,
+        opinion:
+          gauge.opinion + cards[selectedCardId].value.first_answer.opinion,
+        search: gauge.search + cards[selectedCardId].value.first_answer.search,
       });
     idButton === 2 &&
       setGauge({
-        argent: gauge.argent + cards[selectedCardId].value.reponse_deux.argent,
+        money: gauge.money + cards[selectedCardId].value.second_answer.money,
         opinion:
-          gauge.opinion + cards[selectedCardId].value.reponse_deux.opinion,
-        recherche:
-          gauge.recherche + cards[selectedCardId].value.reponse_deux.recherche,
+          gauge.opinion + cards[selectedCardId].value.second_answer.opinion,
+        search: gauge.search + cards[selectedCardId].value.second_answer.search,
       });
 
     idButton === 3 &&
       (isSuccess
         ? setGauge({
-            argent: gauge.argent + cards[nextCard].consequence.success.argent,
+            money: gauge.money + cards[nextCard].consequence.success.money,
             opinion:
               gauge.opinion + cards[nextCard].consequence.success.opinion,
-            recherche:
-              gauge.recherche + cards[nextCard].consequence.success.recherche,
+            search: gauge.search + cards[nextCard].consequence.success.search,
           })
         : setGauge({
-            argent: gauge.argent + cards[nextCard].consequence.fail.argent,
+            money: gauge.money + cards[nextCard].consequence.fail.money,
             opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion,
-            recherche:
-              gauge.recherche + cards[nextCard].consequence.fail.recherche,
+            search: gauge.search + cards[nextCard].consequence.fail.search,
           }));
 
-    let totalJauge = gauge.argent + gauge.opinion + gauge.recherche;
+    let totalJauge = gauge.money + gauge.opinion + gauge.search;
     console.log(totalJauge);
     let avanceUsa = 4;
     totalJauge <= 120
@@ -121,23 +117,23 @@ export default function () {
                       onClick={() => {
                         setIdButton(1);
                         card.consequence.exist &&
-                        card.consequence.button === "reponse_un"
+                        card.consequence.button === "first_answer"
                           ? trySuccess(1)
                           : setSelectedCardId(card.id);
                       }}
                     >
-                      {card.text.reponse_un}
+                      {card.text.first_answer}
                     </button>
                     <button
                       onClick={() => {
                         setIdButton(2);
                         card.consequence.exist &&
-                        card.consequence.button === "reponse_deux"
+                        card.consequence.button === "second_answer"
                           ? trySuccess(2)
                           : setSelectedCardId(card.id);
                       }}
                     >
-                      {card.text.reponse_deux}
+                      {card.text.second_answer}
                     </button>
                   </div>
                 )}

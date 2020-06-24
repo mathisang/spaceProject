@@ -17,11 +17,11 @@ const WinText = ({ timeStep }) => {
       <br />
       Score :
       <br />
-      argent : {gauge.argent}
+      argent : {gauge.money}
       <br />
       opinion : {gauge.opinion}
       <br />
-      recherche : {gauge.recherche}
+      recherche : {gauge.search}
       <br />
       Avancée de l'URSS : {timeline.urss}%
     </div>
@@ -43,11 +43,11 @@ const LooseText = ({ timeStep }) => {
       <br />
       Score :
       <br />
-      argent : {gauge.argent}
+      argent : {gauge.money}
       <br />
       opinion : {gauge.opinion}
       <br />
-      recherche : {gauge.recherche}
+      recherche : {gauge.search}
       <br />
       Votre triste avancée: {timeline.usa}%
     </div>
