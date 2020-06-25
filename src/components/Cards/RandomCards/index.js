@@ -18,32 +18,40 @@ export default function () {
   }
   const [cardUnused, setCardUnused] = useState(arrayFull);
 
+  // Si une carte à une conséquence, renvoi succès ou echec
   function trySuccess(e) {
     console.log(e);
 
     e === 1 &&
       setGauge({
-        money: gauge.money + cards[nextCard].value.first_answer.money,
-        opinion: gauge.opinion + cards[nextCard].value.first_answer.opinion,
-        search: gauge.search + cards[nextCard].value.first_answer.search,
+        money: gauge.money + cards[nextCard].card.responses[0].impacts.money,
+        opinion:
+          gauge.opinion + cards[nextCard].card.responses[0].impacts.opinion,
+        search: gauge.search + cards[nextCard].card.responses[0].impacts.search,
       });
     e === 2 &&
       setGauge({
-        money: gauge.money + cards[nextCard].value.second_answer.money,
-        opinion: gauge.opinion + cards[nextCard].value.second_answer.opinion,
-        search: gauge.search + cards[nextCard].value.second_answer.search,
+        money: gauge.money + cards[nextCard].card.responses[1].impacts.money,
+        opinion:
+          gauge.opinion + cards[nextCard].card.responses[1].impacts.opinion,
+        search: gauge.search + cards[nextCard].card.responses[1].impacts.search,
       });
 
+    var numberResponse = cards[nextCard].card.responses[0].consequence ? 0 : 1;
+
     let r = Math.random();
-    r < cards[nextCard].consequence.success.percent
+    r >
+    cards[nextCard].card.responses[numberResponse].consequence.percent_success
       ? setSuccess(true)
       : setSuccess(false);
   }
 
+  // Génère une nouvelle carte qui n'a pas encore été jouée
   function nextIdCard() {
     return cardUnused[Math.floor(Math.random() * cardUnused.length)];
   }
 
+  // Supprime la carte qui à été jouée
   function randomCard() {
     for (var i = 0; i < cardUnused.length; i++) {
       if (cardUnused[i] === selectedCardId) {
@@ -58,34 +66,63 @@ export default function () {
     return newCardId;
   }
 
+  // Avancement des jauges et du jeu : calcul les jauges, attribue une prochaine carte à afficher
   useEffect(() => {
     idButton === 1 &&
       setGauge({
-        money: gauge.money + cards[selectedCardId].value.first_answer.money,
+        money:
+          gauge.money + cards[selectedCardId].card.responses[0].impacts.money,
         opinion:
-          gauge.opinion + cards[selectedCardId].value.first_answer.opinion,
-        search: gauge.search + cards[selectedCardId].value.first_answer.search,
+          gauge.opinion +
+          cards[selectedCardId].card.responses[0].impacts.opinion,
+        search:
+          gauge.search + cards[selectedCardId].card.responses[0].impacts.search,
       });
     idButton === 2 &&
       setGauge({
-        money: gauge.money + cards[selectedCardId].value.second_answer.money,
+        money:
+          gauge.money + cards[selectedCardId].card.responses[1].impacts.money,
         opinion:
-          gauge.opinion + cards[selectedCardId].value.second_answer.opinion,
-        search: gauge.search + cards[selectedCardId].value.second_answer.search,
+          gauge.opinion +
+          cards[selectedCardId].card.responses[1].impacts.opinion,
+        search:
+          gauge.search + cards[selectedCardId].card.responses[1].impacts.search,
       });
 
+    if (idButton === 3) {
+      var numberResponse = cards[nextCard].card.responses[0].consequence
+        ? 0
+        : 1;
+    }
     idButton === 3 &&
       (isSuccess
         ? setGauge({
-            money: gauge.money + cards[nextCard].consequence.success.money,
+            money:
+              gauge.money +
+              cards[nextCard].card.responses[numberResponse].consequence.success
+                .money,
             opinion:
-              gauge.opinion + cards[nextCard].consequence.success.opinion,
-            search: gauge.search + cards[nextCard].consequence.success.search,
+              gauge.opinion +
+              cards[nextCard].card.responses[numberResponse].consequence.success
+                .opinion,
+            search:
+              gauge.search +
+              cards[nextCard].card.responses[numberResponse].consequence.success
+                .search,
           })
         : setGauge({
-            money: gauge.money + cards[nextCard].consequence.fail.money,
-            opinion: gauge.opinion + cards[nextCard].consequence.fail.opinion,
-            search: gauge.search + cards[nextCard].consequence.fail.search,
+            money:
+              gauge.money +
+              cards[nextCard].card.responses[numberResponse].consequence.fail
+                .money,
+            opinion:
+              gauge.opinion +
+              cards[nextCard].card.responses[numberResponse].consequence.fail
+                .opinion,
+            search:
+              gauge.search +
+              cards[nextCard].card.responses[numberResponse].consequence.fail
+                .search,
           }));
 
     let totalJauge = gauge.money + gauge.opinion + gauge.search;
@@ -110,34 +147,33 @@ export default function () {
           (card, index) =>
             nextCard === card.id && (
               <div className="card-container" key={index}>
-                {card.text.intitule}
+                {card.card.category}
+                {card.card.context}
                 {isSuccess == null && (
                   <div>
                     <button
                       onClick={() => {
                         setIdButton(1);
-                        card.consequence.exist &&
-                        card.consequence.button === "first_answer"
+                        card.card.responses[0].consequence
                           ? trySuccess(1)
                           : setSelectedCardId(card.id);
                       }}
                     >
-                      {card.text.first_answer}
+                      {card.card.responses[0].label}
                     </button>
                     <button
                       onClick={() => {
                         setIdButton(2);
-                        card.consequence.exist &&
-                        card.consequence.button === "second_answer"
+                        card.card.responses[1].consequence
                           ? trySuccess(2)
                           : setSelectedCardId(card.id);
                       }}
                     >
-                      {card.text.second_answer}
+                      {card.card.responses[1].label}
                     </button>
                   </div>
                 )}
-                {isSuccess !== null && card.consequence.exist && (
+                {isSuccess !== null && (
                   <div>
                     consequence : {isSuccess ? <p>succès</p> : <p>échec</p>}
                     <button
