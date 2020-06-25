@@ -3,6 +3,7 @@ import GaugeContext from "../../Gauge/GaugeContext";
 import TimelineContext from "../../Timeline/TimelineContext";
 import timesSteps from "../../../datas/time.json";
 
+// Écran de victoire
 const WinText = ({ timeStep }) => {
   const { gauge, setGauge } = useContext(GaugeContext);
   const { timeline, setTimeline } = useContext(TimelineContext);
@@ -28,6 +29,7 @@ const WinText = ({ timeStep }) => {
   );
 };
 
+// Écran de défaite
 const LooseText = ({ timeStep }) => {
   const { gauge, setGauge } = useContext(GaugeContext);
   const { timeline, setTimeline } = useContext(TimelineContext);
@@ -54,6 +56,7 @@ const LooseText = ({ timeStep }) => {
   );
 };
 
+// Bouton "Rejouer"
 const RestartButton = () => {
   function restartGame() {
     window.location.reload(false);
@@ -61,6 +64,7 @@ const RestartButton = () => {
   return <button onClick={restartGame}>Rejouer</button>;
 };
 
+// Affichage de l'écran de fin
 export default ({ timeStep }) => {
   const { timeline, setTimeline } = useContext(TimelineContext);
   return (

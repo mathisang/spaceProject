@@ -11,12 +11,13 @@ import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 
-export default function () {
+export default function ({tutorialStatus, setTutorialStatus}) {
   const [gauge, setGauge] = useState({
     money: 50,
     opinion: 50,
     search: 50,
   });
+
   const gaugeContextValue = { gauge, setGauge };
   const [timeline, setTimeline] = useState({ urss: 5, usa: 0 });
   const timelineContextValue = { timeline, setTimeline };
@@ -27,11 +28,14 @@ export default function () {
   const [isEnd, setEnd] = useState(false);
   const [timeStep, setTimeStep] = useState(0);
 
+  // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
     (gauge.money === 0 || gauge.opinion === 0 || gauge.search === 0) &&
       setLoose(true);
   }, [gauge]);
 
+
+  // Affichage de l'événement
   useEffect(() => {
     (timeline.usa >= stepCards[step.id].stepPercent ||
       timeline.urss >= stepCards[step.id].stepPercent) &&
@@ -44,6 +48,8 @@ export default function () {
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
         <TimelineContext.Provider value={timelineContextValue}>
+          {tutorialStatus &&
+          <p>Coucou</p>}
           {isLoose ? (
             <LooseCard />
           ) : isEnd ? (

@@ -140,6 +140,7 @@ export default function () {
     setNextCard(randomCard());
   }, [selectedCardId]);
 
+  // Affichage de la carte + réponses
   return (
     <div className="">
       <ul>

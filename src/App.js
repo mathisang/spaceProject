@@ -8,7 +8,9 @@ import MiniGame from "./components/Three/MiniGame";
 
 function App() {
   const [isGameOn, setGameStatus] = useState(false);
+  const [isTutorialOn, setTutorialStatus] = useState(false);
   const handleChange = () => setGameStatus(true);
+  const tutorialChange = () => (setTutorialStatus(true), setGameStatus(true));
 
   return (
     <Switch>
@@ -20,7 +22,7 @@ function App() {
       </Route>
       <Route path="/">
         <div className="App">
-          {isGameOn ? <GameOn /> : <StartCard onChangeStatus={handleChange} />}
+          {isGameOn ? <GameOn tutorialStatus={isTutorialOn} setTutorialStatus={setTutorialStatus} /> : <StartCard onChangeStatus={handleChange} startTutoriel={tutorialChange} />}
         </div>
       </Route>
     </Switch>
