@@ -8,16 +8,15 @@ import "./miniGame.scss";
 
 export default () => {
   const [isTouched, setTouched] = useState(false);
-  const [lifePoints, setLifePoints] = useState(4);
+  const [lifePoints, setLifePoints] = useState(3);
 
   useEffect(() => {
     if (isTouched) {
+      setLifePoints(lifePoints - 1);
       setTimeout(() => {
-        setLifePoints(lifePoints - 1);
         setTouched(false);
       }, 1000);
     }
-    console.log(isTouched);
   }, [isTouched]);
 
   return (
@@ -38,9 +37,9 @@ export default () => {
         />
         <Physics>
           <Rocket isTouched={isTouched} setTouched={setTouched} />
-          <Obstacle position={[3, 10, 0]} />
-          <Obstacle position={[0, 10, 0]} />
-          {/*<Ground />*/}
+          {/*<Obstacle position={[3, 3, 0]} />
+          <Obstacle position={[0, 3, 0]} />*/}
+          <Obstacle number={10} />
         </Physics>
       </Canvas>
     </div>
