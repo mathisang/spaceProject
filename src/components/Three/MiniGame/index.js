@@ -54,9 +54,9 @@ export default () => {
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />
           </Suspense>
-          <Obstacle position={[3, 3, 0]} />
-          <Obstacle position={[0, 3, 0]} />
-          <Obstacle number={1} />
+          {/*<Obstacle position={[3, 3, 0]} />
+          <Obstacle position={[0, 3, 0]} />*/}
+          <Obstacle number={2} />
         </Physics>
       </Canvas>
     </div>

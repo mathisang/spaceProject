@@ -15,10 +15,13 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
   // gltf model load
   const { nodes } = useLoader(
     GLTFLoader,
-    "three/miniGameSpaceship/spaceShip.glb"
+    "three/miniGameSpaceship/rocket/spaceShip.glb"
   );
   const groupModel = useRef();
-  const scene = useLoader(GLTFLoader, "three/miniGameSpaceship/spaceShip.glb");
+  const scene = useLoader(
+    GLTFLoader,
+    "three/miniGameSpaceship/rocket/spaceShip.glb"
+  );
   useEffect(() => {
     console.log(scene);
   }, []);

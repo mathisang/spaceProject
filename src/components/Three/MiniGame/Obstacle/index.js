@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSphere } from "use-cannon";
-import { useFrame } from "react-three-fiber";
+import { useFrame, useLoader } from "react-three-fiber";
+import * as THREE from "three";
 
 export default function Obstacle({ props, number }) {
   const [ref, api] = useSphere(() => ({
     mass: 1,
-    position: [0, 3, 0],
+    position: [Math.random() * 6, 3, 0],
     ...props,
   }));
+  const map = useLoader(
+    THREE.TextureLoader,
+    "three/miniGameSpaceship/obstacle/obstacle_texture.jpg"
+  );
   /*const onClick = (e) => {
     console.log(e);
     setDropped(true);
@@ -29,8 +34,8 @@ export default function Obstacle({ props, number }) {
       castShadow
       args={[null, null, number]}
     >
-      <sphereBufferGeometry attach="geometry" args={[0.5]} />
-      <meshLambertMaterial attach="material" color="grey" />
+      <sphereBufferGeometry attach="geometry" args={[0.5, 32, 32]} />
+      <meshStandardMaterial attach="material" map={map} />
     </instancedMesh>
   );
 }
