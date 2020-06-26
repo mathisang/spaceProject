@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSphere } from "use-cannon";
+import { useFrame } from "react-three-fiber";
 
 export default function Obstacle({ props, number }) {
-  const [ref] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     mass: 1,
-    /*position: [0, 5, 0],*/
-    position: [Math.random() * 10, Math.random() * 6, 0],
+    position: [0, 3, 0],
     ...props,
   }));
+  /*const onClick = (e) => {
+    console.log(e);
+    setDropped(true);
+  };*/
+  /*useFrame((state) => {
+    api.position.set(2, -4, 0);
+  });*/
+  /* useEffect(() => {
+    /!*setTimeout(() => {
+      console.log("all mesh", ref.current);
+    }, 1000);*!/
+    console.log(api.mass);
+  }, [api.mass]);*/
+  useFrame(() => {});
   return (
     <instancedMesh
       ref={ref}
