@@ -36,6 +36,19 @@
             "money": 10,
             "opinion": -10,
             "search": 10
+          },
+          "consequence": {
+            "percent_success": 0.5,
+            "succes": {
+              "money": 0,
+              "opinion": 15,
+              "search": 0
+            },
+            "fail": {
+              "money": 0,
+              "opinion": 0,
+              "search": -15
+            }
           }
         },
         {
