@@ -14,25 +14,38 @@ export default function Obstacle({ props, number }) {
     "three/miniGameSpaceship/obstacle/obstacle_texture.jpg"
   );
   const [asteroid, setAsteroid] = useState(1);
-  /*const onClick = (e) => {
-    console.log(e);
-    setDropped(true);
-  };*/
-  /*useFrame((state) => {
-    api.position.set(2, -4, 0);
-  });*/
-  /* useEffect(() => {
-    /!*setTimeout(() => {
-      console.log("all mesh", ref.current);
-    }, 1000);*!/
-    console.log(api.mass);
-  }, [api.mass]);*/
-  /*useFrame(() =>
-  );*/
-  setTimeout(() => {
-    api.at(asteroid).position.set(Math.random() * 7, 7, 0);
-    setAsteroid(asteroid + 1);
-  }, 1000);
+  let obstaclesPosition = [-4, -2, 0, 2, 4];
+  let obstacleParts = [
+    { time: 5000, nextStep: 10 },
+    { time: 2000, nextStep: 20 },
+    { time: 1000, nextStep: null },
+  ];
+  const [obstaclePart, setObstaclePart] = useState(0);
+
+  useEffect(() => {
+    if (asteroid < number) {
+      setTimeout(() => {
+        console.log("asteroid", asteroid);
+        console.log("part", obstaclePart);
+        api.at(asteroid).velocity.set(0, 0, 0);
+        api
+          .at(asteroid)
+          .position.set(
+            obstaclesPosition[
+              Math.floor(Math.random() * obstaclesPosition.length)
+            ],
+            7,
+            0
+          );
+        if (obstaclePart !== 2) {
+          asteroid >= obstacleParts[obstaclePart].nextStep &&
+            setObstaclePart(obstaclePart + 1);
+        }
+
+        setAsteroid(asteroid + 1);
+      }, obstacleParts[obstaclePart].time);
+    }
+  }, [asteroid]);
 
   return (
     <instancedMesh
@@ -41,7 +54,7 @@ export default function Obstacle({ props, number }) {
       castShadow
       args={[null, null, number]}
     >
-      <sphereBufferGeometry attach="geometry" args={[0.5, 32, 32]} />
+      <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} />
       <meshStandardMaterial attach="material" map={map} />
     </instancedMesh>
   );

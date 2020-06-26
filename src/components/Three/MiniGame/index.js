@@ -56,7 +56,7 @@ export default () => {
           </Suspense>
           {/*<Obstacle position={[3, 3, 0]} />
           <Obstacle position={[0, 3, 0]} />*/}
-          <Obstacle number={20} />
+          <Obstacle number={30} />
         </Physics>
       </Canvas>
     </div>
