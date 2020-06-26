@@ -38,6 +38,7 @@ export default function () {
   // GESTION DES JAUGES
   // Mise à jour des jauges (Carte basique)
   function updateGauge(card) {
+    console.log(cards[card].card.responses[idButton - 1])
     setGauge({
       money:
         gauge.money + cards[card].card.responses[idButton - 1].impacts.money,
@@ -77,7 +78,10 @@ export default function () {
   // AVANCEMENT DU JEU
   // Avancement des jauges et du jeu : calcul les jauges, attribue une prochaine carte à afficher
   useEffect(() => {
-    idButton === (1 || 2) && updateGauge(selectedCardId);
+    idButton === 1
+      && updateGauge(selectedCardId);
+    idButton === 2
+      && updateGauge(selectedCardId);
 
     if (idButton === 3) {
       var numberResponse = cards[nextCard].card.responses[0].consequence
