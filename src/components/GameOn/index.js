@@ -10,6 +10,7 @@ import LooseCard from "../Cards/LooseCard";
 import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
+import Tutorial from "../Tutorial";
 
 export default function ({tutorialStatus, setTutorialStatus}) {
   const [gauge, setGauge] = useState({
@@ -49,7 +50,8 @@ export default function ({tutorialStatus, setTutorialStatus}) {
       <GaugeContext.Provider value={gaugeContextValue}>
         <TimelineContext.Provider value={timelineContextValue}>
           {tutorialStatus &&
-          <p>Coucou</p>}
+          <Tutorial setTutorialStatus={setTutorialStatus} />
+          }
           {isLoose ? (
             <LooseCard />
           ) : isEnd ? (

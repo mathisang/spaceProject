@@ -114,8 +114,8 @@ export default function () {
           (card, index) =>
             nextCard === card.id && (
               <div className="card-container" key={index}>
-                {card.card.category}
-                {card.card.context}
+                <h2>{card.category}</h2>
+                <p>{card.card.context}</p>
                 {isSuccess == null && (
                   <div>
                     <button
