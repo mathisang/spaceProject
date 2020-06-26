@@ -4,6 +4,7 @@ import TimelineContext from "./TimelineContext";
 export default function () {
   const { timeline, setTimeline } = useContext(TimelineContext);
 
+  // Affichage des jauges USA & URSS
   return (
     <div className="">
       <div>

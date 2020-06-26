@@ -4,6 +4,7 @@ import TimelineContext from "../../Timeline/TimelineContext";
 import "./step-card.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 
+// Message de réussite ou défaite de l'événement
 const Text = ({ step }) => {
   const { timeline, setTimeline } = useContext(TimelineContext);
   return (
@@ -18,6 +19,7 @@ const Text = ({ step }) => {
   );
 };
 
+// Continuer le jeu et mettre à jour les jauge en fonction de la réussite
 const ContinueButton = ({ setStep, step, setEnd }) => {
   const { timeline, setTimeline } = useContext(TimelineContext);
   const { gauge, setGauge } = useContext(GaugeContext);
@@ -40,6 +42,7 @@ const ContinueButton = ({ setStep, step, setEnd }) => {
   return <button onClick={handleClick}>Continuer</button>;
 };
 
+// Affichage de l'événement
 export default ({ step, setStep, setEnd }) => (
   <div className="card-container step-card">
     <Text step={step} />

@@ -1,6 +1,6 @@
 import React from "react";
 
-// set the defaults
+// Carte en cours d'affichage
 const CardContext = React.createContext({
   selectedCardId: null,
   setSelectedCardId: () => {},

@@ -1,6 +1,6 @@
 import React from "react";
 
-// set the defaults
+// Valeur par défaut USA & URSS
 const TimelineContext = React.createContext({
   timeline: {
     urss: 5,

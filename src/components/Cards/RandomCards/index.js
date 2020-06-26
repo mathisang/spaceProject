@@ -18,27 +18,56 @@ export default function () {
   }
   const [cardUnused, setCardUnused] = useState(arrayFull);
 
-  // Si une carte à une conséquence, renvoi succès ou echec
-  function trySuccess(e) {
-    console.log(e);
+  // GESTION DE LA COLLECTION DE CARTES
+  // Génère une nouvelle carte qui n'a pas encore été jouée
+  function nextIdCard() {
+    return cardUnused[0] === 0
+      ? cardUnused[0]
+      : cardUnused[0] === 1
+      ? cardUnused[0]
+      : cardUnused[Math.floor(Math.random() * cardUnused.length)];
+  }
+  // Supprime la carte qui à été jouée précédemment et en genère une nouvelle
+  function randomCard() {
+    for (var i = 0; i < cardUnused.length; i++) {
+      cardUnused[i] === selectedCardId && cardUnused.splice(i, 1);
+    }
+    return nextIdCard();
+  }
 
-    e === 1 &&
-      setGauge({
-        money: gauge.money + cards[nextCard].card.responses[0].impacts.money,
-        opinion:
-          gauge.opinion + cards[nextCard].card.responses[0].impacts.opinion,
-        search: gauge.search + cards[nextCard].card.responses[0].impacts.search,
-      });
-    e === 2 &&
-      setGauge({
-        money: gauge.money + cards[nextCard].card.responses[1].impacts.money,
-        opinion:
-          gauge.opinion + cards[nextCard].card.responses[1].impacts.opinion,
-        search: gauge.search + cards[nextCard].card.responses[1].impacts.search,
-      });
+  // GESTION DES JAUGES
+  // Mise à jour des jauges (Carte basique)
+  function updateGauge(card) {
+    console.log(cards[card].card.responses[idButton - 1])
+    setGauge({
+      money:
+        gauge.money + cards[card].card.responses[idButton - 1].impacts.money,
+      opinion:
+        gauge.opinion +
+        cards[card].card.responses[idButton - 1].impacts.opinion,
+      search:
+        gauge.search + cards[card].card.responses[idButton - 1].impacts.search,
+    });
+  }
+  // Mise à jour des jauges cartes conséquences
+  function updateGaugeConsequence(card, response, issue) {
+    setGauge({
+      money:
+        gauge.money +
+        cards[card].card.responses[response].consequence[issue].money,
+      opinion:
+        gauge.opinion +
+        cards[card].card.responses[response].consequence[issue].opinion,
+      search:
+        gauge.search +
+        cards[card].card.responses[response].consequence[issue].search,
+    });
+  }
+  // Si une carte à une conséquence, renvoi succès ou echec et met a jour les jauges
+  function trySuccess(e) {
+    e === (1 || 2) && updateGauge(nextCard);
 
     var numberResponse = cards[nextCard].card.responses[0].consequence ? 0 : 1;
-
     let r = Math.random();
     r >
     cards[nextCard].card.responses[numberResponse].consequence.percent_success
@@ -46,48 +75,13 @@ export default function () {
       : setSuccess(false);
   }
 
-  // Génère une nouvelle carte qui n'a pas encore été jouée
-  function nextIdCard() {
-    return cardUnused[Math.floor(Math.random() * cardUnused.length)];
-  }
-
-  // Supprime la carte qui à été jouée
-  function randomCard() {
-    for (var i = 0; i < cardUnused.length; i++) {
-      if (cardUnused[i] === selectedCardId) {
-        cardUnused.splice(i, 1);
-      }
-    }
-    console.log("card pas utilisées", cardUnused);
-
-    const newCardId = nextIdCard();
-    console.log("card", newCardId);
-
-    return newCardId;
-  }
-
+  // AVANCEMENT DU JEU
   // Avancement des jauges et du jeu : calcul les jauges, attribue une prochaine carte à afficher
   useEffect(() => {
-    idButton === 1 &&
-      setGauge({
-        money:
-          gauge.money + cards[selectedCardId].card.responses[0].impacts.money,
-        opinion:
-          gauge.opinion +
-          cards[selectedCardId].card.responses[0].impacts.opinion,
-        search:
-          gauge.search + cards[selectedCardId].card.responses[0].impacts.search,
-      });
-    idButton === 2 &&
-      setGauge({
-        money:
-          gauge.money + cards[selectedCardId].card.responses[1].impacts.money,
-        opinion:
-          gauge.opinion +
-          cards[selectedCardId].card.responses[1].impacts.opinion,
-        search:
-          gauge.search + cards[selectedCardId].card.responses[1].impacts.search,
-      });
+    idButton === 1
+      && updateGauge(selectedCardId);
+    idButton === 2
+      && updateGauge(selectedCardId);
 
     if (idButton === 3) {
       var numberResponse = cards[nextCard].card.responses[0].consequence
@@ -96,37 +90,10 @@ export default function () {
     }
     idButton === 3 &&
       (isSuccess
-        ? setGauge({
-            money:
-              gauge.money +
-              cards[nextCard].card.responses[numberResponse].consequence.success
-                .money,
-            opinion:
-              gauge.opinion +
-              cards[nextCard].card.responses[numberResponse].consequence.success
-                .opinion,
-            search:
-              gauge.search +
-              cards[nextCard].card.responses[numberResponse].consequence.success
-                .search,
-          })
-        : setGauge({
-            money:
-              gauge.money +
-              cards[nextCard].card.responses[numberResponse].consequence.fail
-                .money,
-            opinion:
-              gauge.opinion +
-              cards[nextCard].card.responses[numberResponse].consequence.fail
-                .opinion,
-            search:
-              gauge.search +
-              cards[nextCard].card.responses[numberResponse].consequence.fail
-                .search,
-          }));
+        ? updateGaugeConsequence(nextCard, numberResponse, "success")
+        : updateGaugeConsequence(nextCard, numberResponse, "fail"));
 
     let totalJauge = gauge.money + gauge.opinion + gauge.search;
-    console.log(totalJauge);
     let avanceUsa = 4;
     totalJauge <= 120
       ? (avanceUsa = 2)
@@ -136,10 +103,10 @@ export default function () {
     setTimeline({ urss: timeline.urss + 4, usa: timeline.usa + avanceUsa });
 
     setSuccess(null);
-
     setNextCard(randomCard());
   }, [selectedCardId]);
 
+  // Affichage de la carte + réponses
   return (
     <div className="">
       <ul>
@@ -147,8 +114,8 @@ export default function () {
           (card, index) =>
             nextCard === card.id && (
               <div className="card-container" key={index}>
-                {card.card.category}
-                {card.card.context}
+                <h2>{card.category}</h2>
+                <p>{card.card.context}</p>
                 {isSuccess == null && (
                   <div>
                     <button

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "label": "Cartes",
+    "step": 1,
+    "text": "Une carte est composée de deux parties."
+  },
+  {
+    "id": 2,
+    "label": "Cartes",
+    "step": 2,
+    "text": "La partie contextuelle donnant des informations."
+  },
+  {
+    "id": 3,
+    "label": "Cartes",
+    "step": 3,
+    "text": "Et les différents choix. Glissez la carte d’un côté ou cliquez sur le bouton pour faire votre choix."
+  },
+  {
+    "id": 4,
+    "label": "Jauges",
+    "step": 1,
+    "text": "Vos choix impactent 3 jauges. Votre argent, l’opinion publique et votre niveau de recherche."
+  },
+  {
+    "id": 5,
+    "label": "Jauges",
+    "step": 2,
+    "text": "Si l’une d’elles tombe à zéro, vous perdez la partie."
+  },
+  {
+    "id": 6,
+    "label": "Calendrier",
+    "step": 1,
+    "text": "Il indique la saison et l’année actuelle. Il avance d’une saison à chacun de vos choix."
+  },
+  {
+    "id": 7,
+    "label": "Timeline",
+    "step": 1,
+    "text": "Elle indique votre position (le vaisseau) par rapport à vos objectifs."
+  },
+  {
+    "id": 8,
+    "label": "Timeline",
+    "step": 2,
+    "text": "Chaque saisons, votre avancement est linéaire."
+  }
+]

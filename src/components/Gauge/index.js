@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import GaugeContext from "./GaugeContext";
 
+// Affichage des jauges
 export default function () {
   const { gauge, setGauge } = useContext(GaugeContext);
 
