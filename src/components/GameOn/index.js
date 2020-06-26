@@ -13,7 +13,7 @@ import EndCard from "../Cards/EndCard";
 
 export default function ({tutorialStatus, setTutorialStatus}) {
   const [gauge, setGauge] = useState({
-    money: 50,
+    money: 30,
     opinion: 50,
     search: 50,
   });

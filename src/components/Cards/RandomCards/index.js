@@ -21,14 +21,16 @@ export default function () {
   // GESTION DE LA COLLECTION DE CARTES
   // Génère une nouvelle carte qui n'a pas encore été jouée
   function nextIdCard() {
-    return cardUnused[Math.floor(Math.random() * cardUnused.length)];
+    return cardUnused[0] === 0
+      ? cardUnused[0]
+      : cardUnused[0] === 1
+      ? cardUnused[0]
+      : cardUnused[Math.floor(Math.random() * cardUnused.length)];
   }
-  // Supprime la carte qui à été jouée
+  // Supprime la carte qui à été jouée précédemment et en genère une nouvelle
   function randomCard() {
     for (var i = 0; i < cardUnused.length; i++) {
-      if (cardUnused[i] === selectedCardId) {
-        cardUnused.splice(i, 1);
-      }
+      cardUnused[i] === selectedCardId && cardUnused.splice(i, 1);
     }
     return nextIdCard();
   }
@@ -68,8 +70,8 @@ export default function () {
     let r = Math.random();
     r >
     cards[nextCard].card.responses[numberResponse].consequence.percent_success
-        ? setSuccess(true)
-        : setSuccess(false);
+      ? setSuccess(true)
+      : setSuccess(false);
   }
 
   // AVANCEMENT DU JEU

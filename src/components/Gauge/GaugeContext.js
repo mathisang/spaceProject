@@ -3,7 +3,7 @@ import React from "react";
 // Valeur par défaut des jauges
 const GaugeContext = React.createContext({
   gauge: {
-    money: 50,
+    money: 30,
     opinion: 50,
     search: 50,
   },

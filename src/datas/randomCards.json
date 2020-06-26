@@ -1,6 +1,56 @@
 [
   {
     "id": 0,
+    "category": "Bienvenue",
+    "card": {
+      "context": "Vous incarnez le programme spatial américain. Votre mission est de dépasser l’URSS et faire le premier pas sur la Lune. Bonne chance !",
+      "responses": [
+        {
+          "label": "Allez c'est parti",
+          "impacts": {
+            "money": 0,
+            "opinion": 0,
+            "search": 0
+          }
+        },
+        {
+          "label": "Génial, écrasons les communistes",
+          "impacts": {
+            "money": 0,
+            "opinion": 0,
+            "search": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "category": "Économie",
+    "card": {
+      "context": "La NASA vient d’être créée, l’État investit des milions dans la course à la conquête spatiale.",
+      "responses": [
+        {
+          "label": "Vive la mère patrie",
+          "impacts": {
+            "money": 20,
+            "opinion": 0,
+            "search": 0
+          }
+        },
+        {
+          "label": "Direction la Lune",
+          "impacts": {
+            "money": 20,
+            "opinion": 0,
+            "search": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
     "category": "Communication",
     "card": {
       "context": "Des doutes dans l'opinion public quant à vos compétences commencent à émerger. Vos recherches sont de plus en plus questionnées et contestées.",
@@ -25,7 +75,7 @@
     }
   },
   {
-    "id": 1,
+    "id": 3,
     "category": "Économie",
     "card": {
       "context": "Le bilan est tombé, votre programme dispose d'un bonus économique ce trimestre.",
@@ -63,7 +113,7 @@
     }
   },
   {
-    "id": 2,
+    "id": 4,
     "category": "Recherche",
     "card": {
       "context": "Les recherches avancent bien, vos chercheurs vous parlent d'une piste prometteuse à propos d'une découverte...",
@@ -88,7 +138,7 @@
     }
   },
   {
-    "id": 3,
+    "id": 5,
     "category": "Communication",
     "card": {
       "context": "Votre image est plus importante que votre avancée",
@@ -113,7 +163,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 6,
     "category": "Politique",
     "card": {
       "context": "Utiliser du plutonium pour la prochaine mission",
@@ -138,7 +188,7 @@
     }
   },
   {
-    "id": 5,
+    "id": 7,
     "category": "Communication",
     "card": {
       "context": "Envoyer un astronaute dans l'émission de Baba",
@@ -163,7 +213,7 @@
     }
   },
   {
-    "id": 6,
+    "id": 8,
     "category": "Communication",
     "card": {
       "context": "Dévoiler la nouvelle fusée américaine lors d'une conférence",
@@ -188,7 +238,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 9,
     "category": "Recherche",
     "card": {
       "context": "Recruter une nouvelle équipe d'ingénieurs",
@@ -213,7 +263,7 @@
     }
   },
   {
-    "id": 8,
+    "id": 10,
     "category": "Politique",
     "card": {
       "context": "Un des dirigeants du pôle recherche est accusé d'harcelement sexuel. Les bruits commencent à se propager",
@@ -238,7 +288,7 @@
     }
   },
   {
-    "id": 9,
+    "id": 11,
     "category": "Interne",
     "card": {
       "context": "William Anders est déclaré positif au COVID-19, deux semaines avant Appolo 8",
