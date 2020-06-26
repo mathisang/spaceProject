@@ -29,9 +29,6 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
   useFrame((state) => {
     api.position.set((state.mouse.x * state.viewport.width) / 2, -2, 0);
   });
-  const propsSpring = useSpring({
-    colorHit: "red",
-  });
 
   return (
     <mesh ref={ref}>
@@ -47,7 +44,11 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
         <mesh visible geometry={nodes.Cylinder001_1.geometry}>
           <meshPhysicalMaterial
             attach="material"
-            color={nodes.Cylinder001_1.material.color}
+            color={
+              isTouched
+                ? nodes.Cylinder001_3.material.color
+                : nodes.Cylinder001_1.material.color
+            }
             roughness={0.3}
             metalness={0.3}
           />
@@ -57,7 +58,7 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
             attach="material"
             color={
               isTouched
-                ? propsSpring.colorHit
+                ? nodes.Cylinder001_3.material.color
                 : nodes.Cylinder001_2.material.color
             }
             roughness={0.3}
@@ -77,7 +78,7 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
             attach="material"
             color={
               isTouched
-                ? propsSpring.colorHit
+                ? nodes.Cylinder001_3.material.color
                 : nodes.Cylinder001_4.material.color
             }
             roughness={0.3}

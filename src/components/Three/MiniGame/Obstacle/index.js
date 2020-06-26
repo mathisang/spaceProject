@@ -6,13 +6,14 @@ import * as THREE from "three";
 export default function Obstacle({ props, number }) {
   const [ref, api] = useSphere(() => ({
     mass: 1,
-    position: [Math.random() * 6, 3, 0],
+    position: [0, -3, 0],
     ...props,
   }));
   const map = useLoader(
     THREE.TextureLoader,
     "three/miniGameSpaceship/obstacle/obstacle_texture.jpg"
   );
+  const [asteroid, setAsteroid] = useState(1);
   /*const onClick = (e) => {
     console.log(e);
     setDropped(true);
@@ -26,7 +27,13 @@ export default function Obstacle({ props, number }) {
     }, 1000);*!/
     console.log(api.mass);
   }, [api.mass]);*/
-  useFrame(() => {});
+  /*useFrame(() =>
+  );*/
+  setTimeout(() => {
+    api.at(asteroid).position.set(Math.random() * 7, 7, 0);
+    setAsteroid(asteroid + 1);
+  }, 1000);
+
   return (
     <instancedMesh
       ref={ref}
