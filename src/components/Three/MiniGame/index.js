@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useMemo } from "react";
 import * as THREE from "three";
 import { Canvas } from "react-three-fiber";
 import { Physics } from "use-cannon";
@@ -6,11 +6,23 @@ import Rocket from "./Rocket";
 import Obstacle from "./Obstacle";
 import BackgroundSpace from "./BackgroundSpace";
 import "./miniGame.scss";
+import Loading from "./Loading";
+import Gauge from "./Gauge";
 
 export default () => {
   const [isTouched, setTouched] = useState(false);
   const [lifePoints, setLifePoints] = useState(3);
   const [isGameOn, setGameStatus] = useState(false);
+  const [asteroid, setAsteroid] = useState(1);
+  const [obstaclePart, setObstaclePart] = useState(0);
+
+  const PhaseMessage = () => {
+    return (
+      <div className="phase-container">
+        <p></p>
+      </div>
+    );
+  };
 
   useEffect(() => {
     if (isTouched) {
@@ -21,20 +33,6 @@ export default () => {
     }
   }, [isTouched]);
 
-  function Loading() {
-    return (
-      <mesh visible position={[0, 0, 0]}>
-        <sphereGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshStandardMaterial
-          attach="material"
-          color="white"
-          transparent
-          opacity={0.6}
-        />
-      </mesh>
-    );
-  }
-
   return (
     <div className="minigame-container">
       <h1>Life : {lifePoints}</h1>
@@ -44,6 +42,7 @@ export default () => {
           <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
         </div>
       )}
+      <Gauge obstaclePart={obstaclePart} asteroid={asteroid} />
       <Canvas
         shadowMap
         sRGB
@@ -64,7 +63,15 @@ export default () => {
         <Physics>
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />
-            {isGameOn && <Obstacle number={50} />}
+            {isGameOn && (
+              <Obstacle
+                obstaclePart={obstaclePart}
+                setObstaclePart={setObstaclePart}
+                asteroid={asteroid}
+                setAsteroid={setAsteroid}
+                number={50}
+              />
+            )}
           </Suspense>
         </Physics>
       </Canvas>

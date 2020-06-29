@@ -3,9 +3,16 @@ import { useSphere } from "use-cannon";
 import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
 
-export default function Obstacle({ props, number }) {
+export default function Obstacle({
+  props,
+  number,
+  asteroid,
+  setAsteroid,
+  obstaclePart,
+  setObstaclePart,
+}) {
   const [ref, api] = useSphere(() => ({
-    mass: 700,
+    mass: 10000,
     position: [0, -3, 0],
     ...props,
   }));
@@ -13,14 +20,12 @@ export default function Obstacle({ props, number }) {
     THREE.TextureLoader,
     "three/miniGameSpaceship/obstacle/obstacle_texture.jpg"
   );
-  const [asteroid, setAsteroid] = useState(1);
   let obstaclesPosition = [-6, -4, -2, 0, 2, 4, 6];
   let obstacleParts = [
     { time: 1000, velocity: 5 },
     { time: 600, velocity: 15 },
     { time: 500, velocity: 30 },
   ];
-  const [obstaclePart, setObstaclePart] = useState(0);
 
   useMemo(() => {
     if (asteroid < number) {
