@@ -1,50 +1,182 @@
 [
   {
     "step": 1,
-    "name": "Automne 1960"
+    "name": "Été 1958"
   },
   {
     "step": 2,
-    "name": "Hiver 1960"
+    "name": "Automne 1958"
   },
   {
     "step": 3,
-    "name": "Printemps 1960"
+    "name": "Hiver 1959"
   },
   {
     "step": 4,
-    "name": "Été 1960"
+    "name": "Printemps 1959"
   },
   {
     "step": 5,
-    "name": "Automne 1961"
+    "name": "Été 1959"
   },
   {
     "step": 6,
-    "name": "Hiver 1961"
+    "name": "Automne 1959"
   },
   {
     "step": 7,
-    "name": "Printemps 1961"
+    "name": "Hiver 1960"
   },
   {
     "step": 8,
-    "name": "Été 1961"
+    "name": "Printemps 1960"
   },
   {
     "step": 9,
-    "name": "Automne 1962"
+    "name": "Été 1960"
   },
   {
     "step": 10,
-    "name": "Hiver 1962"
+    "name": "Automne 1960"
   },
   {
     "step": 11,
-    "name": "Printemps 1962"
+    "name": "Hiver 1961"
   },
   {
     "step": 12,
+    "name": "Printemps 1961"
+  },
+  {
+    "step": 13,
+    "name": "Été 1961"
+  },
+  {
+    "step": 14,
+    "name": "Automne 1961"
+  },
+  {
+    "step": 15,
+    "name": "Hiver 1962"
+  },
+  {
+    "step": 16,
+    "name": "Printemps 1962"
+  },
+  {
+    "step": 17,
     "name": "Été 1962"
+  },
+  {
+    "step": 18,
+    "name": "Automne 1962"
+  },
+  {
+    "step": 19,
+    "name": "Hiver 1963"
+  },
+  {
+    "step": 20,
+    "name": "Printemps 1963"
+  },
+  {
+    "step": 21,
+    "name": "Été 1963"
+  },
+  {
+    "step": 22,
+    "name": "Automne 1963"
+  },
+  {
+    "step": 23,
+    "name": "Hiver 1964"
+  },
+  {
+    "step": 24,
+    "name": "Printemps 1964"
+  },
+  {
+    "step": 25,
+    "name": "Été 1964"
+  },
+  {
+    "step": 26,
+    "name": "Automne 1964"
+  },
+  {
+    "step": 27,
+    "name": "Hiver 1965"
+  },
+  {
+    "step": 28,
+    "name": "Printemps 1965"
+  },
+  {
+    "step": 29,
+    "name": "Été 1965"
+  },
+  {
+    "step": 30,
+    "name": "Automne 1965"
+  },
+  {
+    "step": 31,
+    "name": "Hiver 1966"
+  },
+  {
+    "step": 32,
+    "name": "Printemps 1966"
+  },
+  {
+    "step": 33,
+    "name": "Été 1966"
+  },
+  {
+    "step": 34,
+    "name": "Automne 1966"
+  },
+  {
+    "step": 35,
+    "name": "Hiver 1967"
+  },
+  {
+    "step": 36,
+    "name": "Printemps 1967"
+  },
+  {
+    "step": 37,
+    "name": "Été 1967"
+  },
+  {
+    "step": 38,
+    "name": "Automne 1967"
+  },
+  {
+    "step": 39,
+    "name": "Hiver 1968"
+  },
+  {
+    "step": 40,
+    "name": "Printemps 1968"
+  },
+  {
+    "step": 41,
+    "name": "Été 1968"
+  },
+  {
+    "step": 42,
+    "name": "Automne 1968"
+  },
+  {
+    "step": 43,
+    "name": "Hiver 1969"
+  },
+  {
+    "step": 44,
+    "name": "Printemps 1969"
+  },
+  {
+    "step": 45,
+    "name": "Été 1969"
   }
 ]

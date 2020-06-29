@@ -7,7 +7,7 @@ export default function ({ timeStep, setTimeStep }) {
 
   // Attribue la nouvelle saison
   useEffect(() => {
-    selectedCardId > 0 && setTimeStep(timeStep + 1);
+    selectedCardId >= 0 && setTimeStep(timeStep + 1);
   }, [selectedCardId]);
 
   return <div className="">{timesSteps[timeStep].name}</div>;
