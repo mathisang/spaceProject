@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 export default function Obstacle({ props, number }) {
   const [ref, api] = useSphere(() => ({
-    mass: 1,
+    mass: 500,
     position: [0, -3, 0],
     ...props,
   }));

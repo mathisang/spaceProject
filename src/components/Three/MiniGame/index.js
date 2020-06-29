@@ -1,9 +1,10 @@
 import React, { useEffect, useState, Suspense } from "react";
+import * as THREE from "three";
 import { Canvas } from "react-three-fiber";
 import { Physics } from "use-cannon";
 import Rocket from "./Rocket";
 import Obstacle from "./Obstacle";
-import Ground from "./Ground";
+import BackgroundSpace from "./BackgroundSpace";
 import "./miniGame.scss";
 
 export default () => {
@@ -40,7 +41,10 @@ export default () => {
         shadowMap
         sRGB
         gl={{ alpha: false }}
-        camera={{ position: [0, 1, 7] }}
+        camera={{ position: [0, 1, 7], near: 0.01, far: 10000 }}
+        onCreated={({ gl, camera }) => {
+          gl.setClearColor(new THREE.Color("#000000"));
+        }}
       >
         <ambientLight intensity={0.2} />
         <spotLight
@@ -49,14 +53,12 @@ export default () => {
           intensity={0.5}
           castShadow
         />
-
+        <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />
+            <Obstacle number={1} />
           </Suspense>
-          {/*<Obstacle position={[3, 3, 0]} />
-          <Obstacle position={[0, 3, 0]} />*/}
-          <Obstacle number={30} />
         </Physics>
       </Canvas>
     </div>
