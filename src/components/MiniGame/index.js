@@ -20,7 +20,6 @@ export default function ({ setStep, step, setEnd }) {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [gameStatus, setGameStatus] = useState(false);
 
-  // AVANCER D'UNE ETAPE ?
   const WinGame = () => {
     const handleClick = () => {
       setGauge({
@@ -52,7 +51,7 @@ export default function ({ setStep, step, setEnd }) {
       setStep({ isActive: false, id: step.id + 1 });
     };
     return (
-      <div className="fullScreen">
+      <div>
         <h3>{steps[step.id][gameStatus].label}</h3>
         <p>{steps[step.id][gameStatus].message}</p>
         <button onClick={skipGame}>Continuer</button>
@@ -62,10 +61,14 @@ export default function ({ setStep, step, setEnd }) {
 
   // Affichage de l'événement
   return (
-    <div className="fullScreen">
-      <Text />
-      <WinGame />
-      <LooseGame />
+    <div>
+      {gameStatus === false && (
+        <div>
+          <Text />
+          <WinGame />
+          <LooseGame />
+        </div>
+      )}
       {gameStatus !== false && (
         <EndGame step={step} setStep={setStep} setEnd={setEnd} />
       )}

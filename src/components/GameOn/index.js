@@ -13,7 +13,7 @@ import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
 
-export default function ({tutorialStatus, setTutorialStatus, timeSteps}) {
+export default function ({ tutorialStatus, setTutorialStatus, timeSteps }) {
   const [gauge, setGauge] = useState({
     money: 30,
     opinion: 50,
@@ -36,7 +36,6 @@ export default function ({tutorialStatus, setTutorialStatus, timeSteps}) {
       setLoose(true);
   }, [gauge]);
 
-
   // Déclenchement de l'événement
   useEffect(() => {
     timesSteps[timeStep].name === stepCards[step.id].stepSeason &&
@@ -49,9 +48,7 @@ export default function ({tutorialStatus, setTutorialStatus, timeSteps}) {
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
         <TimelineContext.Provider value={timelineContextValue}>
-          {tutorialStatus &&
-          <Tutorial setTutorialStatus={setTutorialStatus} />
-          }
+          {tutorialStatus && <Tutorial setTutorialStatus={setTutorialStatus} />}
           {isLoose ? (
             <LooseCard />
           ) : isEnd ? (

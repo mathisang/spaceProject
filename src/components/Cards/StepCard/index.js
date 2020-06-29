@@ -3,7 +3,7 @@ import steps from "../../../datas/stepCards.json";
 import TimelineContext from "../../Timeline/TimelineContext";
 import "./step-card.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
-import MiniGame from "../../MiniGame"
+import MiniGame from "../../MiniGame";
 
 export default function ({ step, setStep, setEnd }) {
   const [gameOn, setGameOn] = useState(false);
@@ -55,11 +55,15 @@ export default function ({ step, setStep, setEnd }) {
   // Affichage de l'événement
   return (
     <div className="fullScreen">
-      <Text step={step} />
-      <MiniGameButton />
-        {gameOn === true && (
-            <MiniGame step={step} setStep={setStep} setEnd={setEnd} />
-        )}
+      {gameOn === false && (
+        <div>
+          <Text step={step} />
+          <MiniGameButton />
+        </div>
+      )}
+      {gameOn === true && (
+        <MiniGame step={step} setStep={setStep} setEnd={setEnd} />
+      )}
     </div>
   );
 }

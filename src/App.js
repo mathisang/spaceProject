@@ -22,7 +22,17 @@ function App() {
       </Route>
       <Route path="/">
         <div className="App">
-          {isGameOn ? <GameOn tutorialStatus={isTutorialOn} setTutorialStatus={setTutorialStatus} /> : <StartCard onChangeStatus={handleChange} startTutoriel={tutorialChange} />}
+          {isGameOn ? (
+            <GameOn
+              tutorialStatus={isTutorialOn}
+              setTutorialStatus={setTutorialStatus}
+            />
+          ) : (
+            <StartCard
+              onChangeStatus={handleChange}
+              startTutoriel={tutorialChange}
+            />
+          )}
         </div>
       </Route>
     </Switch>
