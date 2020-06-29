@@ -64,7 +64,7 @@ export default () => {
         <Physics>
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />
-            {isGameOn && <Obstacle number={100} />}
+            {isGameOn && <Obstacle number={50} />}
           </Suspense>
         </Physics>
       </Canvas>
