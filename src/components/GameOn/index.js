@@ -3,6 +3,7 @@ import RandomCard from "../Cards/RandomCards";
 import Gauge from "../Gauge";
 import GaugeContext from "../Gauge/GaugeContext";
 import Timeline from "../Timeline";
+import timesSteps from "../../datas/time.json";
 import TimelineContext from "../Timeline/TimelineContext";
 import SeasonTimeline from "../SeasonTimeline";
 import CardContext from "../Cards/CardContext";
@@ -12,7 +13,7 @@ import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
 
-export default function ({tutorialStatus, setTutorialStatus}) {
+export default function ({tutorialStatus, setTutorialStatus, timeSteps}) {
   const [gauge, setGauge] = useState({
     money: 30,
     opinion: 50,
@@ -36,14 +37,13 @@ export default function ({tutorialStatus, setTutorialStatus}) {
   }, [gauge]);
 
 
-  // Affichage de l'événement
+  // Déclenchement de l'événement
   useEffect(() => {
-    (timeline.usa >= stepCards[step.id].stepPercent ||
-      timeline.urss >= stepCards[step.id].stepPercent) &&
+    timesSteps[timeStep].name === stepCards[step.id].stepSeason &&
       setStep((prevState) => {
         return { ...prevState, isActive: true };
       });
-  }, [timeline]);
+  }, [timeStep]);
 
   return (
     <CardContext.Provider value={cardContextValue}>
