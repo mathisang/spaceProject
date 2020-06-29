@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { Physics } from "use-cannon";
 import Rocket from "./Rocket";
@@ -19,6 +19,20 @@ export default () => {
     }
   }, [isTouched]);
 
+  function Loading() {
+    return (
+      <mesh visible position={[0, 0, 0]}>
+        <sphereGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshStandardMaterial
+          attach="material"
+          color="white"
+          transparent
+          opacity={0.6}
+        />
+      </mesh>
+    );
+  }
+
   return (
     <div className="minigame-container">
       <h1>Life : {lifePoints}</h1>
@@ -35,11 +49,14 @@ export default () => {
           intensity={0.5}
           castShadow
         />
+
         <Physics>
-          <Rocket isTouched={isTouched} setTouched={setTouched} />
+          <Suspense fallback={<Loading />}>
+            <Rocket isTouched={isTouched} setTouched={setTouched} />
+          </Suspense>
           {/*<Obstacle position={[3, 3, 0]} />
           <Obstacle position={[0, 3, 0]} />*/}
-          <Obstacle number={10} />
+          <Obstacle number={30} />
         </Physics>
       </Canvas>
     </div>
