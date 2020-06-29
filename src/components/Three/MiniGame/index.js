@@ -10,6 +10,7 @@ import "./miniGame.scss";
 export default () => {
   const [isTouched, setTouched] = useState(false);
   const [lifePoints, setLifePoints] = useState(3);
+  const [isGameOn, setGameStatus] = useState(false);
 
   useEffect(() => {
     if (isTouched) {
@@ -37,6 +38,12 @@ export default () => {
   return (
     <div className="minigame-container">
       <h1>Life : {lifePoints}</h1>
+      {!isGameOn && (
+        <div className="rules">
+          <h2>Première sortie dans l'espace</h2>
+          <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
+        </div>
+      )}
       <Canvas
         shadowMap
         sRGB
@@ -57,7 +64,7 @@ export default () => {
         <Physics>
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />
-            <Obstacle number={1} />
+            {isGameOn && <Obstacle number={100} />}
           </Suspense>
         </Physics>
       </Canvas>
