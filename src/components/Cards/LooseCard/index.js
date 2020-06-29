@@ -1,7 +1,7 @@
 import React from "react";
 
 // Si une jauge tombe à 0
-const Text = () => <p>Cheh, t'as perdu</p>;
+const Text = () => <p>Une jauge est a 0, c'est perdu</p>;
 
 export default () => (
   <div>

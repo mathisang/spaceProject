@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import TimelineContext from "../../Timeline/TimelineContext";
+import React from "react";
 
 // Objet contenant les textes de victoire/défaite
 const endObject = [
@@ -38,14 +37,11 @@ const RestartButton = () => {
 
 // Affichage de l'écran de fin
 export default () => {
-  const { timeline, setTimeline } = useContext(TimelineContext);
+  // Variable en attendant, de fixer la condition de victoire finale
+  let valueWin = 1;
   return (
     <div>
-      {timeline.usa > timeline.urss ? (
-        <EndText winner="usa" />
-      ) : (
-        <EndText winner="urss" />
-      )}
+      {valueWin === 1 ? <EndText winner="usa" /> : <EndText winner="urss" />}
       <RestartButton />
     </div>
   );

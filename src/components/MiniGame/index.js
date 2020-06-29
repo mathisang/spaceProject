@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import steps from "../../datas/stepCards.json";
 import GaugeContext from "../Gauge/GaugeContext";
-import TimelineContext from "../Timeline/TimelineContext";
 
 export default function ({ setStep, step, setEnd }) {
   // Message de réussite ou défaite de l'événement
@@ -20,6 +19,7 @@ export default function ({ setStep, step, setEnd }) {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [gameStatus, setGameStatus] = useState(false);
 
+  // A OPTIMISER CAR MEME CODE
   const WinGame = () => {
     const handleClick = () => {
       setGauge({
