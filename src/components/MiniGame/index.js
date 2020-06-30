@@ -19,31 +19,24 @@ export default function ({ setStep, step, setEnd }) {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [gameStatus, setGameStatus] = useState(false);
 
-  // A OPTIMISER CAR MEME CODE
-  const WinGame = () => {
-    const handleClick = () => {
+  const GameButton = ({ result }) => {
+    const handleClick = (result) => {
       setGauge({
-        money: gauge.money + steps[step.id].win.money,
-        opinion: gauge.opinion + steps[step.id].win.opinion,
-        search: gauge.search + steps[step.id].win.search,
+        money: gauge.money + steps[step.id][result].money,
+        opinion: gauge.opinion + steps[step.id][result].opinion,
+        search: gauge.search + steps[step.id][result].search,
       });
-      console.log("Gagner");
-      setGameStatus("win");
+      setGameStatus(result);
     };
-    return <button onClick={handleClick}>Gagner</button>;
-  };
-
-  const LooseGame = () => {
-    const handleClick = () => {
-      setGauge({
-        money: gauge.money + steps[step.id].loose.money,
-        opinion: gauge.opinion + steps[step.id].loose.opinion,
-        search: gauge.search + steps[step.id].loose.search,
-      });
-      console.log("Perdu");
-      setGameStatus("loose");
-    };
-    return <button onClick={handleClick}>Perdre</button>;
+    return (
+      <button
+        onClick={() => {
+          handleClick(result);
+        }}
+      >
+        {result === "win" ? "Gagner" : "Perdre"}
+      </button>
+    );
   };
 
   const EndGame = () => {
@@ -65,8 +58,8 @@ export default function ({ setStep, step, setEnd }) {
       {gameStatus === false && (
         <div>
           <Text />
-          <WinGame />
-          <LooseGame />
+          <GameButton result="win" />
+          <GameButton result="loose" />
         </div>
       )}
       {gameStatus !== false && (

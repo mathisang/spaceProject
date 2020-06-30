@@ -41,7 +41,7 @@ export default () => {
   let valueWin = 1;
   return (
     <div>
-      {valueWin === 1 ? <EndText winner="usa" /> : <EndText winner="urss" />}
+      <EndText winner={valueWin === 1 ? "usa" : "urss"} />
       <RestartButton />
     </div>
   );

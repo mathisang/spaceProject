@@ -39,6 +39,7 @@ export default function () {
 
   // GESTION DES JAUGES
   // Mise à jour des jauges
+  // A OPTIMISER AVEC FOR ?
   function updateGauge(card, response, issue) {
     response === undefined
       ? setGauge({
@@ -97,6 +98,7 @@ export default function () {
     setNextCard(randomCard());
   }, [selectedCardId]);
 
+  // Boutons cartes
   const CardButtons = ({ card, value }) => {
     return value !== 3 ? (
       <button
