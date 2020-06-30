@@ -39,31 +39,23 @@ export default function () {
 
   // GESTION DES JAUGES
   // Mise à jour des jauges
-  // A OPTIMISER AVEC FOR ?
   function updateGauge(card, response, issue) {
-    response === undefined
-      ? setGauge({
-          money:
-            gauge.money +
-            cards[card].card.responses[idButton - 1].impacts.money,
-          opinion:
-            gauge.opinion +
-            cards[card].card.responses[idButton - 1].impacts.opinion,
-          search:
-            gauge.search +
-            cards[card].card.responses[idButton - 1].impacts.search,
-        })
-      : setGauge({
-          money:
-            gauge.money +
-            cards[card].card.responses[response].consequence[issue].money,
-          opinion:
-            gauge.opinion +
-            cards[card].card.responses[response].consequence[issue].opinion,
-          search:
-            gauge.search +
-            cards[card].card.responses[response].consequence[issue].search,
-        });
+    const typeList = ["money", "opinion", "search"];
+    const updatedGauge = {};
+    for (const type of typeList) {
+      response === undefined
+        ? Object.assign(updatedGauge, {
+            [type]:
+              gauge[type] +
+              cards[card].card.responses[idButton - 1].impacts[type],
+          })
+        : Object.assign(updatedGauge, {
+            [type]:
+              gauge[type] +
+              cards[card].card.responses[response].consequence[issue][type],
+          });
+    }
+    setGauge(updatedGauge);
   }
 
   // Si une carte à une conséquence, renvoi succès ou echec et met a jour les jauges
