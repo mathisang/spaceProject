@@ -4,7 +4,7 @@ import "./gaugeMiniGame.scss";
 
 export default ({ asteroid, globalAsteroid }) => {
   const props = useSpring({
-    percent: ((asteroid + globalAsteroid) * 200) / 150,
+    percent: ((asteroid + globalAsteroid) * 200) / 90,
   });
   return (
     <div className="space-gauge-container">

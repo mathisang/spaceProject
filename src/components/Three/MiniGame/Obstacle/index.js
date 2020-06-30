@@ -22,9 +22,9 @@ export default function Obstacle({
   );
   let obstaclesPosition = [-6, -4, -2, 0, 2, 4, 6];
   let obstacleParts = [
-    { time: 1000, velocity: 5 },
-    { time: 600, velocity: 15 },
-    { time: 500, velocity: 30 },
+    { time: 500, position: 20 },
+    { time: 400, position: 35 },
+    { time: 300, position: 50 },
   ];
 
   useMemo(() => {
@@ -32,16 +32,15 @@ export default function Obstacle({
       setTimeout(() => {
         console.log("asteroid", asteroid);
         console.log("part", obstaclePart);
-        api
-          .at(asteroid)
-          .velocity.set(0, obstacleParts[obstaclePart].velocity, 0);
+        api.at(asteroid).angularVelocity.set(0, 0, 0);
+        api.at(asteroid).velocity.set(0, 0, 0);
         api
           .at(asteroid)
           .position.set(
             obstaclesPosition[
               Math.floor(Math.random() * obstaclesPosition.length)
             ],
-            7,
+            obstacleParts[obstaclePart].position,
             0
           );
         setAsteroid(asteroid + 1);

@@ -5,7 +5,10 @@ import { useThree } from "react-three-fiber";
 const Plane = ({ propsBackground }) => {
   const { viewport } = useThree();
   return (
-    <a.mesh scale={[viewport.width, viewport.height, 1]}>
+    <a.mesh
+      rotation={[-0.1, 0, 0]}
+      scale={[viewport.width, viewport.height, 1]}
+    >
       <planeBufferGeometry attach="geometry" args={[1, 1, 1]} />
       <a.meshPhysicalMaterial
         attach="material"
