@@ -9,13 +9,23 @@ import "./miniGame.scss";
 import Loading from "./Loading";
 import Gauge from "./Gauge";
 import ColorBackground from "./ColorBackground";
+import { useSpring, interpolate } from "react-spring/three";
 
 export default () => {
   const [isTouched, setTouched] = useState(false);
   const [lifePoints, setLifePoints] = useState(3);
   const [isGameOn, setGameStatus] = useState(false);
   const [asteroid, setAsteroid] = useState(1);
+  const [globalAsteroid, setGlobalAsteroid] = useState(0);
   const [obstaclePart, setObstaclePart] = useState(0);
+  const [propsBackground, set] = useSpring(() => ({
+    o: 4,
+    from: { o: 0 },
+    config: { duration: 7000 },
+  }));
+  useMemo(() => {
+    obstaclePart !== 0 && setGlobalAsteroid(globalAsteroid + 50);
+  }, [obstaclePart]);
 
   useEffect(() => {
     if (isTouched) {
@@ -26,6 +36,27 @@ export default () => {
     }
   }, [isTouched]);
 
+  useMemo(() => {
+    switch (asteroid + globalAsteroid) {
+      case 25:
+        set({ o: 0 });
+        break;
+      case 50:
+        set({ o: 1 });
+        break;
+      case 75:
+        set({ o: 2 });
+        break;
+      case 100:
+        set({ o: 3 });
+        break;
+      case 150:
+        set({ o: 4 });
+        break;
+      default:
+    }
+  }, [asteroid]);
+
   return (
     <div className="minigame-container">
       <h1>Life : {lifePoints}</h1>
@@ -35,7 +66,7 @@ export default () => {
           <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
         </div>
       )}
-      <Gauge obstaclePart={obstaclePart} asteroid={asteroid} />
+      <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
       <Canvas
         shadowMap
         sRGB
@@ -52,7 +83,12 @@ export default () => {
           intensity={0.5}
           castShadow
         />
-        <ColorBackground color={"red"} />
+        {/*<ColorBackground
+          propsBackground={propsBackground.o.interpolate({
+            range: [0, 1, 2, 3, 4],
+            output: ["#1B5694", "#0C2B5A", "#051226", "#02060D", "black"],
+          })}
+        />*/}
         <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
