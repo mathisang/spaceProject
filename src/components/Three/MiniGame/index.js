@@ -18,6 +18,7 @@ export default () => {
   const [asteroid, setAsteroid] = useState(1);
   const [globalAsteroid, setGlobalAsteroid] = useState(0);
   const [obstaclePart, setObstaclePart] = useState(0);
+  const [waveMsg, setWaveMsg] = useState(false);
   const [propsBackground, set] = useSpring(() => ({
     o: 4,
     from: { o: 0 },
@@ -66,6 +67,11 @@ export default () => {
           <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
         </div>
       )}
+      {waveMsg && (
+        <div className="wave-message">
+          <h2>Vague numéro {obstaclePart + 1} à venir</h2>
+        </div>
+      )}
       <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
       <Canvas
         shadowMap
@@ -95,6 +101,7 @@ export default () => {
             <Rocket isTouched={isTouched} setTouched={setTouched} />
             {isGameOn && (
               <Obstacle
+                setWaveMsg={setWaveMsg}
                 obstaclePart={obstaclePart}
                 setObstaclePart={setObstaclePart}
                 asteroid={asteroid}

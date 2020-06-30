@@ -10,6 +10,7 @@ export default function Obstacle({
   setAsteroid,
   obstaclePart,
   setObstaclePart,
+  setWaveMsg,
 }) {
   const [ref, api] = useSphere(() => ({
     mass: 10000,
@@ -30,8 +31,6 @@ export default function Obstacle({
   useMemo(() => {
     if (asteroid < number) {
       setTimeout(() => {
-        console.log("asteroid", asteroid);
-        console.log("part", obstaclePart);
         api.at(asteroid).angularVelocity.set(0, 0, 0);
         api.at(asteroid).velocity.set(0, 0, 0);
         api
@@ -46,8 +45,15 @@ export default function Obstacle({
         setAsteroid(asteroid + 1);
       }, obstacleParts[obstaclePart].time);
     } else if (obstaclePart !== 2) {
-      setObstaclePart(obstaclePart + 1);
-      setAsteroid(0);
+      console.log("function");
+      setTimeout(() => {
+        setWaveMsg(true);
+      }, 2000);
+      setTimeout(() => {
+        setWaveMsg(false);
+        setObstaclePart(obstaclePart + 1);
+        setAsteroid(0);
+      }, 6000);
     }
   }, [asteroid]);
 
