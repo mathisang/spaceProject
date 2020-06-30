@@ -27,6 +27,8 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
   }, []);
 
   useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    api.rotation.set(0, t * 0.8, 0);
     api.position.set((state.mouse.x * state.viewport.width) / 2, -2, 0);
   });
 

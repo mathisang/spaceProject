@@ -1,0 +1,20 @@
+.space-gauge-container {
+  width: 30px;
+  height: 200px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px 0;
+  position: absolute;
+  z-index: 100;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.space-gauge-content {
+  bottom: 0;
+  position: absolute;
+  height: 20%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: grey;
+}

@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSphere } from "use-cannon";
 import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
 
-export default function Obstacle({ props, number }) {
+export default function Obstacle({
+  props,
+  number,
+  asteroid,
+  setAsteroid,
+  obstaclePart,
+  setObstaclePart,
+}) {
   const [ref, api] = useSphere(() => ({
-    mass: 1,
+    mass: 10000,
     position: [0, -3, 0],
     ...props,
   }));
@@ -13,21 +20,21 @@ export default function Obstacle({ props, number }) {
     THREE.TextureLoader,
     "three/miniGameSpaceship/obstacle/obstacle_texture.jpg"
   );
-  const [asteroid, setAsteroid] = useState(1);
-  let obstaclesPosition = [-4, -2, 0, 2, 4];
+  let obstaclesPosition = [-6, -4, -2, 0, 2, 4, 6];
   let obstacleParts = [
-    { time: 5000, nextStep: 10 },
-    { time: 2000, nextStep: 20 },
-    { time: 1000, nextStep: null },
+    { time: 1000, velocity: 5 },
+    { time: 600, velocity: 15 },
+    { time: 500, velocity: 30 },
   ];
-  const [obstaclePart, setObstaclePart] = useState(0);
 
-  useEffect(() => {
+  useMemo(() => {
     if (asteroid < number) {
       setTimeout(() => {
         console.log("asteroid", asteroid);
         console.log("part", obstaclePart);
-        api.at(asteroid).velocity.set(0, 0, 0);
+        api
+          .at(asteroid)
+          .velocity.set(0, obstacleParts[obstaclePart].velocity, 0);
         api
           .at(asteroid)
           .position.set(
@@ -37,13 +44,11 @@ export default function Obstacle({ props, number }) {
             7,
             0
           );
-        if (obstaclePart !== 2) {
-          asteroid >= obstacleParts[obstaclePart].nextStep &&
-            setObstaclePart(obstaclePart + 1);
-        }
-
         setAsteroid(asteroid + 1);
       }, obstacleParts[obstaclePart].time);
+    } else if (obstaclePart !== 2) {
+      setObstaclePart(obstaclePart + 1);
+      setAsteroid(0);
     }
   }, [asteroid]);
 

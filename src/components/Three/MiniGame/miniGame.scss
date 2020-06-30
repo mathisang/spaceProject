@@ -7,4 +7,18 @@
     color: white;
     right: 5%;
   }
+  div.rules {
+  position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  h2 {
+    color: white;
+  }
 }

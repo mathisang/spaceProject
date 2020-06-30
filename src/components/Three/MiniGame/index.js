@@ -1,14 +1,31 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useMemo } from "react";
+import * as THREE from "three";
 import { Canvas } from "react-three-fiber";
 import { Physics } from "use-cannon";
 import Rocket from "./Rocket";
 import Obstacle from "./Obstacle";
-import Ground from "./Ground";
+import BackgroundSpace from "./BackgroundSpace";
 import "./miniGame.scss";
+import Loading from "./Loading";
+import Gauge from "./Gauge";
+import ColorBackground from "./ColorBackground";
+import { useSpring, interpolate } from "react-spring/three";
 
 export default () => {
   const [isTouched, setTouched] = useState(false);
   const [lifePoints, setLifePoints] = useState(3);
+  const [isGameOn, setGameStatus] = useState(false);
+  const [asteroid, setAsteroid] = useState(1);
+  const [globalAsteroid, setGlobalAsteroid] = useState(0);
+  const [obstaclePart, setObstaclePart] = useState(0);
+  const [propsBackground, set] = useSpring(() => ({
+    o: 4,
+    from: { o: 0 },
+    config: { duration: 7000 },
+  }));
+  useMemo(() => {
+    obstaclePart !== 0 && setGlobalAsteroid(globalAsteroid + 50);
+  }, [obstaclePart]);
 
   useEffect(() => {
     if (isTouched) {
@@ -19,28 +36,45 @@ export default () => {
     }
   }, [isTouched]);
 
-  function Loading() {
-    return (
-      <mesh visible position={[0, 0, 0]}>
-        <sphereGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshStandardMaterial
-          attach="material"
-          color="white"
-          transparent
-          opacity={0.6}
-        />
-      </mesh>
-    );
-  }
+  useMemo(() => {
+    switch (asteroid + globalAsteroid) {
+      case 25:
+        set({ o: 0 });
+        break;
+      case 50:
+        set({ o: 1 });
+        break;
+      case 75:
+        set({ o: 2 });
+        break;
+      case 100:
+        set({ o: 3 });
+        break;
+      case 150:
+        set({ o: 4 });
+        break;
+      default:
+    }
+  }, [asteroid]);
 
   return (
     <div className="minigame-container">
       <h1>Life : {lifePoints}</h1>
+      {!isGameOn && (
+        <div className="rules">
+          <h2>Première sortie dans l'espace</h2>
+          <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
+        </div>
+      )}
+      <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
       <Canvas
         shadowMap
         sRGB
         gl={{ alpha: false }}
-        camera={{ position: [0, 1, 7] }}
+        camera={{ position: [0, 1, 7], near: 0.01, far: 10000 }}
+        onCreated={({ gl, camera }) => {
+          gl.setClearColor(new THREE.Color("black"));
+        }}
       >
         <ambientLight intensity={0.2} />
         <spotLight
@@ -49,14 +83,26 @@ export default () => {
           intensity={0.5}
           castShadow
         />
-
+        {/*<ColorBackground
+          propsBackground={propsBackground.o.interpolate({
+            range: [0, 1, 2, 3, 4],
+            output: ["#1B5694", "#0C2B5A", "#051226", "#02060D", "black"],
+          })}
+        />*/}
+        <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />
+            {isGameOn && (
+              <Obstacle
+                obstaclePart={obstaclePart}
+                setObstaclePart={setObstaclePart}
+                asteroid={asteroid}
+                setAsteroid={setAsteroid}
+                number={50}
+              />
+            )}
           </Suspense>
-          {/*<Obstacle position={[3, 3, 0]} />
-          <Obstacle position={[0, 3, 0]} />*/}
-          <Obstacle number={30} />
         </Physics>
       </Canvas>
     </div>
