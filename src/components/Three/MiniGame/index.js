@@ -8,6 +8,7 @@ import BackgroundSpace from "./BackgroundSpace";
 import "./miniGame.scss";
 import Loading from "./Loading";
 import Gauge from "./Gauge";
+import ColorBackground from "./ColorBackground";
 
 export default () => {
   const [isTouched, setTouched] = useState(false);
@@ -15,14 +16,6 @@ export default () => {
   const [isGameOn, setGameStatus] = useState(false);
   const [asteroid, setAsteroid] = useState(1);
   const [obstaclePart, setObstaclePart] = useState(0);
-
-  const PhaseMessage = () => {
-    return (
-      <div className="phase-container">
-        <p></p>
-      </div>
-    );
-  };
 
   useEffect(() => {
     if (isTouched) {
@@ -49,7 +42,7 @@ export default () => {
         gl={{ alpha: false }}
         camera={{ position: [0, 1, 7], near: 0.01, far: 10000 }}
         onCreated={({ gl, camera }) => {
-          gl.setClearColor(new THREE.Color("#000000"));
+          gl.setClearColor(new THREE.Color("black"));
         }}
       >
         <ambientLight intensity={0.2} />
@@ -59,6 +52,7 @@ export default () => {
           intensity={0.5}
           castShadow
         />
+        <ColorBackground color={"red"} />
         <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
