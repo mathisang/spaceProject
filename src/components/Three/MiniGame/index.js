@@ -21,7 +21,7 @@ export default () => {
   const [propsBackground, set] = useSpring(() => ({
     o: 4,
     from: { o: 0 },
-    config: { duration: 7000 },
+    config: { duration: 6000 },
   }));
   useMemo(() => {
     obstaclePart !== 0 && setGlobalAsteroid(globalAsteroid + 50);
@@ -38,19 +38,19 @@ export default () => {
 
   useMemo(() => {
     switch (asteroid + globalAsteroid) {
-      case 25:
+      case 1:
         set({ o: 0 });
         break;
-      case 50:
+      case 20:
         set({ o: 1 });
         break;
-      case 75:
+      case 40:
         set({ o: 2 });
         break;
-      case 100:
+      case 60:
         set({ o: 3 });
         break;
-      case 150:
+      case 80:
         set({ o: 4 });
         break;
       default:
@@ -71,7 +71,7 @@ export default () => {
         shadowMap
         sRGB
         gl={{ alpha: false }}
-        camera={{ position: [0, 1, 7], near: 0.01, far: 10000 }}
+        camera={{ position: [0, 1, 10], near: 0.01, far: 10000 }}
         onCreated={({ gl, camera }) => {
           gl.setClearColor(new THREE.Color("black"));
         }}
@@ -83,12 +83,12 @@ export default () => {
           intensity={0.5}
           castShadow
         />
-        {/*<ColorBackground
+        <ColorBackground
           propsBackground={propsBackground.o.interpolate({
             range: [0, 1, 2, 3, 4],
             output: ["#1B5694", "#0C2B5A", "#051226", "#02060D", "black"],
           })}
-        />*/}
+        />
         <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
@@ -99,7 +99,7 @@ export default () => {
                 setObstaclePart={setObstaclePart}
                 asteroid={asteroid}
                 setAsteroid={setAsteroid}
-                number={50}
+                number={30}
               />
             )}
           </Suspense>
