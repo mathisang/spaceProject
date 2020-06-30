@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./App.scss";
 import StartCard from "./components/Cards/StartCard";
 import GameOn from "./components/GameOn";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";

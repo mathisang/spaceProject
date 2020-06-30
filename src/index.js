@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
+import "./assets/fonts/FuturaBook.ttf";
+import "./assets/fonts/FuturaHeavy.ttf";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
