@@ -5,7 +5,7 @@ const Text = () => <p>Contexte du jeu</p>;
 
 // Bouton Tutoriel
 const TutoButton = ({ startTutoriel }) => {
-    return <button onClick={startTutoriel}>Lancer le tutoriel</button>;
+  return <button onClick={startTutoriel}>Lancer le tutoriel</button>;
 };
 
 // Bouton Démarrer

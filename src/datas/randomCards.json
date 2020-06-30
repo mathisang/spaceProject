@@ -89,7 +89,7 @@
           },
           "consequence": {
             "percent_success": 0.5,
-            "succes": {
+            "success": {
               "money": 0,
               "opinion": 15,
               "search": 0

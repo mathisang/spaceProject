@@ -5,32 +5,22 @@ import GaugeContext from "./GaugeContext";
 export default function () {
   const { gauge, setGauge } = useContext(GaugeContext);
 
+  function showAmount(type) {
+    return gauge[type] > 100
+      ? (gauge[type] = 100)
+      : gauge[type] < 0
+      ? (gauge[type] = 0)
+      : gauge[type];
+  }
+
   return (
-    <div className="">
+    <div>
       <div>
-        Argent :{" "}
-        {gauge.money > 100
-          ? (gauge.money = 100)
-          : gauge.money < 0
-          ? (gauge.money = 0)
-          : gauge.money}{" "}
-        %
+        Argent : {showAmount("money")}%
         <br />
-        Opinion:{" "}
-        {gauge.opinion > 100
-          ? (gauge.opinion = 100)
-          : gauge.opinion < 0
-          ? (gauge.opinion = 0)
-          : gauge.opinion}{" "}
-        %
+        Opinion : {showAmount("opinion")}%
         <br />
-        Recherche:{" "}
-        {gauge.search > 100
-          ? (gauge.search = 100)
-          : gauge.search < 0
-          ? (gauge.search = 0)
-          : gauge.search}{" "}
-        %
+        Recherche : {showAmount("search")}%
       </div>
     </div>
   );
