@@ -12,6 +12,8 @@
 
 $white: #F5F5EB;
 $brown: #402327;
+$brownHover: #664F52;
+$brownActive: #2F1B1E;
 $blue: #222240;
 $fail: #A93131;
 $success: #31A93D;
@@ -24,6 +26,7 @@ body {
   font-family: Futura, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 
   .titleGame {
     font-weight: 700;
