@@ -1,23 +1,35 @@
 import React from "react";
+import "./startCard.scss";
 
 // Texte d'intro
-const Text = () => <p>Contexte du jeu</p>;
+const HeadTitle = () => (
+  <h1>
+    SPACE
+    <span>PROJECT</span>
+  </h1>
+);
 
 // Bouton Tutoriel
 const TutoButton = ({ startTutoriel }) => {
-  return <button onClick={startTutoriel}>Lancer le tutoriel</button>;
+  return (
+    <a onClick={startTutoriel} className="small">
+      Comment jouer ?
+    </a>
+  );
 };
 
 // Bouton Démarrer
 const StartButton = ({ onChangeStatus }) => {
-  return <button onClick={onChangeStatus}>Commencer l'aventure</button>;
+  return <button onClick={onChangeStatus}>Jouer</button>;
 };
 
 // Affichage de l'écran d'accueil
 export default ({ onChangeStatus, startTutoriel }) => (
-  <div>
-    <Text />
-    <TutoButton startTutoriel={startTutoriel} />
-    <StartButton onChangeStatus={onChangeStatus} />
+  <div className="startGame">
+    <HeadTitle />
+    <div className="listButtons">
+      <StartButton onChangeStatus={onChangeStatus} />
+      <TutoButton startTutoriel={startTutoriel} />
+    </div>
   </div>
 );

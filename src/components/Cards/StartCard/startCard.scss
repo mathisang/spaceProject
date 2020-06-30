@@ -1,0 +1,67 @@
+@import '../../../index';
+
+.startGame {
+  height: 100%;
+  width: 100%;
+  background: url('../../../assets/images/windowHome.png') center no-repeat, url('../../../assets/images/shadowHome.png') 100% 86% no-repeat, #F0F0ED;
+  background-size: 80%, 74.5%, 100%;
+  padding: 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    font-weight: 700;
+    font-size: 70px;
+    color: $blue;
+    line-height: .94;
+    margin: 0;
+    text-align: center;
+
+    span {
+      display: block;
+      font-size: 51px;
+      font-weight: 400;
+    }
+  }
+
+  .listButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      background: $brown;
+      width: 80%;
+      max-width: 310px;
+      height: 56px;
+      color: $white;
+      border: none;
+      border-radius: 4px;
+      font-size: 24px;
+      font-weight: 700;
+      font-family: Futura, sans-serif;
+    }
+
+    button:hover {
+      background: $brownHover;
+    }
+
+    button:active {
+      background: $brownActive;
+    }
+
+    a {
+      color: $brown;
+    }
+
+    a:hover {
+      color: $brownHover;
+    }
+
+    a:active {
+      color: $brownActive;
+    }
+  }
+
+}

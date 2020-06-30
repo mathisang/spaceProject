@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Futura';
+  src: local('FuturaBook'), url('./assets/fonts/FuturaBook.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: local('FuturaHeavy'), url('./assets/fonts/FuturaHeavy.ttf') format('truetype');
+  font-weight: 700;
+}
+
+$white: #F5F5EB;
+$brown: #402327;
+$brownHover: #664F52;
+$brownActive: #2F1B1E;
+$blue: #222240;
+$fail: #A93131;
+$success: #31A93D;
+$calendar: #CB6C6A;
+$neutralWhite: #FFFFFF;
+$neutralBlack: #000000;
+
+body {
+  margin: 0;
+  font-family: Futura, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+
+  .titleGame {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 110%;
+  }
+
+  .titleBig, .year {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .description {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+  }
+
+  .choice {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 110%;
+  }
+
+  .stat {
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .small {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 124%;
+    margin-top: 1.5rem;
+  }
+}
