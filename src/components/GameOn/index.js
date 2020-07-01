@@ -11,7 +11,7 @@ import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
-import "../../assets/images/backgroundCards.png";
+import "../../assets/images/cards/backgroundCards.png";
 
 export default function ({ tutorialStatus, setTutorialStatus, timeSteps }) {
   const [gauge, setGauge] = useState({
@@ -61,11 +61,10 @@ export default function ({ tutorialStatus, setTutorialStatus, timeSteps }) {
             <div className="contentScreen">
               {/*ICI AJOUTER LA BARRE DE PROGRESSION*/}
               <div className="temporary" />
-              {step.isActive ? (
+              {step.isActive && (
                 <StepCard step={step} setStep={setStep} setEnd={setEnd} />
-              ) : (
-                <RandomCard />
               )}
+              <RandomCard />
             </div>
           </div>
         )}

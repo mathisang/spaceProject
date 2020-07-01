@@ -4,6 +4,17 @@ import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
 import "./randomCards.scss";
+import {
+  iconCommunication,
+  iconEconomy,
+  iconInternal,
+  iconPolitic,
+  iconResearch,
+  iconSpying,
+  iconWelcome,
+  swipeLeft,
+  swipeRight,
+} from "../../../assets/images/index";
 
 export default function () {
   const { gauge, setGauge } = useContext(GaugeContext);
@@ -95,6 +106,7 @@ export default function () {
   const CardButtons = ({ card, value }) => {
     return value !== 3 ? (
       <button
+        className="choice"
         onClick={() => {
           setIdButton(value);
           card.card.responses[value - 1].consequence
@@ -102,6 +114,7 @@ export default function () {
             : setSelectedCardId(card.id);
         }}
       >
+        <img src={value === 1 ? swipeRight : swipeLeft} alt="" />
         {card.card.responses[value - 1].label}
       </button>
     ) : (
@@ -119,34 +132,31 @@ export default function () {
   // Affichage de la carte + réponses
   return (
     <div className="randomCard">
-      <ul>
-        {cards.map(
-          (card, index) =>
-            nextCard === card.id && (
-              <div key={index}>
-                <h2>{card.category}</h2>
-                <p>{card.card.context}</p>
-                {isSuccess == null && (
-                  <div>
-                    <CardButtons card={card} value={1} />
-                    <CardButtons card={card} value={2} />
-                  </div>
-                )}
-                {isSuccess !== null && (
-                  <div>
-                    Résultat :{" "}
-                    {isSuccess ? (
-                      <p>Mission réussie</p>
-                    ) : (
-                      <p>Mission échouée</p>
-                    )}
-                    <CardButtons card={card} value={3} />
-                  </div>
-                )}
+      {cards.map(
+        (card, index) =>
+          nextCard === card.id && (
+            <div className="card" key={index}>
+              <div className="headerCard">
+                <img src={iconWelcome} alt="Bienvenue" />
+                <h2 className="titleBig">{card.category}</h2>
+                <p className="description">{card.card.context}</p>
               </div>
-            )
-        )}
-      </ul>
+              {isSuccess == null && (
+                <div className="buttonsCard">
+                  <CardButtons card={card} value={1} />
+                  <CardButtons card={card} value={2} />
+                </div>
+              )}
+              {isSuccess !== null && (
+                <div>
+                  Résultat :{" "}
+                  {isSuccess ? <p>Mission réussie</p> : <p>Mission échouée</p>}
+                  <CardButtons card={card} value={3} />
+                </div>
+              )}
+            </div>
+          )
+      )}
     </div>
   );
 }
