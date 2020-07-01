@@ -67,8 +67,8 @@ export default function () {
   }
 
   // Si une carte à une conséquence, renvoi succès ou echec et met a jour les jauges
-  function trySuccess(e) {
-    e === (1 || 2) && updateGauge(nextCard);
+  function trySuccess() {
+    updateGauge(nextCard);
 
     var numberResponse = cards[nextCard].card.responses[0].consequence ? 0 : 1;
     let r = Math.random();
@@ -106,7 +106,7 @@ export default function () {
         onClick={() => {
           setIdButton(value);
           card.card.responses[value - 1].consequence
-            ? trySuccess(value)
+            ? trySuccess()
             : setSelectedCardId(card.id);
         }}
       >
