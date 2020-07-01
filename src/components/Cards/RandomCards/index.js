@@ -56,16 +56,12 @@ export default function () {
     const updatedGauge = {};
     for (const type of typeList) {
       response === undefined
-        ? Object.assign(updatedGauge, {
-            [type]:
-              gauge[type] +
-              cards[card].card.responses[idButton - 1].impacts[type],
-          })
-        : Object.assign(updatedGauge, {
-            [type]:
-              gauge[type] +
-              cards[card].card.responses[response].consequence[issue][type],
-          });
+        ? (updatedGauge[type] =
+            gauge[type] +
+            cards[card].card.responses[idButton - 1].impacts[type])
+        : (updatedGauge[type] =
+            gauge[type] +
+            cards[card].card.responses[response].consequence[issue][type]);
     }
     setGauge(updatedGauge);
   }
