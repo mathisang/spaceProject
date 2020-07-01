@@ -1,0 +1,27 @@
+@import '../../index';
+
+.calendar {
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 23%;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .currentSeason {
+    height: 35%;
+    background: $calendar;
+    text-transform: uppercase;
+    color: $white;
+  }
+
+  .currentYear {
+    height: 65%;
+    background: $neutralWhite;
+    color: $blue;
+  }
+}

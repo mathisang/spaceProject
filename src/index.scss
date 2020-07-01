@@ -24,8 +24,9 @@ $neutralBlack: #000000;
 body {
   margin: 0;
   font-family: Futura, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
   overflow: hidden;
 
   .titleGame {

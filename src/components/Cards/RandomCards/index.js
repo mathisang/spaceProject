@@ -3,6 +3,7 @@ import cards from "../../../datas/randomCards.json";
 import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
+import "./randomCards.scss";
 
 export default function () {
   const { gauge, setGauge } = useContext(GaugeContext);
@@ -117,12 +118,12 @@ export default function () {
 
   // Affichage de la carte + réponses
   return (
-    <div className="">
+    <div className="randomCard">
       <ul>
         {cards.map(
           (card, index) =>
             nextCard === card.id && (
-              <div className="card-container" key={index}>
+              <div key={index}>
                 <h2>{card.category}</h2>
                 <p>{card.card.context}</p>
                 {isSuccess == null && (

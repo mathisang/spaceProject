@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import timesSteps from "../../datas/time.json";
 import CardContext from "../Cards/CardContext";
+import "./season.scss";
 
 export default function ({ timeStep, setTimeStep }) {
   const { selectedCardId, setSelectedCardId } = useContext(CardContext);
@@ -12,8 +13,8 @@ export default function ({ timeStep, setTimeStep }) {
 
   return (
     <div className="calendar">
-      <div className="currentSeason">{timesSteps[timeStep].season}</div>
-      <div className="currentYear">{timesSteps[timeStep].year}</div>
+      <div className="currentSeason stat">{timesSteps[timeStep].season}</div>
+      <div className="currentYear year">{timesSteps[timeStep].year}</div>
     </div>
   );
 }

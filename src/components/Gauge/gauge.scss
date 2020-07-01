@@ -1,0 +1,46 @@
+@import '../../index';
+
+.rowGauges {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 74%;
+
+  .boxGauge {
+    height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 31%;
+    background: rgba($brown, 0.1);
+    position: relative;
+
+    span {
+      position: absolute;
+      bottom: 7px;
+      left: 9px;
+    }
+
+    img {
+      position: absolute;
+      bottom: 30px;
+      left: 9px;
+    }
+
+    >span {
+      color: $blue;
+    }
+  }
+
+  .gaugeValue {
+    overflow: hidden;
+    width: 100%;
+    background: $blue;
+    position: absolute;
+    bottom: 0;
+
+    span {
+      color: $white;
+    }
+  }
+}
