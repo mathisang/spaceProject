@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RandomCard from "../Cards/RandomCards";
 import Gauge from "../Gauge";
+import "./gameOn.scss";
 import GaugeContext from "../Gauge/GaugeContext";
 import timesSteps from "../../datas/time.json";
 import SeasonTimeline from "../SeasonTimeline";
@@ -34,7 +35,9 @@ export default function ({ tutorialStatus, setTutorialStatus, timeSteps }) {
 
   // Déclenchement de l'événement
   useEffect(() => {
-    timesSteps[timeStep].name === stepCards[step.id].stepSeason &&
+    let season = timesSteps[timeStep].season + " " + timesSteps[timeStep].year;
+    console.log(season);
+    season === stepCards[step.id].stepSeason &&
       setStep((prevState) => {
         return { ...prevState, isActive: true };
       });
@@ -49,8 +52,8 @@ export default function ({ tutorialStatus, setTutorialStatus, timeSteps }) {
         ) : isEnd ? (
           <EndCard timeStep={timeStep} />
         ) : (
-          <div className="playing-container">
-            <div className="head-container">
+          <div className="playScreen">
+            <div className="headerScreen">
               <SeasonTimeline setTimeStep={setTimeStep} timeStep={timeStep} />
               <Gauge />
             </div>

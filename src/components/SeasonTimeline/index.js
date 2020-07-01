@@ -10,5 +10,10 @@ export default function ({ timeStep, setTimeStep }) {
     selectedCardId >= 0 && setTimeStep(timeStep + 1);
   }, [selectedCardId]);
 
-  return <div className="">{timesSteps[timeStep].name}</div>;
+  return (
+    <div className="calendar">
+      <div className="currentSeason">{timesSteps[timeStep].season}</div>
+      <div className="currentYear">{timesSteps[timeStep].year}</div>
+    </div>
+  );
 }
