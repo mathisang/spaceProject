@@ -8,9 +8,10 @@ export default ({ asteroid, globalAsteroid }) => {
   });
   return (
     <div className="space-gauge-container">
-      <a.div style={{ height: props.percent }} className="space-gauge-content">
-        {props.value}
-      </a.div>
+      <a.div
+        style={{ height: props.percent }}
+        className="space-gauge-content"
+      ></a.div>
     </div>
   );
 };

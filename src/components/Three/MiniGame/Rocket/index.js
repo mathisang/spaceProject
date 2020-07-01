@@ -1,11 +1,25 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useBox } from "use-cannon";
 import { Box } from "drei";
-import { useFrame, useLoader } from "react-three-fiber";
+import { useFrame, useLoader, useThree } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useDrag } from "react-use-gesture";
 
 export default function Rocket({ propsCannon, setTouched, isTouched }) {
+  // spring drag props
+  const { size, viewport } = useThree();
+  const aspect = size.width / viewport.width;
+  const [spring, set] = useSpring(() => ({
+    position: [3, 5, 0],
+  }));
+  const bind = useDrag(
+    ({ offset: [x, y], vxvy: [vx, vy], down, ...props }) =>
+      set({
+        position: [x / aspect, -4, 0],
+      }),
+    { eventOptions: { pointer: true } }
+  );
   // use cannon box declaration
   const [ref, api] = useBox(() => ({
     args: [1, 0, 1],
@@ -22,18 +36,17 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
     GLTFLoader,
     "three/miniGameSpaceship/rocket/spaceShip.glb"
   );
-  useEffect(() => {
-    console.log(scene);
-  }, []);
+  useEffect(() => {}, []);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     api.rotation.set(0, t * 0.8, 0);
-    api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
+    /*api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);*/
+    api.position.set(spring.position.payload[0].value, -4, 0);
   });
 
   return (
-    <mesh ref={ref}>
+    <a.mesh {...spring} {...bind()} ref={ref}>
       <group ref={groupModel} scale={[0.2, 0.2, 0.2]}>
         <mesh visible geometry={nodes.Cylinder001_0.geometry}>
           <meshPhysicalMaterial
@@ -91,6 +104,6 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
       {/*<Box ref={ref} args={[1, 3, 1]}>
         <a.meshPhysicalMaterial attach="material" color={propsSpring.color} />
       </Box>*/}
-    </mesh>
+    </a.mesh>
   );
 }

@@ -14,7 +14,7 @@ export default function Obstacle({
 }) {
   const [ref, api] = useSphere(() => ({
     mass: 10000,
-    position: [0, -3, 0],
+    position: [0, 20, 0],
     ...props,
   }));
   const map = useLoader(
@@ -45,7 +45,6 @@ export default function Obstacle({
         setAsteroid(asteroid + 1);
       }, obstacleParts[obstaclePart].time);
     } else if (obstaclePart !== 2) {
-      console.log("function");
       setTimeout(() => {
         setWaveMsg(true);
       }, 2000);

@@ -1,18 +1,28 @@
-import React from "react";
-import { usePlane } from "use-cannon";
+import React, { useEffect } from "react";
+import { useSpring, animated } from "react-spring";
+import { useDrag, useGesture } from "react-use-gesture";
 
-const Ground = (props) => {
-  const [ref] = usePlane(() => ({
-    rotation: [-Math.PI / 2, 0, 0],
-    position: [0, -5, 0],
-    ...props,
-  }));
+export default ({ propsDrag, setDrag }) => {
+  const bind = useDrag(({ down, movement: [x, y] }) => {
+    setDrag({
+      x: x,
+      y: y,
+      scale: down ? 1.2 : 1,
+      immediate: down,
+    });
+  });
+  /*useEffect(() => {
+    console.log("value", propsDrag.x.value);
+  });*/
+  /*const bindDrag = useDrag(onDrag);
+   */
   return (
-    <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10, 10]} />
-      <meshLambertMaterial attach="material" color="red" />
-    </mesh>
+    <animated.div className="drag-container">
+      <animated.div
+        {...bind()}
+        style={propsDrag}
+        className="drag-control"
+      ></animated.div>
+    </animated.div>
   );
 };
-
-export default () => <Ground />;

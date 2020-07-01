@@ -22,4 +22,12 @@
   h2 {
     color: white;
   }
+  .drag-control {
+    width: 80px;
+    height: 80px;
+    background: hotpink;
+    border-radius: 16px;
+    position: absolute;
+    z-index: 1000;
+  }
 }
