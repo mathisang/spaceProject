@@ -6,13 +6,18 @@ import Buttons from "./Buttons";
 export default () => {
   let buttons = [{ name: "cheh" }, { name: "bem" }, { name: "hey" }];
   const [isMoonGameOn, setMoonGame] = useState(false);
+  const [numberInstructions, setNumberInstructions] = useState(0);
 
   return (
     <div>
       {isMoonGameOn ? (
         <div>
-          <Instructions buttons={buttons} />
-          <Buttons buttons={buttons} />
+          <Instructions nmbInst={numberInstructions} buttons={buttons} />
+          <Buttons
+            nbmInst={numberInstructions}
+            setNmb={setNumberInstructions}
+            buttons={buttons}
+          />
         </div>
       ) : (
         <div>

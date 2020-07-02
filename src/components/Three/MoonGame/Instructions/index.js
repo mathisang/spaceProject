@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
-export default ({ buttons }) => {
+export default ({ buttons, nmbInst }) => {
   const [currentInstructions, setCurrentInstructions] = useState(0);
-  const pickInstruction = () => {
+  useMemo(() => {
+    pickInstruction();
+  }, [nmbInst]);
+  function pickInstruction() {
     const newInstruction = Math.floor(Math.random() * buttons.length);
     setCurrentInstructions([newInstruction]);
-    console.log(currentInstructions);
-  };
+    console.log("instruction !", currentInstructions);
+  }
   return (
-    <div onClick={() => pickInstruction()} className="instruction">
+    <div className="instruction">
       {currentInstructions !== null && (
         <p>les instructions sont {buttons[currentInstructions].name}</p>
       )}

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 
-export default ({ buttons }) => {
+export default ({ buttons, nbmInst, setNmb }) => {
   const [buttonClicked, setButtonClicked] = useState(null);
   useMemo(() => {
     console.log(buttonClicked);
@@ -8,6 +8,7 @@ export default ({ buttons }) => {
 
   const handleClick = (index) => {
     setButtonClicked(index);
+    setNmb(nbmInst + 1);
   };
   return (
     <div className="buttons-container">
