@@ -5,6 +5,7 @@ import GameOn from "./components/GameOn";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Asteroid from "./components/Three/Asteroid";
 import MiniGame from "./components/Three/MiniGame";
+import MoonGame from "./components/Three/MoonGame";
 
 function App() {
   const [isGameOn, setGameStatus] = useState(false);
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route path="/minigame">
         <MiniGame />
+      </Route>
+      <Route path="/moongame">
+        <MoonGame />
       </Route>
       <Route path="/">
         <div className="App">
