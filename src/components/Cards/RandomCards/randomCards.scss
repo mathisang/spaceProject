@@ -1,4 +1,4 @@
-@import '../../../index';
+@import "../../../index";
 
 .randomCard {
   border-radius: 8px;
@@ -13,13 +13,14 @@
     flex-direction: column;
     justify-content: space-between;
 
-    h2, p {
+    h2,
+    p {
       color: $blue;
       margin: 0;
     }
 
     h2 {
-      margin: .4rem;
+      margin: 0.4rem;
     }
 
     p {
@@ -33,6 +34,14 @@
     .randomButtons {
       height: 29%;
 
+      button {
+        background: $brown;
+        color: $white;
+        border: none;
+        border-radius: 4px;
+        font-family: Futura, sans-serif;
+      }
+
       .buttonsCard {
         height: 100%;
         display: flex;
@@ -42,18 +51,75 @@
         button {
           width: 100%;
           height: 47%;
-          background: $brown;
-          color: $white;
-          border: none;
-          border-radius: 4px;
           display: flex;
           align-items: center;
-          font-family: Futura, sans-serif;
 
           img {
-            padding-left: .75rem;
-            margin-right: .75rem;
+            padding-left: 0.75rem;
+            margin-right: 0.75rem;
           }
+        }
+      }
+
+      .randomChoice {
+        height: 100%;
+
+        > div {
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          button {
+            height: 100%;
+            width: 48%;
+            padding: 0;
+            background-image: url("../../../assets/images/cards/backCards.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+          }
+        }
+      }
+
+      .modalAnswer {
+        height: 100vh;
+        width: 100vw;
+        background: rgba(0, 0, 0, 0.25);
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        > div {
+          background: $white;
+          border-radius: 8px;
+          position: absolute;
+          top: 25.4%;
+          width: 87.25%;
+          left: 0.75rem;
+          padding: .75rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .pictureModal {
+            height: 110px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+          }
+        }
+
+        p {
+          color: $blue;
+          margin: 1rem 0;
+        }
+
+        .skipConsequence {
+          font-size: 16px;
+          color: $white;
+          font-weight: 700;
+          width: 100%;
+          height: 3rem;
         }
       }
     }

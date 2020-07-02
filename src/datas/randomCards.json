@@ -38,15 +38,20 @@
           "search": 10
         },
         "consequence": {
-          "percent_success": 0.5,
-          "label": "Soutiens des scientifiques",
+          "label": "« Soutiens des scientifiques »",
           "context": "Vous décidez de soutenir et d'appuyer le travail de vos équipes. Leurs découvertes vont-elles s'avérer fructueuse ?",
           "success": {
+            "context": "Le jeu en valait la peine, vous trouvez de précieux plans dont vos chercheurs sauront utiliser à bon escient.",
+            "buttonText": "Féliciter vos chercheurs",
+            "image": "win_sciences.png",
             "money": 0,
             "opinion": 15,
             "search": 0
           },
           "fail": {
+            "context": "Nous ne trouvez rien de très probant, il semblerait même qu’il s’agisse plutôt de plans de toilettes...",
+            "buttonText": "Déprimer",
+            "image": "loose_sciences.png",
             "money": 0,
             "opinion": 0,
             "search": -15
