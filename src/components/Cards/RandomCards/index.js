@@ -10,6 +10,7 @@ import ContextRandom from "./ContentRandom/ContextRandom";
 export default function () {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [isSuccess, setSuccess] = useState(null);
+  const [isChoose, setChoose] = useState(null);
   const { selectedCardId, setSelectedCardId } = useContext(CardContext);
   const [nextCard, setNextCard] = useState(null);
   const [idButton, setIdButton] = useState(0);
@@ -66,12 +67,6 @@ export default function () {
       case 2:
         updateGauge(selectedCardId);
         break;
-      case 3:
-        let numberResponse = cards[nextCard].card.responses[0].consequence
-          ? 0
-          : 1;
-        updateGauge(nextCard, numberResponse, isSuccess ? "success" : "fail");
-        break;
     }
     setSuccess(null);
     setNextCard(randomCard());
@@ -84,14 +79,17 @@ export default function () {
         (card, index) =>
           nextCard === card.id && (
             <div className="card" key={index}>
-              <ContextRandom card={card} />
+              <ContextRandom card={card} isChoose={isChoose} />
               <ButtonsRandom
                 nextCard={nextCard}
-                setSuccess={setSuccess}
                 setIdButton={setIdButton}
                 setSelectedCardId={setSelectedCardId}
                 isSuccess={isSuccess}
+                setSuccess={setSuccess}
+                isChoose={isChoose}
+                setChoose={setChoose}
                 card={card}
+                cards={cards}
                 updateGauge={updateGauge}
               />
             </div>
