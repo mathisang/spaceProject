@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useBox } from "use-cannon";
-import { Box } from "drei";
 import { useFrame, useLoader, useThree } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -11,10 +10,10 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const [spring, set] = useSpring(() => ({
-    position: [3, 5, 0],
+    position: [0, 0, 0],
   }));
   const bind = useDrag(
-    ({ offset: [x, y], vxvy: [vx, vy], down, ...props }) =>
+    ({ movement: [x] }) =>
       set({
         position: [x / aspect, -4, 0],
       }),
@@ -36,7 +35,9 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
     GLTFLoader,
     "three/miniGameSpaceship/rocket/spaceShip.glb"
   );
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(spring.position);
+  }, []);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
