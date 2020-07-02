@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from "react";
+import "./MoonGame.scss";
+import Instructions from "./Instructions";
 
 export default () => {
   let buttons = [{ name: "cheh" }, { name: "bem" }, { name: "hey" }];
@@ -14,11 +16,14 @@ export default () => {
 
   return (
     <div>
-      {buttons.map((button, index) => (
-        <button onClick={() => handleClick(index)} key={index}>
-          {button.name}
-        </button>
-      ))}
+      <Instructions buttons={buttons} />
+      <div className="buttons-container">
+        {buttons.map((button, index) => (
+          <button onClick={() => handleClick(index)} key={index}>
+            {button.name}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
