@@ -1,13 +1,21 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import MoonGameContext from "../Context";
 
-export default ({ buttons, nmbInst }) => {
-  const [currentInstructions, setCurrentInstructions] = useState(0);
+export default () => {
+  const {
+    numberInstructions,
+    currentInstructions,
+    buttons,
+    setMoon,
+  } = useContext(MoonGameContext);
   useMemo(() => {
     pickInstruction();
-  }, [nmbInst]);
+  }, [numberInstructions]);
   function pickInstruction() {
     const newInstruction = Math.floor(Math.random() * buttons.length);
-    setCurrentInstructions([newInstruction]);
+    setMoon((prevState) => {
+      return { ...prevState, currentInstructions: newInstruction };
+    });
     console.log("instruction !", currentInstructions);
   }
   return (

@@ -2,28 +2,40 @@ import React, { useState, useMemo } from "react";
 import "./MoonGame.scss";
 import Instructions from "./Instructions";
 import Buttons from "./Buttons";
+import MoonGameContext from "./Context";
 
 export default () => {
-  let buttons = [{ name: "cheh" }, { name: "bem" }, { name: "hey" }];
+  const [
+    { numberInstructions, currentInstructions, btnClicked, buttons },
+    setMoon,
+  ] = useState({
+    numberInstructions: 0,
+    currentInstructions: 0,
+    btnClicked: null,
+    buttons: [{ name: "cheh" }, { name: "bem" }, { name: "hey" }],
+  });
+  const moonContextValue = {
+    numberInstructions,
+    currentInstructions,
+    btnClicked,
+    buttons,
+    setMoon,
+  };
   const [isMoonGameOn, setMoonGame] = useState(false);
-  const [numberInstructions, setNumberInstructions] = useState(0);
-
   return (
-    <div>
-      {isMoonGameOn ? (
-        <div>
-          <Instructions nmbInst={numberInstructions} buttons={buttons} />
-          <Buttons
-            nbmInst={numberInstructions}
-            setNmb={setNumberInstructions}
-            buttons={buttons}
-          />
-        </div>
-      ) : (
-        <div>
-          <button onClick={() => setMoonGame(true)}>Commencer le jeu</button>
-        </div>
-      )}
-    </div>
+    <MoonGameContext.Provider value={moonContextValue}>
+      <div>
+        {isMoonGameOn ? (
+          <div>
+            <Instructions />
+            <Buttons />
+          </div>
+        ) : (
+          <div>
+            <button onClick={() => setMoonGame(true)}>Commencer le jeu</button>
+          </div>
+        )}
+      </div>
+    </MoonGameContext.Provider>
   );
 };

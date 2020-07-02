@@ -1,15 +1,27 @@
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
+import MoonGameContext from "../Context";
 
-export default ({ buttons, nbmInst, setNmb }) => {
-  const [buttonClicked, setButtonClicked] = useState(null);
+export default () => {
+  const { numberInstructions, buttons, btnClicked, setMoon } = useContext(
+    MoonGameContext
+  );
   useMemo(() => {
-    console.log(buttonClicked);
-  }, [buttonClicked]);
+    console.log(btnClicked);
+  }, [btnClicked]);
 
   const handleClick = (index) => {
-    setButtonClicked(index);
-    setNmb(nbmInst + 1);
+    checkResponse(index);
+    setMoon((prevState) => {
+      return {
+        ...prevState,
+        btnClicked: index,
+        numberInstructions: numberInstructions + 1,
+      };
+    });
   };
+  function checkResponse(index) {
+    console.log(index);
+  }
   return (
     <div className="buttons-container">
       {buttons.map((button, index) => (
