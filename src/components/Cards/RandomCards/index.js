@@ -3,6 +3,9 @@ import cards from "../../../datas/randomCards.json";
 import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
+import "./randomCards.scss";
+import ButtonsRandom from "./ContentRandom/ButtonsRandom";
+import ContextRandom from "./ContentRandom/ContextRandom";
 
 export default function () {
   const { gauge, setGauge } = useContext(GaugeContext);
@@ -39,43 +42,19 @@ export default function () {
 
   // GESTION DES JAUGES
   // Mise à jour des jauges
-  // A OPTIMISER AVEC FOR ?
   function updateGauge(card, response, issue) {
-    response === undefined
-      ? setGauge({
-          money:
-            gauge.money +
-            cards[card].card.responses[idButton - 1].impacts.money,
-          opinion:
-            gauge.opinion +
-            cards[card].card.responses[idButton - 1].impacts.opinion,
-          search:
-            gauge.search +
-            cards[card].card.responses[idButton - 1].impacts.search,
-        })
-      : setGauge({
-          money:
-            gauge.money +
-            cards[card].card.responses[response].consequence[issue].money,
-          opinion:
-            gauge.opinion +
-            cards[card].card.responses[response].consequence[issue].opinion,
-          search:
-            gauge.search +
-            cards[card].card.responses[response].consequence[issue].search,
-        });
-  }
-
-  // Si une carte à une conséquence, renvoi succès ou echec et met a jour les jauges
-  function trySuccess(e) {
-    e === (1 || 2) && updateGauge(nextCard);
-
-    var numberResponse = cards[nextCard].card.responses[0].consequence ? 0 : 1;
-    let r = Math.random();
-    r >
-    cards[nextCard].card.responses[numberResponse].consequence.percent_success
-      ? setSuccess(true)
-      : setSuccess(false);
+    const typeList = ["money", "opinion", "search"];
+    const updatedGauge = {};
+    for (const type of typeList) {
+      response === undefined
+        ? (updatedGauge[type] =
+            gauge[type] +
+            cards[card].card.responses[idButton - 1].impacts[type])
+        : (updatedGauge[type] =
+            gauge[type] +
+            cards[card].card.responses[response].consequence[issue][type]);
+    }
+    setGauge(updatedGauge);
   }
 
   // AVANCEMENT DU JEU
@@ -98,62 +77,26 @@ export default function () {
     setNextCard(randomCard());
   }, [selectedCardId]);
 
-  // Boutons cartes
-  const CardButtons = ({ card, value }) => {
-    return value !== 3 ? (
-      <button
-        onClick={() => {
-          setIdButton(value);
-          card.card.responses[value - 1].consequence
-            ? trySuccess(value)
-            : setSelectedCardId(card.id);
-        }}
-      >
-        {card.card.responses[value - 1].label}
-      </button>
-    ) : (
-      <button
-        onClick={() => {
-          setSelectedCardId(card.id);
-          setIdButton(value);
-        }}
-      >
-        Continuer
-      </button>
-    );
-  };
-
   // Affichage de la carte + réponses
   return (
-    <div className="">
-      <ul>
-        {cards.map(
-          (card, index) =>
-            nextCard === card.id && (
-              <div className="card-container" key={index}>
-                <h2>{card.category}</h2>
-                <p>{card.card.context}</p>
-                {isSuccess == null && (
-                  <div>
-                    <CardButtons card={card} value={1} />
-                    <CardButtons card={card} value={2} />
-                  </div>
-                )}
-                {isSuccess !== null && (
-                  <div>
-                    Résultat :{" "}
-                    {isSuccess ? (
-                      <p>Mission réussie</p>
-                    ) : (
-                      <p>Mission échouée</p>
-                    )}
-                    <CardButtons card={card} value={3} />
-                  </div>
-                )}
-              </div>
-            )
-        )}
-      </ul>
+    <div className="randomCard">
+      {cards.map(
+        (card, index) =>
+          nextCard === card.id && (
+            <div className="card" key={index}>
+              <ContextRandom card={card} />
+              <ButtonsRandom
+                nextCard={nextCard}
+                setSuccess={setSuccess}
+                setIdButton={setIdButton}
+                setSelectedCardId={setSelectedCardId}
+                isSuccess={isSuccess}
+                card={card}
+                updateGauge={updateGauge}
+              />
+            </div>
+          )
+      )}
     </div>
   );
 }

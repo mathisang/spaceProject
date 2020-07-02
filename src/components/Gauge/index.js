@@ -1,5 +1,14 @@
 import React, { useContext } from "react";
 import GaugeContext from "./GaugeContext";
+import "./gauge.scss";
+import {
+  dollarsBlue,
+  dollarsWhite,
+  opinionWhite,
+  opinionBlue,
+  searchWhite,
+  searchBlue,
+} from "../../assets/images/index";
 
 // Affichage des jauges
 export default function () {
@@ -7,20 +16,37 @@ export default function () {
 
   function showAmount(type) {
     return gauge[type] > 100
-      ? (gauge[type] = 100)
+      ? (gauge[type] = 100 + "%")
       : gauge[type] < 0
       ? (gauge[type] = 0)
-      : gauge[type];
+      : gauge[type] + "%";
   }
 
   return (
-    <div>
-      <div>
-        Argent : {showAmount("money")}%
-        <br />
-        Opinion : {showAmount("opinion")}%
-        <br />
-        Recherche : {showAmount("search")}%
+    <div className="rowGauges">
+      <div className="boxGauge">
+        <img src={dollarsBlue} alt="" />
+        <span className="stat">Argent</span>
+        <div className="gaugeValue" style={{ height: showAmount("money") }}>
+          <img src={dollarsWhite} alt="" />
+          <span className="stat">Argent</span>
+        </div>
+      </div>
+      <div className="boxGauge">
+        <img src={opinionBlue} alt="" />
+        <span className="stat">Opinion</span>
+        <div className="gaugeValue" style={{ height: showAmount("opinion") }}>
+          <img src={opinionWhite} alt="" />
+          <span className="stat">Opinion</span>
+        </div>
+      </div>
+      <div className="boxGauge">
+        <img src={searchBlue} alt="" />
+        <span className="stat">Recherche</span>
+        <div className="gaugeValue" style={{ height: showAmount("search") }}>
+          <img src={searchWhite} alt="" />
+          <span className="stat">Recherche</span>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 ## URL de prod 
-https://brave-pasteur-784339.netlify.app/
+https://brave-pasteur-784339.netlify.app/ <br>
+`Currently optimized for iPhone 6/7/8`
 
 ## Stack utilisées
 React<br />
