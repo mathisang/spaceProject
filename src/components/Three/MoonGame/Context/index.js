@@ -5,6 +5,7 @@ const MoonGameContext = React.createContext({
   currentInstructions: 0,
   btnClicked: null,
   buttons: [{ name: "cheh" }, { name: "bem" }, { name: "hey" }],
+  progress: 0,
 
   setMoon: () => {},
 });
