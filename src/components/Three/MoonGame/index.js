@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 
 export default () => {
-  const handleClick1 = () => {
-    console.log("1");
-  };
-  const handleClick2 = () => {
-    console.log("2");
+  let buttons = [{ name: "cheh" }, { name: "bem" }, { name: "hey" }];
+  const [buttonClicked, setButtonClicked] = useState(null);
+
+  useMemo(() => {
+    console.log(buttonClicked);
+  }, [buttonClicked]);
+
+  const handleClick = (index) => {
+    setButtonClicked(index);
   };
 
   return (
     <div>
-      <button onClick={() => handleClick1()}>button 1</button>
-      <button onClick={() => handleClick2()}>button 2</button>
+      {buttons.map((button, index) => (
+        <button onClick={() => handleClick(index)} key={index}>
+          {button.name}
+        </button>
+      ))}
     </div>
   );
 };
