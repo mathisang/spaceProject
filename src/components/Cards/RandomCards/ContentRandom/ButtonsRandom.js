@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { swipeLeft, swipeRight } from "../../../../assets/images/index";
+import ModalRandom from "./ModalRandom";
+import ChoicesButtons from "./ChoicesButtons";
 
 export default function ({
   nextCard,
@@ -12,38 +14,14 @@ export default function ({
   isChoose,
   setChoose,
 }) {
+  // Détermine quelle réponse possède une conséquence
   const consequence =
     isChoose !== null && card.card.responses[0].consequence ? 0 : 1;
-
-  // Si une carte à une conséquence, renvoi succès ou echec et met a jour les jauges
-  function trySuccess(result) {
-    result === "success" ? setSuccess(true) : setSuccess(false);
-  }
 
   function chooseSuccess() {
     updateGauge(nextCard);
     setChoose(true);
   }
-
-  const ChoicesButton = () => {
-    const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
-    const resultButton = randomButtonId === 1 ? "success" : "loose";
-
-    return (
-      <div>
-        <button
-          onClick={() => {
-            trySuccess(resultButton);
-          }}
-        />
-        <button
-          onClick={() => {
-            trySuccess(resultButton === "success" ? "loose" : "success");
-          }}
-        />
-      </div>
-    );
-  };
 
   // Boutons cartes
   const CardButtons = ({ card, value }) => {
@@ -88,30 +66,16 @@ export default function ({
       )}
       {isChoose !== null && (
         <div className="randomChoice">
-          <ChoicesButton />
+          <ChoicesButtons setSuccess={setSuccess} />
         </div>
       )}
       {isSuccess !== null && (
-        <div className="modalAnswer">
-          <div>
-            <div
-              className="pictureModal"
-              style={{
-                backgroundImage: `url('../../../assets/images/cards/consequence/${
-                  isSuccess
-                    ? card.card.responses[consequence].consequence.success.image
-                    : card.card.responses[consequence].consequence.fail.image
-                }')`,
-              }}
-            />
-            <p className="description">
-              {isSuccess
-                ? card.card.responses[consequence].consequence.success.context
-                : card.card.responses[consequence].consequence.fail.context}
-            </p>
-            <CardButtons card={card} value={3} />
-          </div>
-        </div>
+        <ModalRandom
+          isSuccess={isSuccess}
+          card={card}
+          consequence={consequence}
+          CardButtons={CardButtons}
+        />
       )}
     </div>
   );
