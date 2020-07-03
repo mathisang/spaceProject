@@ -1,0 +1,18 @@
+@import '../../index';
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 13%;
+  position: relative;
+
+  >div {
+    display: flex;
+    align-items: center;
+  }
+
+  .rocketStep {
+    position: absolute;
+  }
+}

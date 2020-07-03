@@ -27,4 +27,10 @@ export const backCards = require("./cards/backCards.png");
 export const looseSciences = require("./cards/consequence/loose_sciences.png");
 export const winSciences = require("./cards/consequence/win_sciences.png");
 
+// Step Timeline
+export const earth = require("./stepTimeline/earth.png");
+export const moon = require("./stepTimeline/moon.png");
+export const helmet = require("./stepTimeline/helmet.png");
+export const rocket = require("./stepTimeline/rocket.png");
+
 // export const Name = require('./');

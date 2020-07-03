@@ -10,6 +10,7 @@ import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
+import StepTimeline from "../StepTimeline/index";
 
 export default function ({ tutorialStatus, setTutorialStatus }) {
   const [gauge, setGauge] = useState({
@@ -64,8 +65,13 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
               <Gauge />
             </div>
             <div className="contentScreen">
-              {/*ICI AJOUTER LA BARRE DE PROGRESSION*/}
-              <div className="temporary" />
+              <StepTimeline
+                stepCards={stepCards}
+                year={year}
+                season={season}
+                ListSeasons={ListSeasons}
+                step={step}
+              />
               {step.isActive && (
                 <StepCard step={step} setStep={setStep} setEnd={setEnd} />
               )}
