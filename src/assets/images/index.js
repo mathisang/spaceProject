@@ -38,4 +38,10 @@ export const icon7 = require("./moongame/icon7.png");
 export const icon8 = require("./moongame/icon8.png");
 export const heart = require("./moongame/heart.png");
 
+// Step Timeline
+export const earth = require("./stepTimeline/earth.png");
+export const moon = require("./stepTimeline/moon.png");
+export const helmet = require("./stepTimeline/helmet.png");
+export const rocket = require("./stepTimeline/rocket.png");
+
 // export const Name = require('./');
