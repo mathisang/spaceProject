@@ -1,20 +1,21 @@
-import React, { useEffect, useContext, useRef, useState } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import MoonGameContext from "../Context";
-import cards from "../../../../datas/randomCards.json";
 
 export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
-  const { numberInstructions, buttons, setMoon } = useContext(MoonGameContext);
+  const { numberInstructions, buttons } = useContext(MoonGameContext);
   function pickInstruction() {
     //remet les instructions à vide
-    setCrInst((crInstr = []));
+    let array = [];
     // génère un chiffre aléatoire entre 1 et le nombre max d'instructions de difficulty props
     const currentInstrLenght =
       Math.floor(Math.random() * difficulty.maxInst) + 1;
-    // Créer un tableau qui va contenir autant d'instructions que currentInstrLenght et met currentInstructions à jour
+    // Créer un tableau qui va contenir autant d'instructions que currentInstrLenght
     for (let i = 0; i < currentInstrLenght; i++) {
       const newInstruction = Math.floor(Math.random() * buttons.length);
-      setCrInst(crInstr.push(newInstruction));
+      array.push(newInstruction);
     }
+    // Assigne la valeur du tableau à notre state d'instructions
+    setCrInst((crInstr = array));
     console.log("instructions", crInstr);
   }
   const timer = useRef(false);
@@ -27,13 +28,20 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
     }, 5000);
   }
   useEffect(() => {
-    /*pickInstruction();*/
+    pickInstruction();
     handleTimer();
   }, [numberInstructions]);
   return (
     <div className="instruction">
       <button onClick={() => pickInstruction()}>pick</button>
-      {/*{currentInstructions !== null && <p>les instructions sont </p>}*/}
+      {crInstr.length > 0 && (
+        <div>
+          <p>Consignes :</p>
+          {crInstr.map((instruction, index) => (
+            <p key={index}>{buttons[crInstr[index]].name}</p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
