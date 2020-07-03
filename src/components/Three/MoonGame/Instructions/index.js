@@ -33,12 +33,14 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
     handleTimer();
   }, [numberInstructions]);
   return (
-    <div className="instruction">
+    <div className="instructions">
       {crInstr.length > 0 && (
         <div>
           <p>Consignes :</p>
           {crInstr.map((instruction, index) => (
-            <p key={index}>{buttons[crInstr[index]].name}</p>
+            <div className="secondary-button" key={index}>
+              <img src={buttons[crInstr[index]].img} />
+            </div>
           ))}
         </div>
       )}

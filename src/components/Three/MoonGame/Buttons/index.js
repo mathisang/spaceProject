@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
 
-export default ({ isTimerOn, crInstr, setCrInst }) => {
+export default ({ isTimerOn, crInstr, setPts, pts }) => {
   const {
     numberInstructions,
     buttons,
@@ -18,10 +18,10 @@ export default ({ isTimerOn, crInstr, setCrInst }) => {
     setMoon((prevState) => {
       return {
         ...prevState,
-        progress: progress - 1,
         numberInstructions: numberInstructions + 1,
       };
     });
+    setPts(pts - 1);
   }
 
   function success() {
@@ -70,8 +70,12 @@ export default ({ isTimerOn, crInstr, setCrInst }) => {
     <div className="buttons-container">
       {isTimerOn ? <p>on</p> : <p>off</p>}
       {buttons.map((button, index) => (
-        <button onClick={() => handleClick(index)} key={index}>
-          {button.name}
+        <button
+          className="secondary-button"
+          onClick={() => handleClick(index)}
+          key={index}
+        >
+          <img src={button.img} />
         </button>
       ))}
     </div>

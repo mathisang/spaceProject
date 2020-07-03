@@ -27,4 +27,15 @@ export const backCards = require("./cards/backCards.png");
 export const looseSciences = require("./cards/consequence/loose_sciences.png");
 export const winSciences = require("./cards/consequence/win_sciences.png");
 
+// MoonGame
+export const icon1 = require("./moongame/icon1.png");
+export const icon2 = require("./moongame/icon2.png");
+export const icon3 = require("./moongame/icon3.png");
+export const icon4 = require("./moongame/icon4.png");
+export const icon5 = require("./moongame/icon5.png");
+export const icon6 = require("./moongame/icon6.png");
+export const icon7 = require("./moongame/icon7.png");
+export const icon8 = require("./moongame/icon8.png");
+export const heart = require("./moongame/heart.png");
+
 // export const Name = require('./');

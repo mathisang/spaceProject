@@ -4,6 +4,17 @@ import Instructions from "./Instructions";
 import Buttons from "./Buttons";
 import MoonGameContext from "./Context";
 import ProgressRocket from "./ProgressRocket";
+import {
+  icon1,
+  icon2,
+  icon3,
+  icon4,
+  icon5,
+  icon6,
+  icon7,
+  icon8,
+  heart,
+} from "../../../assets/images/index";
 
 export default () => {
   const [
@@ -12,7 +23,16 @@ export default () => {
   ] = useState({
     numberInstructions: 0,
     btnClicked: 0,
-    buttons: [{ name: "cheh" }, { name: "bem" }, { name: "hey" }],
+    buttons: [
+      { name: "cheh", img: icon1 },
+      { name: "bem", img: icon2 },
+      { name: "hey", img: icon3 },
+      { name: "hey", img: icon4 },
+      { name: "hey", img: icon5 },
+      { name: "hey", img: icon6 },
+      { name: "hey", img: icon7 },
+      { name: "hey", img: icon8 },
+    ],
     progress: 0,
   });
   const moonContextValue = {
@@ -25,6 +45,7 @@ export default () => {
   const [isMoonGameOn, setMoonGame] = useState(false);
   const [isTimerOn, setTimer] = useState(true);
   const [currentInstructions, setCurrentInstructions] = useState([0]);
+  const [lifePoints, setLifePoints] = useState(3);
   let moonDifficulty = [
     { time: 5000, maxInst: 2 },
     { time: 4000, maxInst: 3 },
@@ -36,17 +57,21 @@ export default () => {
       alert("win");
       window.location.reload(false);
     }
-    if (numberInstructions > 20) {
+    if (lifePoints === 0) {
       alert("loose");
       window.location.reload(false);
     }
-  }, [progress]);
+  }, [numberInstructions]);
   return (
     <MoonGameContext.Provider value={moonContextValue}>
       <div>
         {isMoonGameOn ? (
           <div>
             <ProgressRocket />
+            <div className="health-container">
+              <p>{lifePoints} x </p>
+              <img src={heart} />
+            </div>
             <Instructions
               crInstr={currentInstructions}
               setCrInst={setCurrentInstructions}
@@ -55,8 +80,9 @@ export default () => {
             />
             <Buttons
               crInstr={currentInstructions}
-              setCrInst={setCurrentInstructions}
               isTimerOn={isTimerOn}
+              pts={lifePoints}
+              setPts={setLifePoints}
             />
           </div>
         ) : (
