@@ -1,30 +1,37 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
 
-export default ({ isTimerOn }) => {
+export default ({ isTimerOn, crInstr, setCrInst }) => {
   const {
     numberInstructions,
     buttons,
     btnClicked,
-    currentInstructions,
     progress,
     setMoon,
   } = useContext(MoonGameContext);
   useMemo(() => {
-    console.log(btnClicked);
+    console.log("bouton cliqué", btnClicked);
   }, [btnClicked]);
 
   function defeat() {
     console.log("defeat");
     setMoon((prevState) => {
-      return { ...prevState, progress: progress - 1 };
+      return {
+        ...prevState,
+        progress: progress - 1,
+        numberInstructions: numberInstructions + 1,
+      };
     });
   }
 
   function success() {
     console.log("success");
     setMoon((prevState) => {
-      return { ...prevState, progress: progress + 1 };
+      return {
+        ...prevState,
+        progress: progress + 1,
+        numberInstructions: numberInstructions + 1,
+      };
     });
   }
 
@@ -34,19 +41,29 @@ export default ({ isTimerOn }) => {
       return {
         ...prevState,
         btnClicked: index,
-        numberInstructions: numberInstructions + 1,
       };
     });
   };
+  useEffect(() => {
+    !isTimerOn && defeat();
+  }, [isTimerOn]);
+
   function handleAnswer(index) {
     if (isTimerOn) {
-      if (index === currentInstructions) {
-        success();
+      console.log("valeur à atteindre", crInstr[0]);
+      console.log("lenght", crInstr.length);
+      if (index === crInstr[0]) {
+        if (crInstr.length === 1) {
+          success();
+        } else {
+          let array = crInstr;
+          console.log("array", array);
+          array.shift();
+          console.log("new array", array);
+        }
       } else {
         defeat();
       }
-    } else {
-      defeat();
     }
   }
   return (

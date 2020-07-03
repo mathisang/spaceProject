@@ -28,6 +28,7 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
     }, 5000);
   }
   useEffect(() => {
+    console.log("partie", numberInstructions);
     pickInstruction();
     handleTimer();
   }, [numberInstructions]);

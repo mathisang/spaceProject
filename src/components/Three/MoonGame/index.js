@@ -23,7 +23,7 @@ export default () => {
     setMoon,
   };
   const [isMoonGameOn, setMoonGame] = useState(false);
-  const [isTimerOn, setTimer] = useState(false);
+  const [isTimerOn, setTimer] = useState(true);
   const [currentInstructions, setCurrentInstructions] = useState([0]);
   let moonDifficulty = [
     { time: 5000, maxInst: 2 },
@@ -42,7 +42,11 @@ export default () => {
               difficulty={moonDifficulty[2]}
               setTimer={setTimer}
             />
-            <Buttons isTimerOn={isTimerOn} />
+            <Buttons
+              crInstr={currentInstructions}
+              setCrInst={setCurrentInstructions}
+              isTimerOn={isTimerOn}
+            />
           </div>
         ) : (
           <div>
