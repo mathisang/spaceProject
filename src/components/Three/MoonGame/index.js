@@ -30,6 +30,17 @@ export default () => {
     { time: 4000, maxInst: 3 },
     { time: 3000, maxInst: 5 },
   ];
+
+  useMemo(() => {
+    if (progress >= 10) {
+      alert("win");
+      window.location.reload(false);
+    }
+    if (numberInstructions > 20) {
+      alert("loose");
+      window.location.reload(false);
+    }
+  }, [progress]);
   return (
     <MoonGameContext.Provider value={moonContextValue}>
       <div>

@@ -34,7 +34,6 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
   }, [numberInstructions]);
   return (
     <div className="instruction">
-      <button onClick={() => pickInstruction()}>pick</button>
       {crInstr.length > 0 && (
         <div>
           <p>Consignes :</p>
