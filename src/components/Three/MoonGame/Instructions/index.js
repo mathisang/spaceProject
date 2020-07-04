@@ -1,8 +1,11 @@
-import React, { useEffect, useContext, useRef } from "react";
+import React, { useEffect, useContext, useRef, useState } from "react";
 import MoonGameContext from "../Context";
+import TimeBar from "../TimeBar";
 
 export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
   const { numberInstructions, buttons } = useContext(MoonGameContext);
+  let tic = 0;
+  const [ticState, setTicState] = useState(0);
   function pickInstruction() {
     //remet les instructions à vide
     let array = [];
@@ -21,29 +24,44 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
   const timer = useRef(false);
 
   function handleTimer() {
-    clearTimeout(timer.current);
+    clearInterval(timer.current);
     setTimer(true);
-    timer.current = setTimeout(() => {
-      setTimer(false);
-    }, 5000);
+    tic = 0;
+    setTicState(tic);
+    timer.current = setInterval(() => {
+      if (tic < 50) {
+        tic++;
+        setTicState(tic);
+        console.log(tic);
+      } else {
+        clearInterval(timer.current);
+        setTimer(false);
+      }
+    }, 100);
   }
+  useEffect(() => {
+    console.log("state", ticState);
+  }, [ticState]);
   useEffect(() => {
     console.log("partie", numberInstructions);
     pickInstruction();
     handleTimer();
   }, [numberInstructions]);
   return (
-    <div className="instructions">
-      {crInstr.length > 0 && (
-        <div>
-          <p>Consignes :</p>
-          {crInstr.map((instruction, index) => (
-            <div className="secondary-button" key={index}>
-              <img src={buttons[crInstr[index]].img} />
-            </div>
-          ))}
-        </div>
-      )}
+    <div>
+      <TimeBar />
+      <div className="instructions">
+        {crInstr.length > 0 && (
+          <div>
+            <p>Consignes :</p>
+            {crInstr.map((instruction, index) => (
+              <div className="secondary-button" key={index}>
+                <img src={buttons[crInstr[index]].img} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
