@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
+import { speaker, nut } from "../../../../assets/images/index";
 
 export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   const {
@@ -29,7 +30,7 @@ export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   function defeat() {
     console.log("defeat");
     setPartResult({ win: false, fail: true });
-    setTimeout(() => {
+    /*setTimeout(() => {
       setPartResult({ win: false, fail: false });
       setMoon((prevState) => {
         return {
@@ -38,7 +39,7 @@ export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
         };
       });
       setPts(pts - 1);
-    }, 1000);
+    }, 1000);*/
   }
 
   function success() {
@@ -87,17 +88,29 @@ export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
     }
   }
   return (
-    <div className="buttons-container">
-      {isTimerOn ? <p>on</p> : <p>off</p>}
-      {buttons.map((button, index) => (
-        <button
-          className="secondary-button"
-          onClick={() => handleClick(index)}
-          key={index}
-        >
-          <img src={button.img} />
-        </button>
-      ))}
+    <div className="controls-container">
+      <img className="nut" src={nut} />
+      <img className="nut" src={nut} />
+      <img className="nut" src={nut} />
+      <img className="nut" src={nut} />
+      <div className="image-container">
+        <img src={speaker} />
+      </div>
+      <p>Houston</p>
+      <div className="buttons-container">
+        {buttons.map((button, index) => (
+          <button
+            className={`secondary-button ${
+              index === 2 || index === 4 ? "large" : ""
+            }`}
+            onClick={() => handleClick(index)}
+            key={index}
+          >
+            <img src={button.img} />
+          </button>
+        ))}
+      </div>
+      <div className="control-bar" />
     </div>
   );
 };

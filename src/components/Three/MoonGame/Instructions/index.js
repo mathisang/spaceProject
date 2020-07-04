@@ -53,7 +53,6 @@ export default ({ setTimer, difficulty, crInstr, setCrInst, partResult }) => {
       <div className="instructions">
         {crInstr.length > 0 && (
           <div>
-            <p>Consignes :</p>
             {!partResult.win &&
               !partResult.fail &&
               crInstr.map((instruction, index) => (

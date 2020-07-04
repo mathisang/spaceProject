@@ -65,7 +65,7 @@ export default () => {
   }, [numberInstructions]);
   return (
     <MoonGameContext.Provider value={moonContextValue}>
-      <div>
+      <div className="moongame-container">
         {isMoonGameOn ? (
           <div>
             <ProgressRocket />
