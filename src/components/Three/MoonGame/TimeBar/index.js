@@ -2,9 +2,9 @@ import React from "react";
 import { useSpring, a } from "react-spring";
 import "./timebar.scss";
 
-export default () => {
+export default ({ ticState }) => {
   const props = useSpring({
-    percent: 50,
+    percent: (200 * ticState) / 50,
   });
   return (
     <div className="time-bar-container">

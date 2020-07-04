@@ -4,8 +4,8 @@ import TimeBar from "../TimeBar";
 
 export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
   const { numberInstructions, buttons } = useContext(MoonGameContext);
-  let tic = 0;
-  const [ticState, setTicState] = useState(0);
+  let tic = 50;
+  const [ticState, setTicState] = useState(50);
   function pickInstruction() {
     //remet les instructions à vide
     let array = [];
@@ -26,13 +26,12 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
   function handleTimer() {
     clearInterval(timer.current);
     setTimer(true);
-    tic = 0;
+    tic = 50;
     setTicState(tic);
     timer.current = setInterval(() => {
-      if (tic < 50) {
-        tic++;
+      if (tic > 0) {
+        tic--;
         setTicState(tic);
-        console.log(tic);
       } else {
         clearInterval(timer.current);
         setTimer(false);
@@ -40,22 +39,23 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
     }, 100);
   }
   useEffect(() => {
-    console.log("state", ticState);
-  }, [ticState]);
-  useEffect(() => {
     console.log("partie", numberInstructions);
     pickInstruction();
     handleTimer();
   }, [numberInstructions]);
   return (
     <div>
-      <TimeBar />
+      <TimeBar ticState={ticState} />
       <div className="instructions">
         {crInstr.length > 0 && (
           <div>
             <p>Consignes :</p>
             {crInstr.map((instruction, index) => (
-              <div className="secondary-button" key={index}>
+              <div
+                id={`instruction-${index}`}
+                className="secondary-button instruction"
+                key={index}
+              >
                 <img src={buttons[crInstr[index]].img} />
               </div>
             ))}

@@ -9,9 +9,22 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
     progress,
     setMoon,
   } = useContext(MoonGameContext);
-  useMemo(() => {
-    console.log("bouton cliqué", btnClicked);
-  }, [btnClicked]);
+  let [trackArray, setTrackArray] = useState([]);
+  const [trackValue, setTrackValue] = useState(0);
+
+  useEffect(() => {
+    const elInstru = document.getElementsByClassName("instruction");
+    for (let i = 0; i < trackValue; i++) {
+      elInstru[i] !== undefined && elInstru[i].classList.remove("done");
+    }
+    setTrackValue(0);
+    setTrackArray((trackArray = Array.from(crInstr)));
+    console.log("celui-là", trackArray);
+  }, [crInstr]);
+
+  useEffect(() => {
+    console.log("trackValue", trackValue);
+  }, [trackValue]);
 
   function defeat() {
     console.log("defeat");
@@ -50,16 +63,18 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
 
   function handleAnswer(index) {
     if (isTimerOn) {
-      console.log("valeur à atteindre", crInstr[0]);
-      console.log("lenght", crInstr.length);
-      if (index === crInstr[0]) {
-        if (crInstr.length === 1) {
+      console.log("track on click", trackArray);
+      if (index === trackArray[0]) {
+        if (trackArray.length === 1) {
           success();
         } else {
-          let array = crInstr;
-          console.log("array", array);
-          array.shift();
-          console.log("new array", array);
+          trackArray.shift();
+          document
+            .getElementById(`instruction-${trackValue}`)
+            .classList.add("done");
+          setTrackValue(trackValue + 1);
+          console.log("new array", trackArray);
+          console.log("new crinstr", crInstr);
         }
       } else {
         defeat();
