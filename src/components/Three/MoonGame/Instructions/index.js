@@ -1,8 +1,9 @@
-import React, { useEffect, useContext, useRef, useState } from "react";
+import React, { useEffect, useContext, useRef, useState, useMemo } from "react";
 import MoonGameContext from "../Context";
 import TimeBar from "../TimeBar";
+import { success, fail } from "../../../../assets/images/index";
 
-export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
+export default ({ setTimer, difficulty, crInstr, setCrInst, partResult }) => {
   const { numberInstructions, buttons } = useContext(MoonGameContext);
   let tic = 50;
   const [ticState, setTicState] = useState(50);
@@ -43,6 +44,9 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
     pickInstruction();
     handleTimer();
   }, [numberInstructions]);
+  useMemo(() => {
+    (partResult.win || partResult.fail) && clearInterval(timer.current);
+  }, [partResult]);
   return (
     <div>
       <TimeBar ticState={ticState} />
@@ -50,15 +54,19 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
         {crInstr.length > 0 && (
           <div>
             <p>Consignes :</p>
-            {crInstr.map((instruction, index) => (
-              <div
-                id={`instruction-${index}`}
-                className="secondary-button instruction"
-                key={index}
-              >
-                <img src={buttons[crInstr[index]].img} />
-              </div>
-            ))}
+            {!partResult.win &&
+              !partResult.fail &&
+              crInstr.map((instruction, index) => (
+                <div
+                  id={`instruction-${index}`}
+                  className="secondary-button instruction"
+                  key={index}
+                >
+                  <img src={buttons[crInstr[index]].img} />
+                </div>
+              ))}
+            {partResult.win && <img src={success} />}
+            {partResult.fail && <img src={fail} />}
           </div>
         )}
       </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
 
-export default ({ isTimerOn, crInstr, setPts, pts }) => {
+export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   const {
     numberInstructions,
     buttons,
@@ -28,24 +28,32 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
 
   function defeat() {
     console.log("defeat");
-    setMoon((prevState) => {
-      return {
-        ...prevState,
-        numberInstructions: numberInstructions + 1,
-      };
-    });
-    setPts(pts - 1);
+    setPartResult({ win: false, fail: true });
+    setTimeout(() => {
+      setPartResult({ win: false, fail: false });
+      setMoon((prevState) => {
+        return {
+          ...prevState,
+          numberInstructions: numberInstructions + 1,
+        };
+      });
+      setPts(pts - 1);
+    }, 1000);
   }
 
   function success() {
     console.log("success");
-    setMoon((prevState) => {
-      return {
-        ...prevState,
-        progress: progress + 1,
-        numberInstructions: numberInstructions + 1,
-      };
-    });
+    setPartResult({ win: true, fail: false });
+    setTimeout(() => {
+      setPartResult({ win: false, fail: false });
+      setMoon((prevState) => {
+        return {
+          ...prevState,
+          progress: progress + 1,
+          numberInstructions: numberInstructions + 1,
+        };
+      });
+    }, 1000);
   }
 
   const handleClick = (index) => {
@@ -63,7 +71,6 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
 
   function handleAnswer(index) {
     if (isTimerOn) {
-      console.log("track on click", trackArray);
       if (index === trackArray[0]) {
         if (trackArray.length === 1) {
           success();
@@ -73,8 +80,6 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
             .getElementById(`instruction-${trackValue}`)
             .classList.add("done");
           setTrackValue(trackValue + 1);
-          console.log("new array", trackArray);
-          console.log("new crinstr", crInstr);
         }
       } else {
         defeat();

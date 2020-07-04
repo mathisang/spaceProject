@@ -46,10 +46,11 @@ export default () => {
   const [isTimerOn, setTimer] = useState(true);
   const [currentInstructions, setCurrentInstructions] = useState([0]);
   const [lifePoints, setLifePoints] = useState(3);
+  const [partResult, setPartResult] = useState({ win: false, fail: false });
   let moonDifficulty = [
     { time: 5000, maxInst: 2 },
     { time: 4000, maxInst: 3 },
-    { time: 3000, maxInst: 5 },
+    { time: 3000, maxInst: 3 },
   ];
 
   useMemo(() => {
@@ -77,8 +78,10 @@ export default () => {
               setCrInst={setCurrentInstructions}
               difficulty={moonDifficulty[2]}
               setTimer={setTimer}
+              partResult={partResult}
             />
             <Buttons
+              setPartResult={setPartResult}
               crInstr={currentInstructions}
               isTimerOn={isTimerOn}
               pts={lifePoints}
