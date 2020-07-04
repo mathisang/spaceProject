@@ -1,30 +1,37 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
 
-export default ({ isTimerOn }) => {
+export default ({ isTimerOn, crInstr, setPts, pts }) => {
   const {
     numberInstructions,
     buttons,
     btnClicked,
-    currentInstructions,
     progress,
     setMoon,
   } = useContext(MoonGameContext);
   useMemo(() => {
-    console.log(btnClicked);
+    console.log("bouton cliqué", btnClicked);
   }, [btnClicked]);
 
   function defeat() {
     console.log("defeat");
     setMoon((prevState) => {
-      return { ...prevState, progress: progress - 1 };
+      return {
+        ...prevState,
+        numberInstructions: numberInstructions + 1,
+      };
     });
+    setPts(pts - 1);
   }
 
   function success() {
     console.log("success");
     setMoon((prevState) => {
-      return { ...prevState, progress: progress + 1 };
+      return {
+        ...prevState,
+        progress: progress + 1,
+        numberInstructions: numberInstructions + 1,
+      };
     });
   }
 
@@ -34,27 +41,41 @@ export default ({ isTimerOn }) => {
       return {
         ...prevState,
         btnClicked: index,
-        numberInstructions: numberInstructions + 1,
       };
     });
   };
+  useEffect(() => {
+    !isTimerOn && defeat();
+  }, [isTimerOn]);
+
   function handleAnswer(index) {
     if (isTimerOn) {
-      if (index === currentInstructions) {
-        success();
+      console.log("valeur à atteindre", crInstr[0]);
+      console.log("lenght", crInstr.length);
+      if (index === crInstr[0]) {
+        if (crInstr.length === 1) {
+          success();
+        } else {
+          let array = crInstr;
+          console.log("array", array);
+          array.shift();
+          console.log("new array", array);
+        }
       } else {
         defeat();
       }
-    } else {
-      defeat();
     }
   }
   return (
     <div className="buttons-container">
       {isTimerOn ? <p>on</p> : <p>off</p>}
       {buttons.map((button, index) => (
-        <button onClick={() => handleClick(index)} key={index}>
-          {button.name}
+        <button
+          className="secondary-button"
+          onClick={() => handleClick(index)}
+          key={index}
+        >
+          <img src={button.img} />
         </button>
       ))}
     </div>

@@ -1,19 +1,22 @@
 import React, { useEffect, useContext, useRef } from "react";
 import MoonGameContext from "../Context";
 
-export default ({ setTimer }) => {
-  const {
-    numberInstructions,
-    currentInstructions,
-    buttons,
-    setMoon,
-  } = useContext(MoonGameContext);
+export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
+  const { numberInstructions, buttons } = useContext(MoonGameContext);
   function pickInstruction() {
-    const newInstruction = Math.floor(Math.random() * buttons.length);
-    setMoon((prevState) => {
-      return { ...prevState, currentInstructions: newInstruction };
-    });
-    console.log("instruction !", currentInstructions);
+    //remet les instructions à vide
+    let array = [];
+    // génère un chiffre aléatoire entre 1 et le nombre max d'instructions de difficulty props
+    const currentInstrLenght =
+      Math.floor(Math.random() * difficulty.maxInst) + 1;
+    // Créer un tableau qui va contenir autant d'instructions que currentInstrLenght
+    for (let i = 0; i < currentInstrLenght; i++) {
+      const newInstruction = Math.floor(Math.random() * buttons.length);
+      array.push(newInstruction);
+    }
+    // Assigne la valeur du tableau à notre state d'instructions
+    setCrInst((crInstr = array));
+    console.log("instructions", crInstr);
   }
   const timer = useRef(false);
 
@@ -25,13 +28,21 @@ export default ({ setTimer }) => {
     }, 5000);
   }
   useEffect(() => {
+    console.log("partie", numberInstructions);
     pickInstruction();
     handleTimer();
   }, [numberInstructions]);
   return (
-    <div className="instruction">
-      {currentInstructions !== null && (
-        <p>les instructions sont {buttons[currentInstructions].name}</p>
+    <div className="instructions">
+      {crInstr.length > 0 && (
+        <div>
+          <p>Consignes :</p>
+          {crInstr.map((instruction, index) => (
+            <div className="secondary-button" key={index}>
+              <img src={buttons[crInstr[index]].img} />
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
