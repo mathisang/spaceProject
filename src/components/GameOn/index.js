@@ -5,7 +5,6 @@ import "./gameOn.scss";
 import GaugeContext from "../Gauge/GaugeContext";
 import SeasonTimeline from "../SeasonTimeline";
 import CardContext from "../Cards/CardContext";
-import LooseCard from "../Cards/LooseCard";
 import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
@@ -14,9 +13,9 @@ import StepTimeline from "../StepTimeline/index";
 
 export default function ({ tutorialStatus, setTutorialStatus }) {
   const [gauge, setGauge] = useState({
-    money: 30,
-    opinion: 50,
-    search: 50,
+    money: 10,
+    opinion: 20,
+    search: 20,
   });
 
   const gaugeContextValue = { gauge, setGauge };
@@ -48,10 +47,13 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
         {tutorialStatus && <Tutorial setTutorialStatus={setTutorialStatus} />}
-        {isLoose ? (
-          <LooseCard />
-        ) : isEnd ? (
-          <EndCard />
+        {isLoose || isEnd ? (
+          <EndCard
+            isLoose={isLoose}
+            money={gauge.money}
+            opinion={gauge.opinion}
+            search={gauge.search}
+          />
         ) : (
           <div className="playScreen">
             <div className="headerScreen">
@@ -65,6 +67,8 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
               <Gauge />
             </div>
             <div className="contentScreen">
+              {/*prendre le temps maximum, compter le nb de jours et apres placé les steps*/}
+              {/*avancer vw au lieu de % ? */}
               <StepTimeline
                 stepCards={stepCards}
                 year={year}

@@ -6,6 +6,12 @@
 
 @font-face {
   font-family: 'Futura';
+  src: local('FuturaMedium'), url('./assets/fonts/FuturaMedium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Futura';
   src: local('FuturaHeavy'), url('./assets/fonts/FuturaHeavy.ttf') format('truetype');
   font-weight: 700;
 }
@@ -62,5 +68,13 @@ body {
     font-size: 18px;
     line-height: 124%;
     margin-top: 1.5rem;
+  }
+
+  button {
+    background: $brown;
+    color: $white;
+    border: none;
+    border-radius: 4px;
+    font-family: Futura, sans-serif;
   }
 }

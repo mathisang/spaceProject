@@ -1,8 +1,6 @@
 import React from "react";
 
-export default function ({ money, opinion, search }) {
-  // Si une jauge tombe à 0
-  // DEFINIR LES ECRAN DE FIN POUR CHAQUE JAUGE
+export default function ({ money, opinion }) {
   const looseText = {
     moneyText: "Votre argent est tombé à 0, vous êtes fauché !",
     opinionText: "Votre opinion est tombé à 0, la population vous rejette !",
@@ -10,7 +8,7 @@ export default function ({ money, opinion, search }) {
   };
 
   const Text = () => (
-    <p>
+    <p className="description">
       {money === 0
         ? looseText.moneyText
         : opinion === 0
@@ -20,7 +18,8 @@ export default function ({ money, opinion, search }) {
   );
 
   return (
-    <div>
+    <div className="textEnd">
+      <h2>Défaite</h2>
       <Text />
     </div>
   );
