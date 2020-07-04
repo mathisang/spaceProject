@@ -53,3 +53,6 @@ export const flagUrss = require("./end/flag_urss.png");
 export const iconMessenger = require("./end/messenger.png");
 export const iconTwitter = require("./end/twitter.png");
 export const iconLink = require("./end/link.png");
+
+// Event step
+export const live = require("./step_event/live.png");

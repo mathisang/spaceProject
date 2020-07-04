@@ -43,6 +43,8 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
       });
   }, [season]);
 
+  const headerOpacity = step.isActive === false ? "1" : "0";
+
   return (
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
@@ -56,7 +58,7 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
           />
         ) : (
           <div className="playScreen">
-            <div className="headerScreen">
+            <div className="headerScreen" style={{ opacity: headerOpacity }}>
               <SeasonTimeline
                 season={season}
                 setSeason={setSeason}
@@ -76,10 +78,18 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
                 ListSeasons={ListSeasons}
                 step={step}
               />
-              {step.isActive && (
-                <StepCard step={step} setStep={setStep} setEnd={setEnd} />
+              {step.isActive ? (
+                <StepCard
+                  step={step}
+                  setStep={setStep}
+                  setEnd={setEnd}
+                  year={year}
+                  season={season}
+                  ListSeasons={ListSeasons}
+                />
+              ) : (
+                <RandomCard />
               )}
-              <RandomCard />
             </div>
           </div>
         )}
