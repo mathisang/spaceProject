@@ -13,9 +13,9 @@ import StepTimeline from "../StepTimeline/index";
 
 export default function ({ tutorialStatus, setTutorialStatus }) {
   const [gauge, setGauge] = useState({
-    money: 10,
-    opinion: 20,
-    search: 20,
+    money: 30,
+    opinion: 50,
+    search: 50,
   });
 
   const gaugeContextValue = { gauge, setGauge };
