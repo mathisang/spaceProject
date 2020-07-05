@@ -15,25 +15,51 @@ export default function ({ cardUnused, setCardUnused }) {
   const [nextCard, setNextCard] = useState(null);
   const [idButton, setIdButton] = useState(0);
 
+  function randomNumber() {
+    return Math.floor(Math.random() * cardUnused.length);
+  }
+
   // GESTION DE LA COLLECTION DE CARTES
   // Génère une nouvelle carte qui n'a pas encore été jouée
+  // SI DERNIERE CARTE DU JSON CA GENERE UNE ERREUR & PROBLEME SUPPRESSION
   function nextIdCard() {
+    let oldCategory = null;
+    for (var i = 0; i < cardUnused.length; i++) {
+      if (cardUnused[i] === selectedCardId) {
+        oldCategory = cards[selectedCardId].category;
+        cardUnused.splice(i, 1);
+      }
+    }
+    console.log(cardUnused);
+    console.log("ID CARTE CLIQUÉ : " + selectedCardId);
+
+    let number = randomNumber();
+    let newItem = cardUnused[number];
+
+    console.log("ANCIENNE CATEGORIE : " + oldCategory);
+    console.log("NOUVELLE ID CARTE : " + newItem);
+    console.log("NOUVELLE CATEGORY : " + cards[newItem].category);
+
+    if (cards[newItem].category === oldCategory) {
+      do {
+        number = Math.floor(Math.random() * cardUnused.length);
+        newItem = cardUnused[number];
+        console.log("---------------");
+        console.log("ANCIENNE CATEGORIE : " + oldCategory);
+        console.log("REMPLACEMENT ID CARTE : " + newItem);
+        console.log("REMPLACEMENT CATEGORY : " + cards[newItem].category);
+      } while (cards[newItem].category === oldCategory);
+    }
+
     switch (cardUnused[0]) {
       case 0:
       case 1:
         return cardUnused[0];
         break;
       default:
-        return cardUnused[Math.floor(Math.random() * cardUnused.length)];
+        return cardUnused[number];
         break;
     }
-  }
-  // Supprime la carte qui à été jouée précédemment et en genère une nouvelle
-  function randomCard() {
-    for (var i = 0; i < cardUnused.length; i++) {
-      cardUnused[i] === selectedCardId && cardUnused.splice(i, 1);
-    }
-    return nextIdCard();
   }
 
   // GESTION DES JAUGES
@@ -64,7 +90,7 @@ export default function ({ cardUnused, setCardUnused }) {
         break;
     }
     setSuccess(null);
-    setNextCard(randomCard());
+    setNextCard(nextIdCard());
   }, [selectedCardId]);
 
   // Affichage de la carte + réponses
@@ -74,11 +100,13 @@ export default function ({ cardUnused, setCardUnused }) {
         (card, index) =>
           nextCard === card.id && (
             <div className="card" key={index}>
+              <span>{card.id}</span>
               <ContextRandom card={card} isChoose={isChoose} />
               <ButtonsRandom
                 nextCard={nextCard}
                 setIdButton={setIdButton}
                 setSelectedCardId={setSelectedCardId}
+                selectedCardId={selectedCardId}
                 isSuccess={isSuccess}
                 setSuccess={setSuccess}
                 isChoose={isChoose}
