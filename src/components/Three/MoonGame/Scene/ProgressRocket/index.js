@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export default function Rocket({}) {
   const [spring, set] = useSpring(() => ({
-    position: [0, 0, 0],
+    position: [0, 20, 0],
   }));
   // gltf model load
   const { nodes } = useLoader(GLTFLoader, "three/moongame/module/module.glb");
@@ -20,7 +20,7 @@ export default function Rocket({}) {
 
   return (
     <a.mesh {...spring}>
-      <group ref={groupModel} scale={[1, 1, 1]}>
+      <group ref={groupModel} scale={[0.2, 0.2, 0.2]}>
         <mesh geometry={nodes.Cylinder002_0.geometry}>
           <meshStandardMaterial
             attach="material"
