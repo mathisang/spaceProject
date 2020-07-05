@@ -7,18 +7,13 @@ import "./randomCards.scss";
 import ButtonsRandom from "./ContentRandom/ButtonsRandom";
 import ContextRandom from "./ContentRandom/ContextRandom";
 
-export default function () {
+export default function ({ cardUnused, setCardUnused }) {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [isSuccess, setSuccess] = useState(null);
   const [isChoose, setChoose] = useState(null);
   const { selectedCardId, setSelectedCardId } = useContext(CardContext);
   const [nextCard, setNextCard] = useState(null);
   const [idButton, setIdButton] = useState(0);
-  const arrayFull = [];
-  for (let i = 0; i < cards.length; i++) {
-    arrayFull.push(i);
-  }
-  const [cardUnused, setCardUnused] = useState(arrayFull);
 
   // GESTION DE LA COLLECTION DE CARTES
   // Génère une nouvelle carte qui n'a pas encore été jouée
