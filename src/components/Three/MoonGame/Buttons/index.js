@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
 import { speaker, nut } from "../../../../assets/images/index";
+import "./buttons.scss";
 
 export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   const {
@@ -30,7 +31,7 @@ export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   function defeat() {
     console.log("defeat");
     setPartResult({ win: false, fail: true });
-    setTimeout(() => {
+    /*setTimeout(() => {
       setPartResult({ win: false, fail: false });
       setMoon((prevState) => {
         return {
@@ -39,7 +40,7 @@ export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
         };
       });
       setPts(pts - 1);
-    }, 1000);
+    }, 1000);*/
   }
 
   function success() {

@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useRef, useState, useMemo } from "react";
 import MoonGameContext from "../Context";
 import TimeBar from "../TimeBar";
 import { success, fail } from "../../../../assets/images/index";
+import "./instructions.scss";
 
 export default ({ setTimer, difficulty, crInstr, setCrInst, partResult }) => {
   const { numberInstructions, buttons } = useContext(MoonGameContext);
