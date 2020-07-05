@@ -48,7 +48,7 @@ export default ({ setTimer, difficulty, crInstr, setCrInst, partResult }) => {
     (partResult.win || partResult.fail) && clearInterval(timer.current);
   }, [partResult]);
   return (
-    <div>
+    <div className="instructions-container">
       <TimeBar ticState={ticState} />
       <div className="instructions">
         {crInstr.length > 0 && (

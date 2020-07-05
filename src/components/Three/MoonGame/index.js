@@ -4,6 +4,7 @@ import Instructions from "./Instructions";
 import Buttons from "./Buttons";
 import MoonGameContext from "./Context";
 import ProgressRocket from "./ProgressRocket";
+import ThreeScene from "./Scene";
 import {
   icon1,
   icon2,
@@ -68,6 +69,7 @@ export default () => {
       <div className="moongame-container">
         {isMoonGameOn ? (
           <div>
+            <ThreeScene />
             <ProgressRocket />
             <div className="health-container">
               <p>{lifePoints} x </p>
