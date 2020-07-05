@@ -26,7 +26,7 @@ export default function ({
   const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
 
   // Boutons cartes
-  const CardButtons = ({ card, value }) => {
+  const CardButtons = ({ card, value, orderButton }) => {
     return value !== 3 ? (
       <button
         className="choice"
@@ -38,7 +38,7 @@ export default function ({
         }}
       >
         {/*Corriger pour swipe gauche et droite tjrs au meme endroit*/}
-        <img src={value === 1 ? swipeRight : swipeLeft} alt="" />
+        <img src={orderButton === 1 ? swipeRight : swipeLeft} alt="" />
         {card.card.responses[value - 1].label}
         {value}
       </button>
@@ -64,8 +64,12 @@ export default function ({
     <div className="randomButtons">
       {isSuccess == null && isChoose == null && (
         <div className="buttonsCard">
-          <CardButtons card={card} value={randomButtonId} />
-          <CardButtons card={card} value={randomButtonId === 1 ? 2 : 1} />
+          <CardButtons card={card} value={randomButtonId} orderButton={1} />
+          <CardButtons
+            card={card}
+            value={randomButtonId === 1 ? 2 : 1}
+            orderButton={2}
+          />
         </div>
       )}
       {isChoose !== null && (

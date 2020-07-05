@@ -1,0 +1,71 @@
+@import "../../index";
+
+.miniGame {
+  color: $white;
+  padding: 2rem 1rem;
+  height: 100%;
+
+  .gameInfos {
+    span {
+      color: rgba($white, .8);
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 1rem auto;
+    }
+
+    p {
+      max-width: 90%;
+    }
+  }
+
+  .gameRules {
+    border-radius: 8px;
+    overflow: hidden;
+    background: #141426;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .showGame {
+      height: 35vh;
+      width: 100%;
+      background: url('../../assets/images/step_event/flight_game.png') no-repeat;
+      background-size: cover;
+    }
+
+    p {
+      margin: .75rem;
+    }
+  }
+
+  button {
+    background: $white;
+    color: $brown;
+    height: 50px;
+    width: 100%;
+  }
+
+  .resultGame {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    h3 {
+      width: 80%;
+      margin: 1rem auto;
+    }
+
+    p {
+      width: 90%;
+    }
+
+    .pictureResult {
+      margin: 1.5rem auto 2.5rem;
+      width: 100%;
+    }
+  }
+}

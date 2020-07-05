@@ -3,13 +3,20 @@ import steps from "../../../datas/stepCards.json";
 import "./step-card.scss";
 import MiniGame from "../../MiniGame";
 
-export default function ({ step, setStep, setEnd, year, season, ListSeasons }) {
-  const [gameOn, setGameOn] = useState(false);
-
+export default function ({
+  step,
+  setStep,
+  setEnd,
+  year,
+  season,
+  ListSeasons,
+  gameOn,
+  setGameOn,
+}) {
   function startGame() {
     setGameOn(true);
-    console.log(gameOn);
   }
+  console.log(gameOn);
 
   // Message de réussite ou défaite de l'événement
   const Text = ({ step }) => {
