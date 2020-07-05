@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
+import { speaker, nut } from "../../../../assets/images/index";
 
-export default ({ isTimerOn, crInstr, setPts, pts }) => {
+export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   const {
     numberInstructions,
     buttons,
@@ -9,30 +10,51 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
     progress,
     setMoon,
   } = useContext(MoonGameContext);
-  useMemo(() => {
-    console.log("bouton cliqué", btnClicked);
-  }, [btnClicked]);
+  let [trackArray, setTrackArray] = useState([]);
+  const [trackValue, setTrackValue] = useState(0);
+
+  useEffect(() => {
+    const elInstru = document.getElementsByClassName("instruction");
+    for (let i = 0; i < trackValue; i++) {
+      elInstru[i] !== undefined && elInstru[i].classList.remove("done");
+    }
+    setTrackValue(0);
+    setTrackArray((trackArray = Array.from(crInstr)));
+    console.log("celui-là", trackArray);
+  }, [crInstr]);
+
+  useEffect(() => {
+    console.log("trackValue", trackValue);
+  }, [trackValue]);
 
   function defeat() {
     console.log("defeat");
-    setMoon((prevState) => {
-      return {
-        ...prevState,
-        numberInstructions: numberInstructions + 1,
-      };
-    });
-    setPts(pts - 1);
+    setPartResult({ win: false, fail: true });
+    setTimeout(() => {
+      setPartResult({ win: false, fail: false });
+      setMoon((prevState) => {
+        return {
+          ...prevState,
+          numberInstructions: numberInstructions + 1,
+        };
+      });
+      setPts(pts - 1);
+    }, 1000);
   }
 
   function success() {
     console.log("success");
-    setMoon((prevState) => {
-      return {
-        ...prevState,
-        progress: progress + 1,
-        numberInstructions: numberInstructions + 1,
-      };
-    });
+    setPartResult({ win: true, fail: false });
+    setTimeout(() => {
+      setPartResult({ win: false, fail: false });
+      setMoon((prevState) => {
+        return {
+          ...prevState,
+          progress: progress + 1,
+          numberInstructions: numberInstructions + 1,
+        };
+      });
+    }, 1000);
   }
 
   const handleClick = (index) => {
@@ -50,16 +72,15 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
 
   function handleAnswer(index) {
     if (isTimerOn) {
-      console.log("valeur à atteindre", crInstr[0]);
-      console.log("lenght", crInstr.length);
-      if (index === crInstr[0]) {
-        if (crInstr.length === 1) {
+      if (index === trackArray[0]) {
+        if (trackArray.length === 1) {
           success();
         } else {
-          let array = crInstr;
-          console.log("array", array);
-          array.shift();
-          console.log("new array", array);
+          trackArray.shift();
+          document
+            .getElementById(`instruction-${trackValue}`)
+            .classList.add("done");
+          setTrackValue(trackValue + 1);
         }
       } else {
         defeat();
@@ -67,17 +88,29 @@ export default ({ isTimerOn, crInstr, setPts, pts }) => {
     }
   }
   return (
-    <div className="buttons-container">
-      {isTimerOn ? <p>on</p> : <p>off</p>}
-      {buttons.map((button, index) => (
-        <button
-          className="secondary-button"
-          onClick={() => handleClick(index)}
-          key={index}
-        >
-          <img src={button.img} />
-        </button>
-      ))}
+    <div className="controls-container">
+      <img className="nut" src={nut} />
+      <img className="nut" src={nut} />
+      <img className="nut" src={nut} />
+      <img className="nut" src={nut} />
+      <div className="image-container">
+        <img src={speaker} />
+      </div>
+      <p>Houston</p>
+      <div className="buttons-container">
+        {buttons.map((button, index) => (
+          <button
+            className={`secondary-button ${
+              index === 2 || index === 4 ? "large" : ""
+            }`}
+            onClick={() => handleClick(index)}
+            key={index}
+          >
+            <img src={button.img} />
+          </button>
+        ))}
+      </div>
+      <div className="control-bar" />
     </div>
   );
 };

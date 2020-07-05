@@ -1,39 +1,119 @@
-.buttons-container {
-  position: absolute;
-  bottom: 0;
-  margin: 5em;
-  left: 50%;
-  transform: translateX(-50%);
-  button {
-    box-shadow: 0px 4px 0px rgba(64, 35, 39, 0.25);
+
+
+.moongame-container {
+  height: 100vh;
+  > div {
+    height: 100%;
   }
-}
+  .progress {
+    position: absolute;
+    color: white;
+    z-index: 10;
+    top: 20%;
 
-.secondary-button {
-  background: #402327;
-  border-radius: 4px;
-  padding: 2em;
-  margin: 1em;
-}
-
-.health-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.instructions {
-
-
-  div {
+  }
+  .health-container {
+    position: absolute;
+    top: 0;
+    color: white;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .instruction {
 
   }
-}
-p {
-  text-align: center;
+  .instructions-container{
+    position: absolute;
+    color: white;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    .instructions {
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .instruction.done {
+        opacity: 0.5;
+      }
+    }
+  }
+  .controls-container {
+    background: #F5F5F3;
+    position: relative;
+    height: 38vh;
+    .control-bar {
+      position: absolute;
+      bottom: 7%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30%;
+      height: 0.35em;
+      background: #222240;
+      border-radius: 5px;
+    }
+    .nut {
+      position: absolute;
+    }
+    .nut:first-child {
+      left: 5%;
+      top: 5%;
+    }
+    .nut:nth-child(2) {
+      right: 5%;
+      top: 5%;
+    }
+    .nut:nth-child(3) {
+      left: 5%;
+      bottom: 5%;
+    }
+    .nut:nth-child(4) {
+      right: 5%;
+      bottom: 5%;
+    }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      padding-top: 2%;
+    }
+    > p {
+      font-size: 12px;
+      color:  #222240;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 0.5em 0 0.5em;
+    }
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 4% 4% 0;
+      button {
+        box-shadow: 0px 4px 0px rgba(64, 35, 39, 0.25);
+        margin-bottom: 1em;
+        img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+        }
+      }
+      button:active {
+        opacity: 0.5;
+        box-shadow: none;
+      }
+      .secondary-button.large {
+        padding: 3% 15%;
+      }
+    }
+  }
+
+  .secondary-button {
+    background: #402327;
+    border-radius: 4px;
+    padding: 3%;
+  }
+  p {
+    text-align: center;
+  }
 }

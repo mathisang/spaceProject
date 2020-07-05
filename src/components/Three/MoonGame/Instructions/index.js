@@ -1,8 +1,12 @@
-import React, { useEffect, useContext, useRef } from "react";
+import React, { useEffect, useContext, useRef, useState, useMemo } from "react";
 import MoonGameContext from "../Context";
+import TimeBar from "../TimeBar";
+import { success, fail } from "../../../../assets/images/index";
 
-export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
+export default ({ setTimer, difficulty, crInstr, setCrInst, partResult }) => {
   const { numberInstructions, buttons } = useContext(MoonGameContext);
+  let tic = 50;
+  const [ticState, setTicState] = useState(50);
   function pickInstruction() {
     //remet les instructions à vide
     let array = [];
@@ -21,29 +25,50 @@ export default ({ setTimer, difficulty, crInstr, setCrInst }) => {
   const timer = useRef(false);
 
   function handleTimer() {
-    clearTimeout(timer.current);
+    clearInterval(timer.current);
     setTimer(true);
-    timer.current = setTimeout(() => {
-      setTimer(false);
-    }, 5000);
+    tic = 50;
+    setTicState(tic);
+    timer.current = setInterval(() => {
+      if (tic > 0) {
+        tic--;
+        setTicState(tic);
+      } else {
+        clearInterval(timer.current);
+        setTimer(false);
+      }
+    }, 100);
   }
   useEffect(() => {
     console.log("partie", numberInstructions);
     pickInstruction();
     handleTimer();
   }, [numberInstructions]);
+  useMemo(() => {
+    (partResult.win || partResult.fail) && clearInterval(timer.current);
+  }, [partResult]);
   return (
-    <div className="instructions">
-      {crInstr.length > 0 && (
-        <div>
-          <p>Consignes :</p>
-          {crInstr.map((instruction, index) => (
-            <div className="secondary-button" key={index}>
-              <img src={buttons[crInstr[index]].img} />
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="instructions-container">
+      <TimeBar ticState={ticState} />
+      <div className="instructions">
+        {crInstr.length > 0 && (
+          <div>
+            {!partResult.win &&
+              !partResult.fail &&
+              crInstr.map((instruction, index) => (
+                <div
+                  id={`instruction-${index}`}
+                  className="secondary-button instruction"
+                  key={index}
+                >
+                  <img src={buttons[crInstr[index]].img} />
+                </div>
+              ))}
+            {partResult.win && <img src={success} />}
+            {partResult.fail && <img src={fail} />}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
