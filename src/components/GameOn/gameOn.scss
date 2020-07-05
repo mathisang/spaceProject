@@ -1,14 +1,14 @@
 @import '../../index';
 
 .playScreen {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 
   .headerScreen {
     background: $white;
-    height: 11%;
+    height: 11vh;
     padding: .75rem;
     display: flex;
     justify-content: space-between;
@@ -17,8 +17,8 @@
 
   .contentScreen {
     padding: 0 .75rem;
-    height: 89%;
-    background: url('../../assets/images/cards/backgroundCards.png') center no-repeat, linear-gradient(#201F3D, #282747);
+    height: 89vh;
+    background: url('../../assets/images/cards/background_cards.png') center no-repeat, linear-gradient(#201F3D, #282747);
     background-size: 100%;
     display: flex;
     flex-direction: column;

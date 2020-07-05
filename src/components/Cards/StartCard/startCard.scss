@@ -3,7 +3,7 @@
 .startGame {
   height: 100%;
   width: 100%;
-  background: url('../../../assets/images/windowHome.png') center no-repeat, url('../../../assets/images/shadowHome.png') 100% 86% no-repeat, #F0F0ED;
+  background: url('../../../assets/images/window_home.png') center no-repeat, url('../../../assets/images/shadow_home.png') 100% 86% no-repeat, #F0F0ED;
   background-size: 80%, 74.5%, 100%;
   padding: 2.5rem 0;
   display: flex;
@@ -64,4 +64,7 @@
     }
   }
 
+  .small {
+    margin-top: 1.5rem;
+  }
 }

@@ -4,6 +4,7 @@ import "./index.scss";
 import App from "./App";
 import "./assets/fonts/FuturaBook.ttf";
 import "./assets/fonts/FuturaHeavy.ttf";
+import "./assets/fonts/FuturaMedium.ttf";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(

@@ -37,6 +37,7 @@ export default function ({
             : setSelectedCardId(card.id);
         }}
       >
+        {/*Corriger pour swipe gauche et droite tjrs au meme endroit*/}
         <img src={value === 1 ? swipeRight : swipeLeft} alt="" />
         {card.card.responses[value - 1].label}
         {value}

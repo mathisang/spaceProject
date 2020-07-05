@@ -5,7 +5,6 @@ import "./gameOn.scss";
 import GaugeContext from "../Gauge/GaugeContext";
 import SeasonTimeline from "../SeasonTimeline";
 import CardContext from "../Cards/CardContext";
-import LooseCard from "../Cards/LooseCard";
 import StepCard from "../Cards/StepCard";
 import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
@@ -44,17 +43,22 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
       });
   }, [season]);
 
+  const headerOpacity = step.isActive === false ? "1" : "0";
+
   return (
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
         {tutorialStatus && <Tutorial setTutorialStatus={setTutorialStatus} />}
-        {isLoose ? (
-          <LooseCard />
-        ) : isEnd ? (
-          <EndCard />
+        {isLoose || isEnd ? (
+          <EndCard
+            isLoose={isLoose}
+            money={gauge.money}
+            opinion={gauge.opinion}
+            search={gauge.search}
+          />
         ) : (
           <div className="playScreen">
-            <div className="headerScreen">
+            <div className="headerScreen" style={{ opacity: headerOpacity }}>
               <SeasonTimeline
                 season={season}
                 setSeason={setSeason}
@@ -65,6 +69,8 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
               <Gauge />
             </div>
             <div className="contentScreen">
+              {/*prendre le temps maximum, compter le nb de jours et apres placé les steps*/}
+              {/*avancer vw au lieu de % ? */}
               <StepTimeline
                 stepCards={stepCards}
                 year={year}
@@ -72,10 +78,18 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
                 ListSeasons={ListSeasons}
                 step={step}
               />
-              {step.isActive && (
-                <StepCard step={step} setStep={setStep} setEnd={setEnd} />
+              {step.isActive ? (
+                <StepCard
+                  step={step}
+                  setStep={setStep}
+                  setEnd={setEnd}
+                  year={year}
+                  season={season}
+                  ListSeasons={ListSeasons}
+                />
+              ) : (
+                <RandomCard />
               )}
-              <RandomCard />
             </div>
           </div>
         )}
