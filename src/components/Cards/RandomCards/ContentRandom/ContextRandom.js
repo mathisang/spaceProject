@@ -10,8 +10,7 @@ import {
 } from "../../../../assets/images/index";
 
 export default function ({ card, isChoose }) {
-  const consequence =
-    isChoose !== null && card.card.responses[0].consequence ? 0 : 1;
+  const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
 
   const arrayIcon = {
     Bienvenue: iconWelcome,
@@ -27,19 +26,19 @@ export default function ({ card, isChoose }) {
     <div className="headerCard">
       {isChoose !== null ? (
         <div>
-          <img src={arrayIcon[card.category]} alt="Bienvenue" />
+          <img src={arrayIcon[card.category.name]} alt="Bienvenue" />
           <h2 className="small">
-            {card.card.responses[consequence].consequence.label}
+            {card.choices[consequence].consequence.label}
           </h2>
           <p className="description">
-            {card.card.responses[consequence].consequence.context}
+            {card.choices[consequence].consequence.context}
           </p>
         </div>
       ) : (
         <div>
-          <img src={arrayIcon[card.category]} alt="Bienvenue" />
-          <h2 className="titleBig">{card.category}</h2>
-          <p className="description">{card.card.context}</p>
+          <img src={arrayIcon[card.category.name]} alt="Bienvenue" />
+          <h2 className="titleBig">{card.category.name}</h2>
+          <p className="description">{card.context}</p>
         </div>
       )}
     </div>

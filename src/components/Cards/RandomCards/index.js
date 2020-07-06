@@ -7,7 +7,7 @@ import "./randomCards.scss";
 import ButtonsRandom from "./ContentRandom/ButtonsRandom";
 import ContextRandom from "./ContentRandom/ContextRandom";
 
-export default function ({ cardUnused, setCardUnused }) {
+export default function ({ cardUnused, cardsData }) {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [isSuccess, setSuccess] = useState(null);
   const [isChoose, setChoose] = useState(null);
@@ -21,44 +21,43 @@ export default function ({ cardUnused, setCardUnused }) {
 
   // GESTION DE LA COLLECTION DE CARTES
   // Génère une nouvelle carte qui n'a pas encore été jouée
-  // SI DERNIERE CARTE DU JSON CA GENERE UNE ERREUR & PROBLEME SUPPRESSION
   function nextIdCard() {
     let oldCategory = null;
     for (var i = 0; i < cardUnused.length; i++) {
       if (cardUnused[i] === selectedCardId) {
-        oldCategory = cards[selectedCardId].category;
+        oldCategory = cardsData[selectedCardId - 1].category.name;
         cardUnused.splice(i, 1);
       }
     }
-    console.log(cardUnused);
-    console.log("ID CARTE CLIQUÉ : " + selectedCardId);
 
     let number = randomNumber();
     let newItem = cardUnused[number];
+    console.log(cardUnused);
+    console.log(selectedCardId);
+    console.log(cardUnused[number]);
+    console.log(cardsData[newItem]);
 
-    console.log("ANCIENNE CATEGORIE : " + oldCategory);
-    console.log("NOUVELLE ID CARTE : " + newItem);
-    console.log("NOUVELLE CATEGORY : " + cards[newItem].category);
-
-    if (cards[newItem].category === oldCategory) {
+    if (cardsData[newItem - 1].category.name === oldCategory) {
       do {
         number = Math.floor(Math.random() * cardUnused.length);
         newItem = cardUnused[number];
-        console.log("---------------");
-        console.log("ANCIENNE CATEGORIE : " + oldCategory);
-        console.log("REMPLACEMENT ID CARTE : " + newItem);
-        console.log("REMPLACEMENT CATEGORY : " + cards[newItem].category);
-      } while (cards[newItem].category === oldCategory);
+      } while (cardsData[newItem - 1].category.name === oldCategory);
     }
 
     switch (cardUnused[0]) {
-      case 0:
       case 1:
+      case 2:
         return cardUnused[0];
         break;
       default:
-        return cardUnused[number];
-        break;
+        switch (cardUnused[2]) {
+          case 5:
+            return cardUnused[2];
+            break;
+          default:
+            return cardUnused[number];
+            break;
+        }
     }
   }
 
@@ -67,14 +66,16 @@ export default function ({ cardUnused, setCardUnused }) {
   function updateGauge(card, response, issue) {
     const typeList = ["money", "opinion", "search"];
     const updatedGauge = {};
+    const propertiesResult = issue === "win" ? "Success" : "Fail";
     for (const type of typeList) {
       response === undefined
         ? (updatedGauge[type] =
-            gauge[type] +
-            cards[card].card.responses[idButton - 1].impacts[type])
+            gauge[type] + cardsData[card - 1].choices[idButton - 1][type])
         : (updatedGauge[type] =
             gauge[type] +
-            cards[card].card.responses[response].consequence[issue][type]);
+            cardsData[card - 1].choices[response].consequence[
+              type + propertiesResult
+            ]);
     }
     setGauge(updatedGauge);
   }
@@ -96,11 +97,10 @@ export default function ({ cardUnused, setCardUnused }) {
   // Affichage de la carte + réponses
   return (
     <div className="randomCard">
-      {cards.map(
+      {cardsData.map(
         (card, index) =>
           nextCard === card.id && (
             <div className="card" key={index}>
-              <span>{card.id}</span>
               <ContextRandom card={card} isChoose={isChoose} />
               <ButtonsRandom
                 nextCard={nextCard}
@@ -112,7 +112,7 @@ export default function ({ cardUnused, setCardUnused }) {
                 isChoose={isChoose}
                 setChoose={setChoose}
                 card={card}
-                cards={cards}
+                cards={cardsData}
                 updateGauge={updateGauge}
               />
             </div>

@@ -15,13 +15,14 @@ export default function ({
   setChoose,
 }) {
   // Détermine quelle réponse possède une conséquence
-  const consequence =
-    isChoose !== null && card.card.responses[0].consequence ? 0 : 1;
+  const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
 
   function chooseSuccess() {
     updateGauge(nextCard);
     setChoose(true);
   }
+
+  console.log(card);
 
   const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
 
@@ -32,14 +33,14 @@ export default function ({
         className="choice"
         onClick={() => {
           setIdButton(value);
-          card.card.responses[value - 1].consequence
+          card.choices[value - 1].consequence
             ? chooseSuccess()
             : setSelectedCardId(card.id);
         }}
       >
         {/*Corriger pour swipe gauche et droite tjrs au meme endroit*/}
         <img src={orderButton === 1 ? swipeRight : swipeLeft} alt="" />
-        {card.card.responses[value - 1].label}
+        {card.choices[value - 1].label}
         {value}
       </button>
     ) : (
@@ -54,8 +55,8 @@ export default function ({
         }}
       >
         {isSuccess
-          ? card.card.responses[consequence].consequence.success.buttonText
-          : card.card.responses[consequence].consequence.fail.buttonText}
+          ? card.choices[consequence].consequence.buttonTextSuccess
+          : card.choices[consequence].consequence.buttonTextFail}
       </button>
     );
   };

@@ -13,7 +13,7 @@ import StepTimeline from "../StepTimeline/index";
 import MiniGame from "../MiniGame";
 import cards from "../../datas/randomCards.json";
 
-export default function ({ tutorialStatus, setTutorialStatus }) {
+export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
   const [gauge, setGauge] = useState({
     money: 30,
     opinion: 50,
@@ -31,12 +31,12 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
   const ListSeasons = ["Hiver", "Printemps", "Été", "Automne"];
   const [gameOn, setGameOn] = useState(false);
   const [gameBadge, setGameBadge] = useState([false, false, false]);
+  const [rocketPosition, setRocketPosition] = useState(0);
   const arrayFull = [];
-  for (let i = 0; i < cards.length; i++) {
+  for (let i = 1; i <= cardsData.length; i++) {
     arrayFull.push(i);
   }
   const [cardUnused, setCardUnused] = useState(arrayFull);
-  const [rocketPosition, setRocketPosition] = useState(0);
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
@@ -111,10 +111,7 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
                   setGameOn={setGameOn}
                 />
               ) : (
-                <RandomCard
-                  cardUnused={cardUnused}
-                  setCardUnused={setCardUnused}
-                />
+                <RandomCard cardsData={cardsData} cardUnused={cardUnused} />
               )}
             </div>
           </div>
