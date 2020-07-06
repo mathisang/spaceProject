@@ -4,8 +4,9 @@ import "./timebar.scss";
 
 export default ({ ticState }) => {
   const props = useSpring({
-    percent: (200 * ticState) / 50,
+    percent: `${(ticState * 100) / 50}%`,
   });
+  const lourd = 50;
   return (
     <div className="time-bar-container">
       <a.div

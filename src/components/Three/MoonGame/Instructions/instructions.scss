@@ -1,0 +1,29 @@
+.instructions-container{
+  position: absolute;
+  color: white;
+  z-index: 10;
+  top: 50vh;
+  left: 50%;
+  width: 90vw;
+  transform: translateX(-50%);
+  .instructions {
+    justify-content: center;
+    display: flex;
+    background: white;
+    height: 11vh;
+    align-items: center;
+    border-radius: 0 0 4px 4px;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .instruction.done {
+      opacity: 0.5;
+    }
+    .instruction {
+      padding: 15px;
+      margin: 0 5px;
+    }
+  }
+}

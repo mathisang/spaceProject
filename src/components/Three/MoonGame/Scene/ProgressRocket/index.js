@@ -1,26 +1,28 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext, useMemo } from "react";
 import { useFrame, useLoader, useThree } from "react-three-fiber";
-import { useSpring, a } from "react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useSpring, animated } from "react-spring";
 
-export default function Rocket({}) {
-  const [spring, set] = useSpring(() => ({
-    position: [0, 0, 0],
-  }));
+export default function Rocket({ progressProps }) {
   // gltf model load
   const { nodes } = useLoader(GLTFLoader, "three/moongame/module/module.glb");
   const groupModel = useRef();
   const scene = useLoader(GLTFLoader, "three/moongame/module/module.glb");
-  useEffect(() => {
-    console.log(spring.position);
-    console.log(scene);
-  }, []);
+  const [modMove, setModMove] = useState(0);
 
-  useFrame((state) => {});
+  useFrame((state) => {
+    if (modMove < progressProps) {
+      setModMove(modMove + 0.05);
+    }
+    groupModel.current.position.y = 22 - modMove * 1.5;
+    if (progressProps < 9) {
+      groupModel.current.rotation.y += 0.005;
+    }
+  });
 
   return (
-    <a.mesh {...spring}>
-      <group ref={groupModel} scale={[1, 1, 1]}>
+    <mesh ref={groupModel} rotation={[0, 0, 0]} position={[0, 22, 10]}>
+      <group scale={[0.25, 0.25, 0.25]}>
         <mesh geometry={nodes.Cylinder002_0.geometry}>
           <meshStandardMaterial
             attach="material"
@@ -62,6 +64,6 @@ export default function Rocket({}) {
           />
         </mesh>
       </group>
-    </a.mesh>
+    </mesh>
   );
 }

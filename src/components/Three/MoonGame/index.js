@@ -70,7 +70,7 @@ export default () => {
         {isMoonGameOn ? (
           <div>
             <ThreeScene />
-            <ProgressRocket />
+            {/*<ProgressRocket />*/}
             <div className="health-container">
               <p>{lifePoints} x </p>
               <img src={heart} />

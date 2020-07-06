@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import MoonGameContext from "../Context";
 import { speaker, nut } from "../../../../assets/images/index";
+import "./buttons.scss";
 
 export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
   const {
