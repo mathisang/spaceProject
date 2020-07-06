@@ -9,18 +9,15 @@ export default function Rocket({ progressProps }) {
   const groupModel = useRef();
   const scene = useLoader(GLTFLoader, "three/moongame/module/module.glb");
   const [modMove, setModMove] = useState(0);
-  const propsSpring = useSpring({
-    number: progressProps,
-    from: { number: modMove },
-  });
-
-  useMemo(() => {
-    setModMove(20 - progressProps * 1.5);
-  }, [progressProps]);
 
   useFrame((state) => {
-    groupModel.current.position.y = modMove;
-    groupModel.current.rotation.y += 0.005;
+    if (modMove < progressProps) {
+      setModMove(modMove + 0.05);
+    }
+    groupModel.current.position.y = 22 - modMove * 1.5;
+    if (progressProps < 9) {
+      groupModel.current.rotation.y += 0.005;
+    }
   });
 
   return (
