@@ -17,7 +17,7 @@ import {
   heart,
 } from "../../../assets/images/index";
 
-export default () => {
+export default ({setGameBadge, setResultGame}) => {
   const [
     { numberInstructions, btnClicked, buttons, progress },
     setMoon,
@@ -56,12 +56,22 @@ export default () => {
 
   useMemo(() => {
     if (progress >= 10) {
-      alert("win");
-      window.location.reload(false);
+      setGameBadge((prevState) => {
+        return{
+          ...prevState,
+          moonGame: "usa"
+        };
+    })
+    setResultGame("win");
     }
     if (lifePoints === 0) {
-      alert("loose");
-      window.location.reload(false);
+      setGameBadge((prevState) => {
+        return{
+          ...prevState,
+          moonGame: "urss"
+        };
+    })
+    setResultGame("loose");
     }
   }, [numberInstructions]);
   return (

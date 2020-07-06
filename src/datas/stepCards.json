@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "stepSeason": "Printemps 1961",
+    "stepSeason": "Printemps 1965",
     "label": "C'est un grand jour !",
     "name": "Vous êtes sur le point d'envoyer le premier homme dans l'espace.",
     "win": {
@@ -23,28 +23,6 @@
   },
   {
     "id": 1,
-    "stepSeason": "Printemps 1965",
-    "label": "C'est le grand jour !",
-    "name": "Evenement 2",
-    "win": {
-      "label": "La mission est un succès !",
-      "message": "Félicitations événement 2 réussi !",
-      "picture": "newspaper_usa.png",
-      "money": 10,
-      "search": 10,
-      "opinion": 10
-    },
-    "loose": {
-      "label": "La mission est un succès !",
-      "message": "Aie, événement 2 raté",
-      "picture": "newspaper_urss.png",
-      "money": -10,
-      "search": -10,
-      "opinion": -10
-    }
-  },
-  {
-    "id": 2,
     "stepSeason": "Été 1969",
     "label": "C'est le grand jour !",
     "name": "Premier pas sur la lune",

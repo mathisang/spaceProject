@@ -15,9 +15,9 @@ import cards from "../../datas/randomCards.json";
 
 export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
   const [gauge, setGauge] = useState({
-    money: 30,
-    opinion: 50,
-    search: 50,
+    money: 80,
+    opinion: 80,
+    search: 80,
   });
 
   const gaugeContextValue = { gauge, setGauge };
@@ -30,7 +30,11 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
   const [season, setSeason] = useState(2);
   const ListSeasons = ["Hiver", "Printemps", "Été", "Automne"];
   const [gameOn, setGameOn] = useState(false);
-  const [gameBadge, setGameBadge] = useState([false, false, false]);
+  const [gameBadge, setGameBadge] = useState({
+    flightGame: false,
+    secondGame: false,
+    moonGame: false,
+  });
   const [rocketPosition, setRocketPosition] = useState(0);
   const arrayFull = [];
   for (let i = 1; i <= cardsData.length; i++) {
@@ -68,6 +72,7 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
           />
         ) : gameOn === true ? (
           <MiniGame
+            setGameBadge={setGameBadge}
             step={step}
             setStep={setStep}
             setEnd={setEnd}

@@ -47,23 +47,18 @@ export default function ({ cardUnused, cardsData }) {
     switch (cardUnused[0]) {
       case 1:
       case 2:
-        return cardUnused[0];
+        return cardUnused[0]; 
         break;
       default:
-        switch (cardUnused[2]) {
-          case 5:
-            return cardUnused[2];
-            break;
-          default:
-            return cardUnused[number];
-            break;
-        }
+        return cardUnused[number];
+        break;
     }
   }
 
   // GESTION DES JAUGES
   // Mise à jour des jauges
   function updateGauge(card, response, issue) {
+    console.log("test : " + card);
     const typeList = ["money", "opinion", "search"];
     const updatedGauge = {};
     const propertiesResult = issue === "win" ? "Success" : "Fail";

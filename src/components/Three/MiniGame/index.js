@@ -13,7 +13,7 @@ import { useSpring, animated } from "react-spring";
 import DragComponent from "./Ground";
 import { useDrag } from "react-use-gesture";
 
-export default () => {
+export default ({setGameBadge, gameBadge, setResultGame}) => {
   const [isTouched, setTouched] = useState(false);
   const [lifePoints, setLifePoints] = useState(3);
   const [isGameOn, setGameStatus] = useState(false);
@@ -37,7 +37,35 @@ export default () => {
         setTouched(false);
       }, 1000);
     }
+    if(lifePoints === 0){
+      setGameBadge((prevState) => {
+        return{
+          ...prevState,
+          flightGame: "urss"
+        };
+    })
+    setResultGame("loose");
+  }
   }, [isTouched]);
+
+  useEffect(()=> {
+    console.log(asteroid);
+      if(obstaclePart === 2 ) {
+        if(asteroid===30) {
+          setGameBadge((prevState) => {
+            return{
+              ...prevState,
+              flightGame: "usa"
+            };
+        })
+        setResultGame("win");
+        }
+      }
+  }, [asteroid])
+
+  
+
+  
 
   return (
     <div className="minigame-container" id="#testo">
