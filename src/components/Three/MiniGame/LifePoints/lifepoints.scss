@@ -1,0 +1,19 @@
+.health-container {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  color: #222240;
+  background: rgba(245, 245, 235, 0.7);
+  backdrop-filter: blur(16px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  border-radius: 8px;
+  p {
+    font-weight: 600;
+    margin: 0 0.5em 0 0;
+  }
+
+}

@@ -15,6 +15,8 @@ import {
   icon8,
   heart,
 } from "../../../assets/images/index";
+import StartCounter from "../MiniGame/StartCounter";
+import LifePoints from "../MiniGame/LifePoints";
 
 export default ({ setGameBadge, setResultGame }) => {
   const [
@@ -24,14 +26,14 @@ export default ({ setGameBadge, setResultGame }) => {
     numberInstructions: 0,
     btnClicked: 0,
     buttons: [
-      { name: "cheh", img: icon1 },
-      { name: "bem", img: icon2 },
-      { name: "hey", img: icon3 },
-      { name: "hey", img: icon4 },
-      { name: "hey", img: icon5 },
-      { name: "hey", img: icon6 },
-      { name: "hey", img: icon7 },
-      { name: "hey", img: icon8 },
+      { img: icon1 },
+      { img: icon2 },
+      { img: icon3 },
+      { img: icon4 },
+      { img: icon5 },
+      { img: icon6 },
+      { img: icon7 },
+      { img: icon8 },
     ],
     progress: 0,
   });
@@ -42,7 +44,7 @@ export default ({ setGameBadge, setResultGame }) => {
     progress,
     setMoon,
   };
-  const [isMoonGameOn, setMoonGame] = useState(false);
+  const [isGameOn, setGameStatus] = useState(false);
   const [isTimerOn, setTimer] = useState(true);
   const [currentInstructions, setCurrentInstructions] = useState([0]);
   const [lifePoints, setLifePoints] = useState(3);
@@ -76,13 +78,10 @@ export default ({ setGameBadge, setResultGame }) => {
   return (
     <MoonGameContext.Provider value={moonContextValue}>
       <div className="moongame-container">
-        {isMoonGameOn ? (
-          <div>
+        {isGameOn ? (
+          <div className="ingame">
             <ThreeScene />
-            <div className="health-container">
-              <p>{lifePoints} x </p>
-              <img src={heart} />
-            </div>
+            <LifePoints lifePoints={lifePoints} />
             <Instructions
               crInstr={currentInstructions}
               setCrInst={setCurrentInstructions}
@@ -99,9 +98,7 @@ export default ({ setGameBadge, setResultGame }) => {
             />
           </div>
         ) : (
-          <div>
-            <button onClick={() => setMoonGame(true)}>Commencer le jeu</button>
-          </div>
+          <StartCounter setGameStatus={setGameStatus} />
         )}
       </div>
     </MoonGameContext.Provider>
