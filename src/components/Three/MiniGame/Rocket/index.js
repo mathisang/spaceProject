@@ -5,13 +5,19 @@ import { useSpring, a } from "react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useDrag } from "react-use-gesture";
 
-export default function Rocket({ propsCannon, setTouched, isTouched }) {
+export default function Rocket({
+  propsCannon,
+  setTouched,
+  isTouched,
+  xPhonePos,
+}) {
   // spring drag props
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const [spring, set] = useSpring(() => ({
     position: [0, 0, 0],
   }));
+  const [rocketMove, setRockeMove] = useState(0);
   const bind = useDrag(
     ({ movement: [x] }) =>
       set({
@@ -42,8 +48,15 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     api.rotation.set(0, t * 0.8, 0);
-    /*api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);*/
-    api.position.set(spring.position.payload[0].value, -4, 0);
+    api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
+    /*if (rocketMove < xPhonePos) {
+      setRockeMove(rocketMove + 0.5);
+    }
+    if (rocketMove > xPhonePos) {
+      setRockeMove(rocketMove - 0.5);
+    }
+    api.position.set(xPhonePos, -4, 0);*/
+    /*api.position.set(spring.position.payload[0].value, -4, 0);*/
   });
 
   return (
@@ -102,9 +115,6 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
           />
         </mesh>
       </group>
-      {/*<Box ref={ref} args={[1, 3, 1]}>
-        <a.meshPhysicalMaterial attach="material" color={propsSpring.color} />
-      </Box>*/}
     </a.mesh>
   );
 }
