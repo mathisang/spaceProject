@@ -9,7 +9,6 @@ import MoonGameContext from "../Context";
 
 export default () => {
   const { progress, setMoon } = useContext(MoonGameContext);
-  const light = useMemo(() => new THREE.SpotLight(0xffffff), []);
   return (
     <div className="scene">
       <Canvas

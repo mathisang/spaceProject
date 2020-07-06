@@ -13,7 +13,6 @@ import {
   icon6,
   icon7,
   icon8,
-  heart,
 } from "../../../assets/images/index";
 import StartCounter from "../MiniGame/StartCounter";
 import LifePoints from "../MiniGame/LifePoints";
