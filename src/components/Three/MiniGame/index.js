@@ -9,6 +9,7 @@ import "./miniGame.scss";
 import Loading from "./Loading";
 import Gauge from "./Gauge";
 import ColorBackground from "./ColorBackground";
+import { isMobile } from "react-device-detect";
 import { useSpring, animated } from "react-spring";
 import DragComponent from "./Ground";
 import { useDrag } from "react-use-gesture";
@@ -21,6 +22,7 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
   const [globalAsteroid, setGlobalAsteroid] = useState(0);
   const [obstaclePart, setObstaclePart] = useState(0);
   const [waveMsg, setWaveMsg] = useState(false);
+  const [xPhonePos, setXPhonePos] = useState(0);
   /*const [propsDrag, setDrag] = useSpring(() => ({
     x: 0,
     y: 0,
@@ -62,13 +64,19 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
         }
       }
   }, [asteroid])
-
   
+  const handleLeftClick = () => {
+    console.log("gauche");
+    setXPhonePos(xPhonePos - 0.1);
+  };
 
-  
+  const handleRightClick = () => {
+    console.log("droite");
+    setXPhonePos(xPhonePos + 0.1);
+  };
 
   return (
-    <div className="minigame-container" id="#testo">
+    <div className="minigame-container">
       <h1>Life : {lifePoints}</h1>
       {!isGameOn && (
         <div className="rules">
@@ -79,6 +87,12 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
       {waveMsg && (
         <div className="wave-message">
           <h2>Vague numéro {obstaclePart + 1} à venir</h2>
+        </div>
+      )}
+      {isMobile && (
+        <div className="mobile-control">
+          <div onClick={() => handleRightClick()}>droite</div>
+          <div onClick={() => handleLeftClick()}>gauche</div>
         </div>
       )}
       <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
@@ -103,7 +117,11 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
         <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
-            <Rocket isTouched={isTouched} setTouched={setTouched} />
+            <Rocket
+              xPhonePos={xPhonePos}
+              isTouched={isTouched}
+              setTouched={setTouched}
+            />
             {isGameOn && (
               <Obstacle
                 setWaveMsg={setWaveMsg}
