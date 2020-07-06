@@ -4,6 +4,7 @@ import { useFrame, useLoader, useThree } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useDrag } from "react-use-gesture";
+import { isMobile } from "react-device-detect";
 
 export default function Rocket({
   propsCannon,
@@ -48,14 +49,17 @@ export default function Rocket({
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     api.rotation.set(0, t * 0.8, 0);
-    api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
-    /*if (rocketMove < xPhonePos) {
-      setRockeMove(rocketMove + 0.5);
+    if (isMobile) {
+      if (rocketMove < xPhonePos) {
+        setRockeMove(rocketMove + 0.5);
+      }
+      if (rocketMove > xPhonePos) {
+        setRockeMove(rocketMove - 0.5);
+      }
+      api.position.set(rocketMove, -4, 0);
+    } else {
+      api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
     }
-    if (rocketMove > xPhonePos) {
-      setRockeMove(rocketMove - 0.5);
-    }
-    api.position.set(xPhonePos, -4, 0);*/
     /*api.position.set(spring.position.payload[0].value, -4, 0);*/
   });
 

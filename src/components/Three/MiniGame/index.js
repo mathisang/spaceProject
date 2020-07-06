@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, useMemo } from "react";
+import React, { useEffect, useState, Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "react-three-fiber";
 import { Physics } from "use-cannon";
@@ -12,9 +12,10 @@ import ColorBackground from "./ColorBackground";
 import { isMobile } from "react-device-detect";
 import { useSpring, animated } from "react-spring";
 import DragComponent from "./Ground";
-import { useDrag } from "react-use-gesture";
+import { useDrag, useGesture } from "react-use-gesture";
+import { heart } from "../../../assets/images";
 
-export default ({setGameBadge, gameBadge, setResultGame}) => {
+export default ({ setGameBadge, gameBadge, setResultGame }) => {
   const [isTouched, setTouched] = useState(false);
   const [lifePoints, setLifePoints] = useState(3);
   const [isGameOn, setGameStatus] = useState(false);
@@ -23,10 +24,41 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
   const [obstaclePart, setObstaclePart] = useState(0);
   const [waveMsg, setWaveMsg] = useState(false);
   const [xPhonePos, setXPhonePos] = useState(0);
+  const [startCounter, setStartCounter] = useState(5);
   /*const [propsDrag, setDrag] = useSpring(() => ({
     x: 0,
     y: 0,
   }));*/
+  const counter = useRef(false);
+
+  useEffect(() => {
+    /*startCounter > 0
+      ? (counter.current = setTimeout(() => {
+          setStartCounter(startCounter - 1);
+        }, 1000))
+      : setGameStatus(true);*/
+  }, [startCounter]);
+  /*const [propsGesture, setGesture] = useState(1);
+  const calcVel = () => {
+    clearInterval(timer.current);
+    setGesture(1);
+    timer.current = setInterval(() => {
+      setGesture(propsGesture + 0.1);
+      console.log("work", propsGesture);
+    }, 500);
+  };
+  const r = () => {
+    clearInterval(timer.current);
+    setGesture(0);
+    console.log("fintio", propsGesture);
+  };
+  const bind = useDrag(({ down, movement: [x, y] }) => {
+    setGesture(down ? calcVel : r);
+  });*/
+
+  /*useMemo(() => {
+    console.log("gesture", propsGesture);
+  }, [propsGesture]);*/
 
   useMemo(() => {
     obstaclePart !== 0 && setGlobalAsteroid(globalAsteroid + 30);
@@ -39,49 +71,50 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
         setTouched(false);
       }, 1000);
     }
-    if(lifePoints === 0){
+    if (lifePoints === 0) {
       setGameBadge((prevState) => {
-        return{
+        return {
           ...prevState,
-          flightGame: "urss"
+          flightGame: "urss",
         };
-    })
-    setResultGame("loose");
-  }
+      });
+      setResultGame("loose");
+    }
   }, [isTouched]);
 
-  useEffect(()=> {
-    console.log(asteroid);
-      if(obstaclePart === 2 ) {
-        if(asteroid===30) {
-          setGameBadge((prevState) => {
-            return{
-              ...prevState,
-              flightGame: "usa"
-            };
-        })
+  useEffect(() => {
+    if (obstaclePart === 2) {
+      if (asteroid === 30) {
+        setGameBadge((prevState) => {
+          return {
+            ...prevState,
+            flightGame: "usa",
+          };
+        });
         setResultGame("win");
-        }
       }
-  }, [asteroid])
-  
+    }
+  }, [asteroid]);
+
   const handleLeftClick = () => {
     console.log("gauche");
-    setXPhonePos(xPhonePos - 0.1);
+    setXPhonePos(xPhonePos - 1.5);
   };
 
   const handleRightClick = () => {
     console.log("droite");
-    setXPhonePos(xPhonePos + 0.1);
+    setXPhonePos(xPhonePos + 1.5);
   };
 
   return (
     <div className="minigame-container">
-      <h1>Life : {lifePoints}</h1>
+      <div className="health-container">
+        <p>{lifePoints} x </p>
+        <img src={heart} />
+      </div>
       {!isGameOn && (
         <div className="rules">
-          <h2>Première sortie dans l'espace</h2>
-          <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
+          <h2>{startCounter}</h2>
         </div>
       )}
       {waveMsg && (
@@ -91,8 +124,8 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
       )}
       {isMobile && (
         <div className="mobile-control">
-          <div onClick={() => handleRightClick()}>droite</div>
-          <div onClick={() => handleLeftClick()}>gauche</div>
+          <div onClick={() => handleRightClick()} />
+          <div onClick={() => handleLeftClick()} />
         </div>
       )}
       <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
