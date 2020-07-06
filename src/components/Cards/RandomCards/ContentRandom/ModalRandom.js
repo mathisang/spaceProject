@@ -9,15 +9,15 @@ export default function ({ isSuccess, card, consequence, CardButtons }) {
           style={{
             backgroundImage: `url('../../../assets/images/cards/consequence/${
               isSuccess
-                ? card.card.responses[consequence].consequence.success.image
-                : card.card.responses[consequence].consequence.fail.image
+                ? card.choices[consequence].consequence.imageSuccess
+                : card.choices[consequence].consequence.imageFail
             }')`,
           }}
         />
         <p className="description">
           {isSuccess
-            ? card.card.responses[consequence].consequence.success.context
-            : card.card.responses[consequence].consequence.fail.context}
+            ? card.choices[consequence].consequence.contextSuccess
+            : card.choices[consequence].consequence.contextFail}
         </p>
         <CardButtons card={card} value={3} />
       </div>
