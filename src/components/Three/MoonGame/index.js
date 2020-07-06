@@ -3,7 +3,6 @@ import "./MoonGame.scss";
 import Instructions from "./Instructions";
 import Buttons from "./Buttons";
 import MoonGameContext from "./Context";
-import ProgressRocket from "./ProgressRocket";
 import ThreeScene from "./Scene";
 import {
   icon1,
@@ -17,7 +16,7 @@ import {
   heart,
 } from "../../../assets/images/index";
 
-export default ({setGameBadge, setResultGame}) => {
+export default ({ setGameBadge, setResultGame }) => {
   const [
     { numberInstructions, btnClicked, buttons, progress },
     setMoon,
@@ -57,21 +56,21 @@ export default ({setGameBadge, setResultGame}) => {
   useMemo(() => {
     if (progress >= 10) {
       setGameBadge((prevState) => {
-        return{
+        return {
           ...prevState,
-          moonGame: "usa"
+          moonGame: "usa",
         };
-    })
-    setResultGame("win");
+      });
+      setResultGame("win");
     }
     if (lifePoints === 0) {
       setGameBadge((prevState) => {
-        return{
+        return {
           ...prevState,
-          moonGame: "urss"
+          moonGame: "urss",
         };
-    })
-    setResultGame("loose");
+      });
+      setResultGame("loose");
     }
   }, [numberInstructions]);
   return (
@@ -80,7 +79,6 @@ export default ({setGameBadge, setResultGame}) => {
         {isMoonGameOn ? (
           <div>
             <ThreeScene />
-            {/*<ProgressRocket />*/}
             <div className="health-container">
               <p>{lifePoints} x </p>
               <img src={heart} />

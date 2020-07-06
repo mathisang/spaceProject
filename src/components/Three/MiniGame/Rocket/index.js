@@ -49,7 +49,7 @@ export default function Rocket({
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     api.rotation.set(0, t * 0.8, 0);
-    if (isMobile) {
+    /*if (isMobile) {
       if (rocketMove < xPhonePos) {
         setRockeMove(rocketMove + 0.5);
       }
@@ -59,8 +59,12 @@ export default function Rocket({
       api.position.set(rocketMove, -4, 0);
     } else {
       api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
+    }*/
+    if (isMobile) {
+      api.position.set(spring.position.payload[0].value, -4, 0);
+    } else {
+      api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
     }
-    /*api.position.set(spring.position.payload[0].value, -4, 0);*/
   });
 
   return (

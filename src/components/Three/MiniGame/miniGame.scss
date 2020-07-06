@@ -1,6 +1,9 @@
 .minigame-container {
   height: 100%;
   width: 100%;
+  canvas {
+    touch-action: none;
+  }
   h1 {
     position: absolute;
     z-index: 1111;

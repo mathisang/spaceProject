@@ -1,7 +1,7 @@
 
 
 .moongame-container {
-  height: 100vh;
+  height: 100%;
   > div {
     height: 100%;
   }
@@ -10,11 +10,10 @@
     color: white;
     z-index: 10;
     top: 20%;
-
   }
   .health-container {
     position: absolute;
-    top: 43vh;
+    top: 40%;
     right: 5vw;
     color: #222240;
     background: rgba(245, 245, 235, 0.7);

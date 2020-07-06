@@ -32,11 +32,11 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
   const counter = useRef(false);
 
   useEffect(() => {
-    /*startCounter > 0
+    startCounter > 0
       ? (counter.current = setTimeout(() => {
           setStartCounter(startCounter - 1);
         }, 1000))
-      : setGameStatus(true);*/
+      : setGameStatus(true);
   }, [startCounter]);
   /*const [propsGesture, setGesture] = useState(1);
   const calcVel = () => {
@@ -96,7 +96,7 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
     }
   }, [asteroid]);
 
-  const handleLeftClick = () => {
+  /*const handleLeftClick = () => {
     console.log("gauche");
     setXPhonePos(xPhonePos - 1.5);
   };
@@ -104,7 +104,7 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
   const handleRightClick = () => {
     console.log("droite");
     setXPhonePos(xPhonePos + 1.5);
-  };
+  };*/
 
   return (
     <div className="minigame-container">
@@ -122,12 +122,12 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
           <h2>Vague numéro {obstaclePart + 1} à venir</h2>
         </div>
       )}
-      {isMobile && (
+      {/*{isMobile && (
         <div className="mobile-control">
           <div onClick={() => handleRightClick()} />
           <div onClick={() => handleLeftClick()} />
         </div>
-      )}
+      )}*/}
       <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
       {/*<DragComponent propsDrag={propsDrag} setDrag={setDrag} />*/}
       <Canvas

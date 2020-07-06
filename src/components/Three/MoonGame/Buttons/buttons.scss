@@ -3,18 +3,9 @@
   position: absolute;
   bottom: 0;
   z-index: 10;
-  height: 36vh;
+  height: 40%;
   width: 100%;
-  .control-bar {
-    position: absolute;
-    bottom: 7%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30%;
-    height: 0.35em;
-    background: #222240;
-    border-radius: 5px;
-  }
+
   .nut {
     position: absolute;
   }
