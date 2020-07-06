@@ -2,9 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { earth, moon, helmet, rocket } from "../../assets/images";
 import "./stepTimeline.scss";
 
-export default function ({ stepCards, year, season, ListSeasons, step }) {
-  const [rocketPosition, setRocketPosition] = useState(0);
-
+export default function ({
+  stepCards,
+  year,
+  season,
+  ListSeasons,
+  step,
+  setRocketPosition,
+  rocketPosition,
+}) {
   useEffect(() => {
     setRocketPosition(rocketPosition + 2.55);
   }, [season]);

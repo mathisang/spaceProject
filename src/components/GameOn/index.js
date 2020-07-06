@@ -10,6 +10,8 @@ import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
 import StepTimeline from "../StepTimeline/index";
+import MiniGame from "../MiniGame";
+import cards from "../../datas/randomCards.json";
 
 export default function ({ tutorialStatus, setTutorialStatus }) {
   const [gauge, setGauge] = useState({
@@ -27,6 +29,14 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
   const [year, setYear] = useState(1958);
   const [season, setSeason] = useState(2);
   const ListSeasons = ["Hiver", "Printemps", "Été", "Automne"];
+  const [gameOn, setGameOn] = useState(false);
+  const [gameBadge, setGameBadge] = useState([false, false, false]);
+  const arrayFull = [];
+  for (let i = 0; i < cards.length; i++) {
+    arrayFull.push(i);
+  }
+  const [cardUnused, setCardUnused] = useState(arrayFull);
+  const [rocketPosition, setRocketPosition] = useState(0);
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
@@ -51,10 +61,19 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
         {tutorialStatus && <Tutorial setTutorialStatus={setTutorialStatus} />}
         {isLoose || isEnd ? (
           <EndCard
-            isLoose={isLoose}
             money={gauge.money}
             opinion={gauge.opinion}
             search={gauge.search}
+            gameBadge={gameBadge}
+          />
+        ) : gameOn === true ? (
+          <MiniGame
+            step={step}
+            setStep={setStep}
+            setEnd={setEnd}
+            setGameOn={setGameOn}
+            year={year}
+            gameBadge={gameBadge}
           />
         ) : (
           <div className="playScreen">
@@ -77,6 +96,8 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
                 season={season}
                 ListSeasons={ListSeasons}
                 step={step}
+                rocketPosition={rocketPosition}
+                setRocketPosition={setRocketPosition}
               />
               {step.isActive ? (
                 <StepCard
@@ -86,9 +107,14 @@ export default function ({ tutorialStatus, setTutorialStatus }) {
                   year={year}
                   season={season}
                   ListSeasons={ListSeasons}
+                  gameOn={gameOn}
+                  setGameOn={setGameOn}
                 />
               ) : (
-                <RandomCard />
+                <RandomCard
+                  cardUnused={cardUnused}
+                  setCardUnused={setCardUnused}
+                />
               )}
             </div>
           </div>

@@ -5,7 +5,7 @@ import Badges from "./EndBadges";
 import "./endCard.scss";
 import { iconMessenger, iconTwitter, iconLink } from "../../../assets/images";
 
-export default function ({ money, opinion, search }) {
+export default function ({ money, opinion, search, gameBadge }) {
   // Bouton "Rejouer"
   const RestartButton = () => {
     function restartGame() {
@@ -46,7 +46,7 @@ export default function ({ money, opinion, search }) {
         ) : (
           <EndText winner={winner} />
         )}
-        <Badges />
+        <Badges gameBadge={gameBadge} />
       </div>
       <div>
         <h3 className="small">Défier vos amis</h3>

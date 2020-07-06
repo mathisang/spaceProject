@@ -7,11 +7,11 @@ import {
   flagUsa,
 } from "../../../assets/images";
 
-export default function () {
+export default function ({ gameBadge }) {
   const Badge = ({ image, winner }) => {
     return (
       <div className="badge">
-        <div className={`icon ${winner === "" && "badgeNotCompleted"}`}>
+        <div className={`icon ${winner === false && "badgeNotCompleted"}`}>
           <img src={image} alt="" />
           <img
             className="flagIcon"
@@ -32,9 +32,9 @@ export default function () {
 
   return (
     <div className="badgesList">
-      <Badge image={firstFlight} winner="usa" />
-      <Badge image={firstExit} winner="" />
-      <Badge image={firstStep} winner="" />
+      <Badge image={firstFlight} winner={gameBadge[0]} />
+      <Badge image={firstExit} winner={gameBadge[1]} />
+      <Badge image={firstStep} winner={gameBadge[2]} />
     </div>
   );
 }
