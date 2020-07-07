@@ -11,13 +11,12 @@ import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
 import StepTimeline from "../StepTimeline/index";
 import MiniGame from "../MiniGame";
-import cards from "../../datas/randomCards.json";
 
 export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
   const [gauge, setGauge] = useState({
-    money: 80,
-    opinion: 80,
-    search: 80,
+    money: 30,
+    opinion: 50,
+    search: 50,
   });
 
   const gaugeContextValue = { gauge, setGauge };
