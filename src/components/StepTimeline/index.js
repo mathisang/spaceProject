@@ -1,23 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
-import { earth, moon, helmet, rocket, flagUsa } from "../../assets/images";
+import {
+  earth,
+  moon,
+  helmet,
+  rocket,
+  flagUsa,
+  flagUrss,
+} from "../../assets/images";
 import "./stepTimeline.scss";
 
 export default function ({
-  stepCards,
   year,
   season,
-  ListSeasons,
   step,
   setRocketPosition,
   rocketPosition,
+  gameBadge,
 }) {
   useEffect(() => {
-    setRocketPosition(rocketPosition + 2.55);
+    year === 1958
+      ? setRocketPosition(0)
+      : setRocketPosition(rocketPosition + 2);
   }, [season]);
 
-  console.log(step.id);
-
-  // Avancement linéaire à rendre dynamique avec les dates des étapes
+  const flagName = gameBadge.flightGame === "usa" ? flagUsa : flagUrss;
 
   return (
     <div className="timeline">
@@ -27,8 +33,8 @@ export default function ({
       <div className="rocketStep" style={{ left: rocketPosition + `%` }}>
         <img src={rocket} alt="" />
       </div>
-      <div>
-        <img src={step.id === 0 ? helmet : step.id > 0 && flagUsa} alt="" />
+      <div className="stepHelmet">
+        <img src={step.id <= 1 ? helmet : step.id > 1 && flagName} alt="" />
       </div>
       <div>
         <img src={moon} alt="" />

@@ -15,8 +15,10 @@ function App() {
   const handleChange = () => setGameStatus(true);
   const tutorialChange = () => (setTutorialStatus(true), setGameStatus(true));
   const [cardsData, setCardsData] = useState([]);
+  const [gameData, setGameData] = useState([]);
+  const [stepData, setStepData] = useState([]);
+  const [tutorialData, setTutorialData] = useState([]);
   useEffect(() => {
-    // GET request using fetch inside useEffect React hook
     fetch("https://api.louisgenestier.fr/api/cards", {
       headers: {
         Accept: "application/json",
@@ -26,8 +28,34 @@ function App() {
       .then((response) => response.json())
       .then((data) => setCardsData(data));
 
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    fetch("https://api.louisgenestier.fr/api/games", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setGameData(data));
+
+    fetch("https://api.louisgenestier.fr/api/step_cards", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setStepData(data));
+
+    fetch("https://api.louisgenestier.fr/api/step_tutorials", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setTutorialData(data));
   }, []);
+
   return (
     <Switch>
       <Route path="/asteroid-test">
@@ -46,6 +74,9 @@ function App() {
               tutorialStatus={isTutorialOn}
               setTutorialStatus={setTutorialStatus}
               cardsData={cardsData}
+              gameData={gameData}
+              stepData={stepData}
+              tutorialData={tutorialData}
             />
           ) : (
             <StartCard

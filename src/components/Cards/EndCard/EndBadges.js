@@ -32,9 +32,9 @@ export default function ({ gameBadge }) {
 
   return (
     <div className="badgesList">
-      <Badge image={firstFlight} winner={gameBadge[0]} />
-      <Badge image={firstExit} winner={gameBadge[1]} />
-      <Badge image={firstStep} winner={gameBadge[2]} />
+      <Badge image={firstFlight} winner={gameBadge.flightGame} />
+      <Badge image={firstExit} winner={gameBadge.secondGame} />
+      <Badge image={firstStep} winner={gameBadge.moonGame} />
     </div>
   );
 }

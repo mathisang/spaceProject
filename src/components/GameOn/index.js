@@ -6,13 +6,19 @@ import GaugeContext from "../Gauge/GaugeContext";
 import SeasonTimeline from "../SeasonTimeline";
 import CardContext from "../Cards/CardContext";
 import StepCard from "../Cards/StepCard";
-import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
 import StepTimeline from "../StepTimeline/index";
 import MiniGame from "../MiniGame";
 
-export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
+export default function ({
+  tutorialStatus,
+  setTutorialStatus,
+  cardsData,
+  gameData,
+  stepData,
+  tutorialData,
+}) {
   const [gauge, setGauge] = useState({
     money: 30,
     opinion: 50,
@@ -43,25 +49,32 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
-    (gauge.money === 0 || gauge.opinion === 0 || gauge.search === 0) &&
+    (gauge.money <= 0 || gauge.opinion <= 0 || gauge.search <= 0) &&
       setLoose(true);
   }, [gauge]);
+
+  useEffect(() => {
+    gameBadge.moonGame !== false && setEnd(true);
+  }, [gameBadge.moonGame]);
 
   // Déclenchement de l'événement
   useEffect(() => {
     let currentDate = ListSeasons[season] + " " + year;
-    currentDate === stepCards[step.id].stepSeason &&
+    currentDate === stepData[step.id].stepSeason &&
       setStep((prevState) => {
         return { ...prevState, isActive: true };
       });
   }, [season]);
 
-  const headerClass = step.isActive !== false && "hideHeader";
-
   return (
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
-        {tutorialStatus && <Tutorial setTutorialStatus={setTutorialStatus} />}
+        {tutorialStatus && (
+          <Tutorial
+            setTutorialStatus={setTutorialStatus}
+            tutorialStep={tutorialData}
+          />
+        )}
         {isLoose || isEnd ? (
           <EndCard
             money={gauge.money}
@@ -78,6 +91,8 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
             setGameOn={setGameOn}
             year={year}
             gameBadge={gameBadge}
+            gameData={gameData}
+            stepCards={stepData}
           />
         ) : (
           <div className="playScreen">
@@ -99,16 +114,13 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
               className="contentScreen"
               style={{ height: step.isActive !== false && "100vh" }}
             >
-              {/*prendre le temps maximum, compter le nb de jours et apres placé les steps*/}
-              {/*avancer vw au lieu de % ? */}
               <StepTimeline
-                stepCards={stepCards}
                 year={year}
                 season={season}
-                ListSeasons={ListSeasons}
                 step={step}
                 rocketPosition={rocketPosition}
                 setRocketPosition={setRocketPosition}
+                gameBadge={gameBadge}
               />
               {step.isActive ? (
                 <StepCard
@@ -120,6 +132,7 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
                   ListSeasons={ListSeasons}
                   gameOn={gameOn}
                   setGameOn={setGameOn}
+                  steps={stepData}
                 />
               ) : (
                 <RandomCard cardsData={cardsData} cardUnused={cardUnused} />

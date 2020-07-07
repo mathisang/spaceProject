@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import steps from "../../../datas/stepCards.json";
 import "./step-card.scss";
 import MiniGame from "../../MiniGame";
 
@@ -12,18 +11,21 @@ export default function ({
   ListSeasons,
   gameOn,
   setGameOn,
+  steps,
 }) {
   function startGame() {
     setGameOn(true);
   }
-  console.log(gameOn);
 
   // Message de réussite ou défaite de l'événement
   const Text = ({ step }) => {
     return (
       <div className="stepContent">
         <h2 className="titleBig">{steps[step.id].label}</h2>
-        <p className="description">{steps[step.id].name}</p>
+        {/*<p className="description">{steps[step.id].name}</p>*/}
+        <p className="description">
+          Phrase a re-dynamiser quand on aura API a jour
+        </p>
         <p className="gaugeManage">
           Suite à vos décisions, vous bénéficez de :
         </p>
