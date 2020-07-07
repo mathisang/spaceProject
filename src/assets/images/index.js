@@ -42,7 +42,7 @@ export const icon8 = require("./moongame/icon8.svg");
 export const heart = require("./moongame/heart.png");
 export const success = require("./moongame/success.svg");
 export const fail = require("./moongame/fail.svg");
-export const speaker = require("./moongame/speaker.png");
+export const speaker = require("./moongame/speaker.svg");
 export const nut = require("./moongame/nut.png");
 
 // Step Timeline

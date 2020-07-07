@@ -21,6 +21,7 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
   const [globalAsteroid, setGlobalAsteroid] = useState(0);
   const [obstaclePart, setObstaclePart] = useState(0);
   const [waveMsg, setWaveMsg] = useState(false);
+  const [rotationBack, setRotationBack] = useState(1);
 
   useMemo(() => {
     obstaclePart !== 0 && setGlobalAsteroid(globalAsteroid + 30);
@@ -66,7 +67,7 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
       {!isGameOn && <StartCounter setGameStatus={setGameStatus} />}
       {waveMsg && (
         <div className="wave-message">
-          <h2>Vague numéro {obstaclePart + 1} à venir</h2>
+          <h2>Vague numéro {obstaclePart + 2} à venir</h2>
         </div>
       )}
       <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
@@ -87,7 +88,7 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
           castShadow
         />
         <ColorBackground globalAsteroid={globalAsteroid} asteroid={asteroid} />
-        <BackgroundSpace pointCount={500} />
+        <BackgroundSpace rotationBack={rotationBack} pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
             <Rocket isTouched={isTouched} setTouched={setTouched} />

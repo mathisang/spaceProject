@@ -55,7 +55,7 @@ export default ({ setGameBadge, setResultGame }) => {
   ];
 
   useMemo(() => {
-    /*if (progress >= 10) {
+    /* if (progress >= 10) {
       setGameBadge((prevState) => {
         return {
           ...prevState,
