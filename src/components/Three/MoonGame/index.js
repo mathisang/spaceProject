@@ -55,7 +55,7 @@ export default ({ setGameBadge, setResultGame }) => {
   ];
 
   useMemo(() => {
-    /* if (progress >= 10) {
+    if (progress >= 10) {
       setGameBadge((prevState) => {
         return {
           ...prevState,
@@ -72,8 +72,8 @@ export default ({ setGameBadge, setResultGame }) => {
         };
       });
       setResultGame("loose");
-    }*/
-  }, [numberInstructions]);
+    }
+  }, [numberInstructions, lifePoints]);
   return (
     <MoonGameContext.Provider value={moonContextValue}>
       <div className="moongame-container">
