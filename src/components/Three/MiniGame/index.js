@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, useMemo } from "react";
+import React, { useEffect, useState, Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "react-three-fiber";
 import { Physics } from "use-cannon";
@@ -9,24 +9,18 @@ import "./miniGame.scss";
 import Loading from "./Loading";
 import Gauge from "./Gauge";
 import ColorBackground from "./ColorBackground";
-import { isMobile } from "react-device-detect";
-import { useSpring, animated } from "react-spring";
-import DragComponent from "./Ground";
-import { useDrag } from "react-use-gesture";
+import StartCounter from "./StartCounter";
+import LifePoints from "./LifePoints";
 
-export default ({setGameBadge, gameBadge, setResultGame}) => {
+export default ({ setGameBadge, gameBadge, setResultGame }) => {
+  const difficulty = 1;
   const [isTouched, setTouched] = useState(false);
-  const [lifePoints, setLifePoints] = useState(3);
+  const [lifePoints, setLifePoints] = useState(difficulty === 0 ? 3 : 5);
   const [isGameOn, setGameStatus] = useState(false);
   const [asteroid, setAsteroid] = useState(1);
   const [globalAsteroid, setGlobalAsteroid] = useState(0);
   const [obstaclePart, setObstaclePart] = useState(0);
   const [waveMsg, setWaveMsg] = useState(false);
-  const [xPhonePos, setXPhonePos] = useState(0);
-  /*const [propsDrag, setDrag] = useSpring(() => ({
-    x: 0,
-    y: 0,
-  }));*/
 
   useMemo(() => {
     obstaclePart !== 0 && setGlobalAsteroid(globalAsteroid + 30);
@@ -39,64 +33,43 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
         setTouched(false);
       }, 1000);
     }
-    if(lifePoints === 0){
+    if (lifePoints === 0) {
       setGameBadge((prevState) => {
-        return{
+        return {
           ...prevState,
-          flightGame: "urss"
+          flightGame: "urss",
         };
-    })
-    setResultGame("loose");
-  }
+      });
+      setResultGame("loose");
+    }
   }, [isTouched]);
 
-  useEffect(()=> {
-    console.log(asteroid);
-      if(obstaclePart === 2 ) {
-        if(asteroid===30) {
+  useEffect(() => {
+    if (obstaclePart === 2) {
+      if (asteroid === 30) {
+        setTimeout(() => {
           setGameBadge((prevState) => {
-            return{
+            return {
               ...prevState,
-              flightGame: "usa"
+              flightGame: "usa",
             };
-        })
-        setResultGame("win");
-        }
+          });
+          setResultGame("win");
+        }, 5000);
       }
-  }, [asteroid])
-  
-  const handleLeftClick = () => {
-    console.log("gauche");
-    setXPhonePos(xPhonePos - 0.1);
-  };
-
-  const handleRightClick = () => {
-    console.log("droite");
-    setXPhonePos(xPhonePos + 0.1);
-  };
+    }
+  }, [asteroid]);
 
   return (
     <div className="minigame-container">
-      <h1>Life : {lifePoints}</h1>
-      {!isGameOn && (
-        <div className="rules">
-          <h2>Première sortie dans l'espace</h2>
-          <button onClick={() => setGameStatus(true)}>Commencer le jeu</button>
-        </div>
-      )}
+      <LifePoints lifePoints={lifePoints} />
+      {!isGameOn && <StartCounter setGameStatus={setGameStatus} />}
       {waveMsg && (
         <div className="wave-message">
           <h2>Vague numéro {obstaclePart + 1} à venir</h2>
         </div>
       )}
-      {isMobile && (
-        <div className="mobile-control">
-          <div onClick={() => handleRightClick()}>droite</div>
-          <div onClick={() => handleLeftClick()}>gauche</div>
-        </div>
-      )}
       <Gauge globalAsteroid={globalAsteroid} asteroid={asteroid} />
-      {/*<DragComponent propsDrag={propsDrag} setDrag={setDrag} />*/}
       <Canvas
         shadowMap
         sRGB
@@ -117,11 +90,7 @@ export default ({setGameBadge, gameBadge, setResultGame}) => {
         <BackgroundSpace pointCount={500} />
         <Physics>
           <Suspense fallback={<Loading />}>
-            <Rocket
-              xPhonePos={xPhonePos}
-              isTouched={isTouched}
-              setTouched={setTouched}
-            />
+            <Rocket isTouched={isTouched} setTouched={setTouched} />
             {isGameOn && (
               <Obstacle
                 setWaveMsg={setWaveMsg}

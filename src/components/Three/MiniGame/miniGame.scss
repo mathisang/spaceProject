@@ -1,13 +1,15 @@
 .minigame-container {
   height: 100%;
   width: 100%;
+  canvas {
+    touch-action: none;
+  }
   h1 {
     position: absolute;
     z-index: 1111;
     color: white;
     right: 5%;
   }
-  div.rules,
   div.wave-message{
   position: absolute;
     z-index: 100;
@@ -21,6 +23,7 @@
   }
   h2 {
     color: white;
+    font-size: 2em;
   }
   .drag-control {
     width: 80px;

@@ -6,13 +6,9 @@ export default ({ ticState }) => {
   const props = useSpring({
     percent: `${(ticState * 100) / 50}%`,
   });
-  const lourd = 50;
   return (
     <div className="time-bar-container">
-      <a.div
-        style={{ width: props.percent }}
-        className="time-bar-content"
-      ></a.div>
+      <a.div style={{ width: props.percent }} className="time-bar-content" />
     </div>
   );
 };

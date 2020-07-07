@@ -9,11 +9,9 @@ import MoonGameContext from "../Context";
 
 export default () => {
   const { progress, setMoon } = useContext(MoonGameContext);
-  const light = useMemo(() => new THREE.SpotLight(0xffffff), []);
   return (
     <div className="scene">
       <Canvas
-        shadowMap
         sRGB
         gl={{ alpha: false }}
         camera={{ position: [0, 20, -40] }}

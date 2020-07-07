@@ -3,18 +3,8 @@
   position: absolute;
   bottom: 0;
   z-index: 10;
-  height: 36vh;
+  height: 40%;
   width: 100%;
-  .control-bar {
-    position: absolute;
-    bottom: 7%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30%;
-    height: 0.35em;
-    background: #222240;
-    border-radius: 5px;
-  }
   .nut {
     position: absolute;
   }
@@ -70,4 +60,24 @@
       padding: 4% 15%;
     }
   }
+}
+
+@media screen and (min-width:640px){
+  .controls-container {
+    height: 40%;
+    .buttons-container {
+      margin: 1% 32% 0;
+      .secondary-button.large {
+        padding: 3% 15%;
+      }
+      button {
+        padding: 3% 4%;
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
 }

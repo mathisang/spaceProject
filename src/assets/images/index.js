@@ -27,6 +27,9 @@ export const backCards = require("./cards/back_cards.png");
 export const looseSciences = require("./cards/consequence/loose_sciences.png");
 export const winSciences = require("./cards/consequence/win_sciences.png");
 
+// MiniGame
+export const gaugeBackground = require("./flightgame/background-gauge-flight.jpg");
+
 // MoonGame
 export const icon1 = require("./moongame/icon1.png");
 export const icon2 = require("./moongame/icon2.png");

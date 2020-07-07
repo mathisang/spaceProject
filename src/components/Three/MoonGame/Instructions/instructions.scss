@@ -2,15 +2,15 @@
   position: absolute;
   color: white;
   z-index: 10;
-  top: 50vh;
+  top: 45%;
   left: 50%;
-  width: 90vw;
+  width: 90%;
   transform: translateX(-50%);
   .instructions {
     justify-content: center;
     display: flex;
     background: white;
-    height: 11vh;
+    padding: 0.5em 0;
     align-items: center;
     border-radius: 0 0 4px 4px;
     div {
@@ -24,6 +24,17 @@
     .instruction {
       padding: 15px;
       margin: 0 5px;
+    }
+  }
+}
+
+@media screen and (min-width:640px){
+  .instructions-container {
+    min-width: 30%;
+    width: auto;
+    top: 42%;
+    .instructions {
+      padding: 5% 0;
     }
   }
 }

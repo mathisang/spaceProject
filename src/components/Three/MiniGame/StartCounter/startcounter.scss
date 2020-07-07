@@ -1,0 +1,11 @@
+.start-counter {
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  h2 {
+    color: white;
+    font-size: 3em;
+  }
+}
