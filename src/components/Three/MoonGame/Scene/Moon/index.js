@@ -10,7 +10,7 @@ export default function Moon() {
   return (
     <mesh
       ref={moon}
-      position={[0, -40, 0]}
+      position={[0, -35, 0]}
       scale={[1, 1, 1]}
       receiveShadow
       castShadow
