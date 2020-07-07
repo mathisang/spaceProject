@@ -111,3 +111,22 @@
     }
   }
 }
+
+
+@media screen and (min-width: 600px) {
+  .endScreen {
+    .textEnd {
+      h2 {
+        margin-bottom: 2rem;
+      }
+    }
+    .badgesList {
+      .badge {
+        margin: 2rem;
+      }
+    }
+    .socialShare {
+      margin: 1.5rem 0 3rem;
+    }
+  }
+}

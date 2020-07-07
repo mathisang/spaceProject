@@ -20,9 +20,9 @@ export default function ({
   tutorialData,
 }) {
   const [gauge, setGauge] = useState({
-    money: 80,
-    opinion: 80,
-    search: 80,
+    money: 30,
+    opinion: 50,
+    search: 50,
   });
 
   const gaugeContextValue = { gauge, setGauge };
@@ -65,8 +65,6 @@ export default function ({
         return { ...prevState, isActive: true };
       });
   }, [season]);
-
-  const headerClass = step.isActive !== false && "hideHeader";
 
   return (
     <CardContext.Provider value={cardContextValue}>
@@ -116,16 +114,13 @@ export default function ({
               className="contentScreen"
               style={{ height: step.isActive !== false && "100vh" }}
             >
-              {/*prendre le temps maximum, compter le nb de jours et apres placé les steps*/}
-              {/*avancer vw au lieu de % ? */}
               <StepTimeline
-                stepCards={stepData}
                 year={year}
                 season={season}
-                ListSeasons={ListSeasons}
                 step={step}
                 rocketPosition={rocketPosition}
                 setRocketPosition={setRocketPosition}
+                gameBadge={gameBadge}
               />
               {step.isActive ? (
                 <StepCard

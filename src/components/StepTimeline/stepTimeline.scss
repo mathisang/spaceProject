@@ -15,6 +15,12 @@
 
   .rocketStep {
     position: absolute;
+    z-index: 999;
+  }
+
+  .stepHelmet {
+    position: absolute;
+    left: 56.5%;
   }
 }
 
