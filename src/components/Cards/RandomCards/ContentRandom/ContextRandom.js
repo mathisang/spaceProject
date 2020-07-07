@@ -26,7 +26,9 @@ export default function ({ card, isChoose }) {
     <div className="headerCard">
       {isChoose !== null ? (
         <div>
-          <img src={arrayIcon[card.category.name]} alt="Bienvenue" />
+          <div className="iconCategory">
+            <img src={arrayIcon[card.category.name]} alt="Bienvenue" />
+          </div>
           <h2 className="small">
             {card.choices[consequence].consequence.label}
           </h2>
@@ -36,7 +38,9 @@ export default function ({ card, isChoose }) {
         </div>
       ) : (
         <div>
-          <img src={arrayIcon[card.category.name]} alt="Bienvenue" />
+          <div className="iconCategory">
+            <img src={arrayIcon[card.category.name]} alt="Bienvenue" />
+          </div>
           <h2 className="titleBig">{card.category.name}</h2>
           <p className="description">{card.context}</p>
         </div>

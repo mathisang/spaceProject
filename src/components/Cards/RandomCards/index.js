@@ -25,29 +25,25 @@ export default function ({ cardUnused, cardsData }) {
     let oldCategory = null;
     for (var i = 0; i < cardUnused.length; i++) {
       if (cardUnused[i] === selectedCardId) {
-        oldCategory = cardsData[selectedCardId - 1].category.name;
+        oldCategory = cardsData[selectedCardId - 1].type;
         cardUnused.splice(i, 1);
       }
     }
 
     let number = randomNumber();
     let newItem = cardUnused[number];
-    console.log(cardUnused);
-    console.log(selectedCardId);
-    console.log(cardUnused[number]);
-    console.log(cardsData[newItem]);
 
-    if (cardsData[newItem - 1].category.name === oldCategory) {
+    if (cardsData[newItem - 1].type === oldCategory) {
       do {
         number = Math.floor(Math.random() * cardUnused.length);
         newItem = cardUnused[number];
-      } while (cardsData[newItem - 1].category.name === oldCategory);
+      } while (cardsData[newItem - 1].type === oldCategory);
     }
 
     switch (cardUnused[0]) {
       case 1:
       case 2:
-        return cardUnused[0]; 
+        return cardUnused[0];
         break;
       default:
         return cardUnused[number];
@@ -58,7 +54,6 @@ export default function ({ cardUnused, cardsData }) {
   // GESTION DES JAUGES
   // Mise à jour des jauges
   function updateGauge(card, response, issue) {
-    console.log("test : " + card);
     const typeList = ["money", "opinion", "search"];
     const updatedGauge = {};
     const propertiesResult = issue === "win" ? "Success" : "Fail";

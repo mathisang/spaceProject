@@ -6,6 +6,8 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Asteroid from "./components/Three/Asteroid";
 import MiniGame from "./components/Three/MiniGame";
 import MoonGame from "./components/Three/MoonGame";
+import SceneDesktop from "./components/Three/DesktopGame/Scene/index";
+import { isBrowser } from "react-device-detect";
 
 function App() {
   const [isGameOn, setGameStatus] = useState(false);
@@ -15,7 +17,7 @@ function App() {
   const [cardsData, setCardsData] = useState([]);
   useEffect(() => {
     // GET request using fetch inside useEffect React hook
-    fetch("http://51.91.109.26/api/cards", {
+    fetch("https://api.louisgenestier.fr/api/cards", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -52,6 +54,7 @@ function App() {
             />
           )}
         </div>
+        {isBrowser && <SceneDesktop />}
       </Route>
     </Switch>
   );

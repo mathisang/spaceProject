@@ -22,8 +22,6 @@ export default function ({
     setChoose(true);
   }
 
-  console.log(card);
-
   const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
 
   // Boutons cartes
@@ -41,7 +39,6 @@ export default function ({
         {/*Corriger pour swipe gauche et droite tjrs au meme endroit*/}
         <img src={orderButton === 1 ? swipeRight : swipeLeft} alt="" />
         {card.choices[value - 1].label}
-        {value}
       </button>
     ) : (
       <button

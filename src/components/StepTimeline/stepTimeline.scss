@@ -6,6 +6,7 @@
   align-items: center;
   height: 13%;
   position: relative;
+  background: url("../../assets/images/step_timeline/line.png") 60% 50% no-repeat;
 
   >div {
     display: flex;
@@ -14,5 +15,35 @@
 
   .rocketStep {
     position: absolute;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .timeline {
+    div:first-child {
+      img {
+        width: 36px;
+      }
+    }
+    div:last-child {
+      img {
+        width: 26px;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .timeline {
+    div:first-child {
+      img {
+        width: 36px;
+      }
+    }
+    div:last-child {
+      img {
+        width: 26px;
+      }
+    }
   }
 }

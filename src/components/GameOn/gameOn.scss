@@ -9,18 +9,47 @@
   .headerScreen {
     background: $white;
     height: 11vh;
-    padding: .75rem;
+    padding: 12px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
+  .hideHeader {
+    opacity: 0;
+  }
+
   .contentScreen {
-    padding: 0 .75rem;
+    padding: 0 16px 16px;
     height: 89vh;
-    background: url('../../assets/images/cards/background_cards.png') center no-repeat, linear-gradient(#201F3D, #282747);
     background-size: 100%;
     display: flex;
     flex-direction: column;
+    background: url('../../assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
+  }
+}
+
+
+@media screen and (max-height: 600px) {
+  .playScreen {
+
+    .headerScreen {
+      padding: 8px 12px;
+    }
+    .contentScreen {
+      padding: 0 12px 12px;
+      height: 89vh;
+    }
+    .hideHeader {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .playScreen {
+    .contentScreen {
+      background: unset;
+    }
   }
 }

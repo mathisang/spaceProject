@@ -2,8 +2,8 @@
 
 .miniGame {
   color: $white;
-  padding: 2rem 1rem;
-  height: 100%;
+  padding: 2rem 16px;
+  height: 100vh;
 
   .gameInfos {
     span {
@@ -24,15 +24,15 @@
     border-radius: 8px;
     overflow: hidden;
     background: #141426;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     .showGame {
-      height: 35vh;
+      height: 30vh;
       width: 100%;
-      background: url('../../assets/images/step_event/flight_game.png') no-repeat;
+      background: url('../../assets/images/step_event/flight_game.png') no-repeat center;
       background-size: cover;
     }
 
@@ -52,20 +52,69 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
 
     h3 {
-      width: 80%;
-      margin: 1rem auto;
+      width: 95%;
+      margin: .5rem auto 1rem;
     }
 
     p {
-      width: 90%;
+      width: 95%;
     }
 
     .pictureResult {
-      margin: 1.5rem auto 2.5rem;
+      margin: 1.5rem auto 3rem;
       width: 100%;
+      height: 30vh;
+      min-height: 140px;
+      border-radius: 8px;
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .miniGame {
+    padding: 2rem 12px;
+    .gameInfos {
+      h3 {
+        font-size: 24px;
+      }
+    }
+    .gameRules {
+      .showGame {
+        height: 26vh;
+      }
+    }
+    button {
+      font-size: 16px;
+    }
+    .resultGame {
+      div:first-child {
+        img {
+          width: 80px
+        }
+      }
+      h3 {
+        font-size: 24px;
+      }
+      .pictureResult {
+        margin: 1.5rem 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .miniGame {
+    >div {
+      height: 93%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    .minigame-container {
+      height: 100vh !important;
     }
   }
 }

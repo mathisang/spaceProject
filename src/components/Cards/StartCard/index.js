@@ -2,12 +2,7 @@ import React from "react";
 import "./startCard.scss";
 
 // Texte d'intro
-const HeadTitle = () => (
-  <h1>
-    SPACE
-    <span>PROJECT</span>
-  </h1>
-);
+const HeadTitle = () => <div className="logo" />;
 
 // Bouton Tutoriel
 const TutoButton = ({ startTutoriel }) => {

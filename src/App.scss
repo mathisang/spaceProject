@@ -1,20 +1,23 @@
 @import "./index";
 
 @font-face {
-  font-family: 'Futura';
-  src: local('FuturaBook'), url('./assets/fonts/FuturaBook.ttf') format('truetype');
+  font-family: "Futura";
+  src: local("FuturaBook"),
+    url("./assets/fonts/FuturaBook.ttf") format("truetype");
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Futura';
-  src: local('FuturaMedium'), url('./assets/fonts/FuturaMedium.ttf') format('truetype');
+  font-family: "Futura";
+  src: local("FuturaMedium"),
+    url("./assets/fonts/FuturaMedium.ttf") format("truetype");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: 'Futura';
-  src: local('FuturaHeavy'), url('./assets/fonts/FuturaHeavy.ttf') format('truetype');
+  font-family: "Futura";
+  src: local("FuturaHeavy"),
+    url("./assets/fonts/FuturaHeavy.ttf") format("truetype");
   font-weight: 700;
 }
 
@@ -45,7 +48,11 @@ body {
   -moz-osx-font-smoothing: grayscale !important;
   overflow: hidden;
 
-  p, h1, h2, h3, h4 {
+  p,
+  h1,
+  h2,
+  h3,
+  h4 {
     margin: 0 auto;
   }
 
@@ -55,7 +62,8 @@ body {
     line-height: 110%;
   }
 
-  .titleBig, .year {
+  .titleBig,
+  .year {
     font-weight: 700;
     font-size: 24px;
   }
@@ -89,5 +97,37 @@ body {
     border: none;
     border-radius: 4px;
     font-family: Futura, sans-serif;
+  }
+
+  button:hover {
+    background: $brownHover;
+  }
+
+  button:active {
+    background: $brownActive;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  body {
+    .description {
+      font-size: 16px;
+      line-height: 134%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    background: linear-gradient(#1f1e24, #19191e) !important;
+
+    .App {
+      > div:first-child {
+        max-width: 48vh;
+        min-width: 330px;
+        margin: 0 auto;
+        background: url('./assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
+      }
+    }
   }
 }

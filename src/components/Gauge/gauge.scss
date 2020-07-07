@@ -1,4 +1,4 @@
-@import '../../index';
+@import "../../index";
 
 .rowGauges {
   display: flex;
@@ -23,11 +23,11 @@
 
     img {
       position: absolute;
-      bottom: 30px;
+      bottom: 35px;
       left: 9px;
     }
 
-    >span {
+    > span {
       color: $blue;
     }
   }
@@ -41,6 +41,21 @@
 
     span {
       color: $white;
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .rowGauges {
+    .boxGauge {
+      img {
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      span {
+        display: none;
+      }
     }
   }
 }

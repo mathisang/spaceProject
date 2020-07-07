@@ -57,7 +57,7 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
       });
   }, [season]);
 
-  const headerOpacity = step.isActive === false ? "1" : "0";
+  const headerClass = step.isActive !== false && "hideHeader";
 
   return (
     <CardContext.Provider value={cardContextValue}>
@@ -82,7 +82,11 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
           />
         ) : (
           <div className="playScreen">
-            <div className="headerScreen" style={{ opacity: headerOpacity }}>
+            <div
+              className={`headerScreen ${
+                step.isActive !== false && "hideHeader"
+              }`}
+            >
               <SeasonTimeline
                 season={season}
                 setSeason={setSeason}
@@ -92,7 +96,10 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
               />
               <Gauge />
             </div>
-            <div className="contentScreen">
+            <div
+              className="contentScreen"
+              style={{ height: step.isActive !== false && "100vh" }}
+            >
               {/*prendre le temps maximum, compter le nb de jours et apres placé les steps*/}
               {/*avancer vw au lieu de % ? */}
               <StepTimeline

@@ -39,7 +39,14 @@ export default function ({ money, opinion, search, gameBadge }) {
 
   // Affichage de l'écran de fin
   return (
-    <div className="endScreen">
+    <div
+      className="endScreen"
+      style={{
+        background: `url("../../../assets/images/end/end_usa.png") 100% 130% no-repeat,
+        url("../../../assets/images/cards/background_cards.png") top no-repeat,
+        $neutralBlack !important;`,
+      }}
+    >
       <div>
         {money === 0 || opinion === 0 || search === 0 ? (
           <LooseText money={money} opinion={opinion} search={search} />

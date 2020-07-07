@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { earth, moon, helmet, rocket } from "../../assets/images";
+import { earth, moon, helmet, rocket, flagUsa } from "../../assets/images";
 import "./stepTimeline.scss";
 
 export default function ({
@@ -15,6 +15,8 @@ export default function ({
     setRocketPosition(rocketPosition + 2.55);
   }, [season]);
 
+  console.log(step.id);
+
   // Avancement linéaire à rendre dynamique avec les dates des étapes
 
   return (
@@ -26,10 +28,7 @@ export default function ({
         <img src={rocket} alt="" />
       </div>
       <div>
-        <img src={helmet} alt="" />
-      </div>
-      <div>
-        <img src={helmet} alt="" />
+        <img src={step.id === 0 ? helmet : step.id > 0 && flagUsa} alt="" />
       </div>
       <div>
         <img src={moon} alt="" />
