@@ -27,3 +27,14 @@
     }
   }
 }
+
+@media screen and (min-width:640px){
+  .instructions-container {
+    min-width: 30%;
+    width: auto;
+    top: 42%;
+    .instructions {
+      padding: 5% 0;
+    }
+  }
+}

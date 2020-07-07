@@ -12,7 +12,6 @@ export default () => {
   return (
     <div className="scene">
       <Canvas
-        shadowMap
         sRGB
         gl={{ alpha: false }}
         camera={{ position: [0, 20, -40] }}

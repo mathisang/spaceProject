@@ -64,18 +64,18 @@
 
 @media screen and (min-width:640px){
   .controls-container {
-    height: 36%;
+    height: 40%;
     .buttons-container {
+      margin: 1% 32% 0;
+      .secondary-button.large {
+        padding: 3% 15%;
+      }
       button {
-        padding: 2% 2%;
-        height: 100%;
+        padding: 3% 4%;
         img {
           width: 25px;
           height: 25px;
         }
-      }
-      .secondary-button.large {
-        padding: 2% 8%;
       }
     }
   }

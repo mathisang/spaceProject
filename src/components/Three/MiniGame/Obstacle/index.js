@@ -22,9 +22,24 @@ export default function Obstacle({
     THREE.TextureLoader,
     "three/miniGameSpaceship/obstacle/obstacle_texture.jpg"
   );
-  let desktopPositions = [-8, -6, -4, -2, 0, 2, 4, 6, 8];
+  let desktopPositions = [
+    -14,
+    -12,
+    -10,
+    -8,
+    -6,
+    -4,
+    -2,
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+  ];
   let mobilePositions = [-3, -2, -1, 0, 1, 2, 3];
-  let difficulty = useState(0);
   let difficultyDesktopValues = [
     { time: 500, position: 20 },
     { time: 400, position: 35 },

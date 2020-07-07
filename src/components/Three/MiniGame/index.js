@@ -13,8 +13,9 @@ import StartCounter from "./StartCounter";
 import LifePoints from "./LifePoints";
 
 export default ({ setGameBadge, gameBadge, setResultGame }) => {
+  const difficulty = 1;
   const [isTouched, setTouched] = useState(false);
-  const [lifePoints, setLifePoints] = useState(3);
+  const [lifePoints, setLifePoints] = useState(difficulty === 0 ? 3 : 5);
   const [isGameOn, setGameStatus] = useState(false);
   const [asteroid, setAsteroid] = useState(1);
   const [globalAsteroid, setGlobalAsteroid] = useState(0);
@@ -33,29 +34,28 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
       }, 1000);
     }
     if (lifePoints === 0) {
-      /*setGameBadge((prevState) => {
+      setGameBadge((prevState) => {
         return {
           ...prevState,
           flightGame: "urss",
         };
       });
-      setResultGame("loose");*/
-      console.log("loose");
+      setResultGame("loose");
     }
   }, [isTouched]);
 
   useEffect(() => {
     if (obstaclePart === 2) {
       if (asteroid === 30) {
-        /* setGameBadge((prevState) => {
-          return {
-            ...prevState,
-            flightGame: "usa",
-          };
-        });
-        setResultGame("win");*/
-        console.log("win");
-        //put set timeout
+        setTimeout(() => {
+          setGameBadge((prevState) => {
+            return {
+              ...prevState,
+              flightGame: "usa",
+            };
+          });
+          setResultGame("win");
+        }, 5000);
       }
     }
   }, [asteroid]);
