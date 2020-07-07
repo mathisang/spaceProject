@@ -33,26 +33,29 @@ export default ({ setGameBadge, gameBadge, setResultGame }) => {
       }, 1000);
     }
     if (lifePoints === 0) {
-      setGameBadge((prevState) => {
+      /*setGameBadge((prevState) => {
         return {
           ...prevState,
           flightGame: "urss",
         };
       });
-      setResultGame("loose");
+      setResultGame("loose");*/
+      console.log("loose");
     }
   }, [isTouched]);
 
   useEffect(() => {
     if (obstaclePart === 2) {
       if (asteroid === 30) {
-        setGameBadge((prevState) => {
+        /* setGameBadge((prevState) => {
           return {
             ...prevState,
             flightGame: "usa",
           };
         });
-        setResultGame("win");
+        setResultGame("win");*/
+        console.log("win");
+        //put set timeout
       }
     }
   }, [asteroid]);
