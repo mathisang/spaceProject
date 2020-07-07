@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import cards from "../../../datas/randomCards.json";
 import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
@@ -60,12 +59,20 @@ export default function ({ cardUnused, cardsData }) {
     for (const type of typeList) {
       response === undefined
         ? (updatedGauge[type] =
-            gauge[type] + cardsData[card - 1].choices[idButton - 1][type])
+            gauge[type] + cardsData[card - 1].choices[idButton - 1][type] > 100
+              ? 100
+              : gauge[type] + cardsData[card - 1].choices[idButton - 1][type])
         : (updatedGauge[type] =
             gauge[type] +
-            cardsData[card - 1].choices[response].consequence[
-              type + propertiesResult
-            ]);
+              cardsData[card - 1].choices[response].consequence[
+                type + propertiesResult
+              ] >
+            100
+              ? 100
+              : gauge[type] +
+                cardsData[card - 1].choices[response].consequence[
+                  type + propertiesResult
+                ]);
     }
     setGauge(updatedGauge);
   }

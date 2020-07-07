@@ -6,17 +6,23 @@ import GaugeContext from "../Gauge/GaugeContext";
 import SeasonTimeline from "../SeasonTimeline";
 import CardContext from "../Cards/CardContext";
 import StepCard from "../Cards/StepCard";
-import stepCards from "../../datas/stepCards.json";
 import EndCard from "../Cards/EndCard";
 import Tutorial from "../Tutorial";
 import StepTimeline from "../StepTimeline/index";
 import MiniGame from "../MiniGame";
 
-export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
+export default function ({
+  tutorialStatus,
+  setTutorialStatus,
+  cardsData,
+  gameData,
+  stepData,
+  tutorialData,
+}) {
   const [gauge, setGauge] = useState({
-    money: 30,
-    opinion: 50,
-    search: 50,
+    money: 80,
+    opinion: 80,
+    search: 80,
   });
 
   const gaugeContextValue = { gauge, setGauge };
@@ -43,14 +49,18 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
-    (gauge.money === 0 || gauge.opinion === 0 || gauge.search === 0) &&
+    (gauge.money <= 0 || gauge.opinion <= 0 || gauge.search <= 0) &&
       setLoose(true);
   }, [gauge]);
+
+  useEffect(() => {
+    gameBadge.moonGame !== false && setEnd(true);
+  }, [gameBadge.moonGame]);
 
   // Déclenchement de l'événement
   useEffect(() => {
     let currentDate = ListSeasons[season] + " " + year;
-    currentDate === stepCards[step.id].stepSeason &&
+    currentDate === stepData[step.id].stepSeason &&
       setStep((prevState) => {
         return { ...prevState, isActive: true };
       });
@@ -61,7 +71,12 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
   return (
     <CardContext.Provider value={cardContextValue}>
       <GaugeContext.Provider value={gaugeContextValue}>
-        {tutorialStatus && <Tutorial setTutorialStatus={setTutorialStatus} />}
+        {tutorialStatus && (
+          <Tutorial
+            setTutorialStatus={setTutorialStatus}
+            tutorialStep={tutorialData}
+          />
+        )}
         {isLoose || isEnd ? (
           <EndCard
             money={gauge.money}
@@ -78,6 +93,8 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
             setGameOn={setGameOn}
             year={year}
             gameBadge={gameBadge}
+            gameData={gameData}
+            stepCards={stepData}
           />
         ) : (
           <div className="playScreen">
@@ -102,7 +119,7 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
               {/*prendre le temps maximum, compter le nb de jours et apres placé les steps*/}
               {/*avancer vw au lieu de % ? */}
               <StepTimeline
-                stepCards={stepCards}
+                stepCards={stepData}
                 year={year}
                 season={season}
                 ListSeasons={ListSeasons}
@@ -120,6 +137,7 @@ export default function ({ tutorialStatus, setTutorialStatus, cardsData }) {
                   ListSeasons={ListSeasons}
                   gameOn={gameOn}
                   setGameOn={setGameOn}
+                  steps={stepData}
                 />
               ) : (
                 <RandomCard cardsData={cardsData} cardUnused={cardUnused} />

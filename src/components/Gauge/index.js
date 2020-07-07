@@ -16,9 +16,9 @@ export default function () {
 
   function showAmount(type) {
     return gauge[type] > 100
-      ? (gauge[type] = 100 + "%")
+      ? 100 + "%"
       : gauge[type] < 0
-      ? (gauge[type] = 0)
+      ? 0 + "%"
       : gauge[type] + "%";
   }
 

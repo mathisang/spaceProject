@@ -1,7 +1,5 @@
-import React, { useContext, useState } from "react";
-import stepCards from "../../datas/stepCards.json";
+import React, { useContext, useEffect, useState } from "react";
 import GaugeContext from "../Gauge/GaugeContext";
-import gameList from "../../datas/gameList.json";
 import "./MiniGame.scss";
 import FirstGame from "../Three/MiniGame";
 import MoonGame from "../Three/MoonGame";
@@ -14,6 +12,8 @@ export default function ({
   year,
   gameBadge,
   setGameBadge,
+  gameData,
+  stepCards,
 }) {
   const numberEvent = step.id + 1;
   const [resultGame, setResultGame] = useState(null);
@@ -25,8 +25,8 @@ export default function ({
           {year} - {numberEvent}
           {numberEvent === 1 ? "er" : "ème"} événement
         </span>
-        <h3 className="titleGame">{gameList[step.id].title}</h3>
-        <p className="description">{gameList[step.id].information}</p>
+        <h3 className="titleGame">{gameData[step.id].title}</h3>
+        <p className="description">{gameData[step.id].information}</p>
       </div>
     );
   };
@@ -35,7 +35,7 @@ export default function ({
     return (
       <div className="gameRules">
         <div className="showGame" />
-        <p className="description">{gameList[step.id].rules}</p>
+        <p className="description">{gameData[step.id].rules}</p>
       </div>
     );
   };
@@ -60,12 +60,12 @@ export default function ({
   };
 
   const EndGame = () => {
-    setResultGame(nameGame === "usa" ? "win" : "loose");
+    setResultGame(nameGame === "usa" ? "Win" : "Loose");
     const skipGame = () => {
       setGauge({
-        money: gauge.money + stepCards[step.id][resultGame].money,
-        opinion: gauge.opinion + stepCards[step.id][resultGame].opinion,
-        search: gauge.search + stepCards[step.id][resultGame].search,
+        money: gauge.money + stepCards[step.id]["money" + resultGame],
+        opinion: gauge.opinion + stepCards[step.id]["opinion" + resultGame],
+        search: gauge.search + stepCards[step.id]["search" + resultGame],
       });
       setGameOn(false);
       setStep({ isActive: false, id: step.id + 1 });
@@ -79,14 +79,18 @@ export default function ({
             alt=""
           />
         </div>
-        <h3 className="titleGame">{stepCards[step.id][resultGame].label}</h3>
-        <p className="description">{stepCards[step.id][resultGame].message}</p>
+        <h3 className="titleGame">
+          {stepCards[step.id]["label" + resultGame]}
+        </h3>
+        <p className="description">
+          {stepCards[step.id]["message" + resultGame]}
+        </p>
 
         <div
           className="pictureResult"
           style={{
             background: `url('../../assets/images/step_event/${
-              stepCards[step.id][resultGame].picture
+              stepCards[step.id]["picture" + resultGame]
             }') center no-repeat`,
             backgroundSize: "cover",
           }}
@@ -97,7 +101,6 @@ export default function ({
       </div>
     );
   };
-  console.log(gameBadge.flightGame);
 
   const nameGame =
     step.id === 0 ? gameBadge.flightGame : step.id === 1 && gameBadge.moonGame;
@@ -133,11 +136,9 @@ export default function ({
           <Text />
           <RulesGame />
           <GameButton />
-          {/*<GameButton result="loose" />*/}
         </div>
       )}
       {gameStatus !== false &&
-        // <EndGame step={step} setStep={setStep} setEnd={setEnd} />
         (nameGame === false ? (
           loadGame
         ) : (

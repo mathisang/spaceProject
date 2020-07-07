@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import tutorialStep from "../../datas/tutorialStep.json";
 
-export default function ({ setTutorialStatus }) {
+export default function ({ setTutorialStatus, tutorialStep }) {
   const [stepTutorial, setStepTutorial] = useState(1);
 
   function nextStep() {

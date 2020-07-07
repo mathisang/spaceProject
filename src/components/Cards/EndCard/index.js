@@ -19,7 +19,7 @@ export default function ({ money, opinion, search, gameBadge }) {
   };
 
   // Variable en attendant, de fixer la condition de victoire finale
-  let winner = "usa";
+  let winner = gameBadge.moonGame === "usa" ? "usa" : "urss";
 
   const SocialShare = () => {
     return (
@@ -42,13 +42,16 @@ export default function ({ money, opinion, search, gameBadge }) {
     <div
       className="endScreen"
       style={{
-        background: `url("../../../assets/images/end/end_usa.png") 100% 130% no-repeat,
+        background: `url("../../../assets/images/end/${
+          winner === "usa" ? "end_usa" : "end_urss"
+        }.png") 100% 130% no-repeat,
         url("../../../assets/images/cards/background_cards.png") top no-repeat,
-        $neutralBlack !important;`,
+        black`,
+        backgroundSize: "100%",
       }}
     >
       <div>
-        {money === 0 || opinion === 0 || search === 0 ? (
+        {money <= 0 || opinion <= 0 || search <= 0 ? (
           <LooseText money={money} opinion={opinion} search={search} />
         ) : (
           <EndText winner={winner} />
