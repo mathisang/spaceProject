@@ -31,17 +31,17 @@ export const winSciences = require("./cards/consequence/win_sciences.png");
 export const gaugeBackground = require("./flightgame/background-gauge-flight.jpg");
 
 // MoonGame
-export const icon1 = require("./moongame/icon1.png");
-export const icon2 = require("./moongame/icon2.png");
-export const icon3 = require("./moongame/icon3.png");
-export const icon4 = require("./moongame/icon4.png");
-export const icon5 = require("./moongame/icon5.png");
-export const icon6 = require("./moongame/icon6.png");
-export const icon7 = require("./moongame/icon7.png");
-export const icon8 = require("./moongame/icon8.png");
+export const icon1 = require("./moongame/icon1.svg");
+export const icon2 = require("./moongame/icon2.svg");
+export const icon3 = require("./moongame/icon3.svg");
+export const icon4 = require("./moongame/icon4.svg");
+export const icon5 = require("./moongame/icon5.svg");
+export const icon6 = require("./moongame/icon6.svg");
+export const icon7 = require("./moongame/icon7.svg");
+export const icon8 = require("./moongame/icon8.svg");
 export const heart = require("./moongame/heart.png");
-export const success = require("./moongame/success.png");
-export const fail = require("./moongame/fail.png");
+export const success = require("./moongame/success.svg");
+export const fail = require("./moongame/fail.svg");
 export const speaker = require("./moongame/speaker.png");
 export const nut = require("./moongame/nut.png");
 

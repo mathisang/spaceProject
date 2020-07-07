@@ -65,8 +65,8 @@ export default ({ setTimer, difficulty, crInstr, setCrInst, partResult }) => {
                   <img src={buttons[crInstr[index]].img} />
                 </div>
               ))}
-            {partResult.win && <img src={success} />}
-            {partResult.fail && <img src={fail} />}
+            {partResult.win && <img className="result" src={success} />}
+            {partResult.fail && <img className="result" src={fail} />}
           </div>
         )}
       </div>

@@ -23,3 +23,9 @@
     text-align: center;
   }
 }
+
+@media screen and (min-width:640px){
+  .health-container {
+    right: 30%;
+  }
+  }

@@ -65,16 +65,27 @@
 @media screen and (min-width:640px){
   .controls-container {
     height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      width: 100%;
+    }
+    .image-container {
+      padding-top: 0;
+    }
     .buttons-container {
-      margin: 1% 32% 0;
+      margin: 1% auto 0;
+      max-width: 450px;
       .secondary-button.large {
-        padding: 3% 15%;
+        padding: 18px 65px;
       }
       button {
-        padding: 3% 4%;
+        padding: 18px 20px;
+        border-radius: 6px;
         img {
-          width: 25px;
-          height: 25px;
+          width: 35px;
+          height: 35px;
         }
       }
     }
