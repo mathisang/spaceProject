@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { swipeLeft, swipeRight } from "../../../../assets/images/index";
 import ModalRandom from "./ModalRandom";
 import ChoicesButtons from "./ChoicesButtons";
@@ -14,6 +14,7 @@ export default function ({
   isChoose,
   setChoose,
   stepTutorial,
+  swipeState,
 }) {
   // Détermine quelle réponse possède une conséquence
   const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
@@ -24,6 +25,18 @@ export default function ({
   }
 
   const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+
+  // Gestion de la réponse si c'est un swipe
+  useMemo(() => {
+    console.log(swipeState);
+    if (swipeState !== 0) {
+      const cardSwipeId = document.getElementsByClassName("card")[0].id;
+      const button1 = document.querySelectorAll(".buttonsCard button")[0];
+      const button2 = document.querySelectorAll(".buttonsCard button")[1];
+      console.log(button1);
+      console.log(button2);
+    }
+  }, [swipeState]);
 
   // Boutons cartes
   const CardButtons = ({ card, value, orderButton }) => {

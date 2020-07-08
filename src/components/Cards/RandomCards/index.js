@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo, useRef } from "react";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
 import "./randomCards.scss";
@@ -15,20 +15,17 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
   const [nextCard, setNextCard] = useState(null);
   const [idButton, setIdButton] = useState(0);
   /*const [{ background }, set] = useSpring(() => ({ background: "red" }));*/
-  const [swipeState, set] = useState(0);
+  const [swipeState, setSwipe] = useState(0);
   const handleSwipe = (swipeX) => {
-    swipeX === 1 && set(1);
-    swipeX === -1 && set(-1);
-    swipeX === 0 && set(0);
+    swipeX === 1 && setSwipe(1);
+    swipeX === -1 && setSwipe(-1);
+    swipeX === 0 && setSwipe(0);
   };
 
   const bindSwipe = useDrag(({ swipe: [swipeX, swipeY], down }) => {
     handleSwipe(swipeX);
   });
 
-  useEffect(() => {
-    console.log(swipeState);
-  }, [swipeState]);
   function randomNumber() {
     return Math.floor(Math.random() * cardUnused.length);
   }
@@ -124,13 +121,14 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
       {cardsData.map(
         (card, index) =>
           nextCard === card.id && (
-            <div className="card" key={index}>
+            <div className="card" id={card.id} key={index}>
               <ContextRandom
                 card={card}
                 isChoose={isChoose}
                 stepTutorial={stepTutorial}
               />
               <ButtonsRandom
+                swipeState={swipeState}
                 nextCard={nextCard}
                 setIdButton={setIdButton}
                 setSelectedCardId={setSelectedCardId}

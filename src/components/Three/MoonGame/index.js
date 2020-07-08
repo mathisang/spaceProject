@@ -76,28 +76,24 @@ export default ({ setGameBadge, setResultGame, setLifePoints, lifePoints }) => {
   return (
     <MoonGameContext.Provider value={moonContextValue}>
       <div className="moongame-container">
-        {isGameOn ? (
-          <div className="ingame">
-            <ThreeScene />
-            <LifePoints lifePoints={lifePoints} />
-            <Instructions
-              crInstr={currentInstructions}
-              setCrInst={setCurrentInstructions}
-              difficulty={moonDifficulty[2]}
-              setTimer={setTimer}
-              partResult={partResult}
-            />
-            <Buttons
-              setPartResult={setPartResult}
-              crInstr={currentInstructions}
-              isTimerOn={isTimerOn}
-              pts={lifePoints}
-              setPts={setLifePoints}
-            />
-          </div>
-        ) : (
-          <StartCounter setGameStatus={setGameStatus} />
-        )}
+        <div className="ingame">
+          <ThreeScene />
+          <LifePoints lifePoints={lifePoints} />
+          <Instructions
+            crInstr={currentInstructions}
+            setCrInst={setCurrentInstructions}
+            difficulty={moonDifficulty[2]}
+            setTimer={setTimer}
+            partResult={partResult}
+          />
+          <Buttons
+            setPartResult={setPartResult}
+            crInstr={currentInstructions}
+            isTimerOn={isTimerOn}
+            pts={lifePoints}
+            setPts={setLifePoints}
+          />
+        </div>
       </div>
     </MoonGameContext.Provider>
   );
