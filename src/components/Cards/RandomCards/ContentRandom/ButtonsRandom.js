@@ -30,7 +30,6 @@ export default function ({
   // Gestion de la réponse si c'est un swipe
   useEffect(() => {
     if (swipeState !== 0) {
-      const cardSwipeId = document.getElementsByClassName("card")[0].id;
       const button1 = document.querySelectorAll(".randomButtons button")[0];
       const button2 = document.querySelectorAll(".randomButtons button")[1];
       swipeState === 1 ? button1.click() : swipeState === -1 && button2.click();
