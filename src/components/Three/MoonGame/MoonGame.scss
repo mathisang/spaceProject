@@ -26,8 +26,10 @@ body {
   }
 }
 
-@media screen and (min-width:640px){
-  .health-container {
-    right: 30%;
+@media screen and (min-width:640px) {
+  .moongame-container {
+    .health-container {
+      right: 30%;
+    }
   }
-  }
+}

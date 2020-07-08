@@ -84,8 +84,8 @@ function App() {
               startTutoriel={tutorialChange}
             />
           )}
+          {isBrowser && <SceneDesktop />}
         </div>
-        {isBrowser && <SceneDesktop />}
       </Route>
     </Switch>
   );
