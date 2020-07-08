@@ -12,9 +12,9 @@ export default function ({ money, opinion }) {
 
   const Text = () => (
     <p className="description">
-      {money === 0
+      {money <= 0
         ? looseText.moneyText
-        : opinion === 0
+        : opinion <= 0
         ? looseText.opinionText
         : looseText.searchText}
     </p>
