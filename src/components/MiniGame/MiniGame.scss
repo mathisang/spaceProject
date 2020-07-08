@@ -34,12 +34,14 @@
     justify-content: space-between;
     height: 40%;
 
-    .showGame {
-      height: 100%;
-      width: 100%;
-      background: url("../../assets/images/step_event/flight_game.png")
-        no-repeat center;
-      background-size: cover;
+    .videoTuto {
+      height: 71%;
+
+      video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
     }
 
     p {
@@ -116,6 +118,12 @@
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+    }
+
+    .gameRules {
+      .videoTuto {
+          height: 77%;
+      }
     }
 
     .minigame-container {

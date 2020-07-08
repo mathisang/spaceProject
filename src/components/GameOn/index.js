@@ -20,9 +20,9 @@ export default function ({
   tutorialData,
 }) {
   const [gauge, setGauge] = useState({
-    money: 30,
-    opinion: 50,
-    search: 50,
+    money: 100,
+    opinion: 100,
+    search: 100,
   });
 
   const gaugeContextValue = { gauge, setGauge };
@@ -37,7 +37,6 @@ export default function ({
   const [gameOn, setGameOn] = useState(false);
   const [gameBadge, setGameBadge] = useState({
     flightGame: false,
-    secondGame: false,
     moonGame: false,
   });
   const [rocketPosition, setRocketPosition] = useState(0);

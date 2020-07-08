@@ -20,10 +20,7 @@ export default function ({
     return (
       <div className="stepContent">
         <h2 className="titleBig">{steps[step.id].label}</h2>
-        {/*<p className="description">{steps[step.id].name}</p>*/}
-        <p className="description">
-          Phrase a re-dynamiser quand on aura API a jour
-        </p>
+        <p className="description">{steps[step.id].name}</p>
         <p className="gaugeManage">
           Suite à vos décisions, vous bénéficez de :
         </p>

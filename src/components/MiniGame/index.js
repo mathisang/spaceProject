@@ -33,10 +33,19 @@ export default function ({
     );
   };
 
+  const urlVideo =
+    step.id === 0
+      ? "../../assets/images/cards/rocketgame.mp4"
+      : "../../assets/images/cards/moongame.mp4";
+
   const RulesGame = () => {
     return (
       <div className="gameRules">
-        <div className="showGame" />
+        <div className="videoTuto">
+          <video video autobuffer autoPlay loop>
+            <source id="mp4" src={urlVideo} type="video/mp4" />
+          </video>
+        </div>
         <p className="description">{gameData[step.id].rules}</p>
       </div>
     );
