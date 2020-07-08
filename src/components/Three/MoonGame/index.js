@@ -73,7 +73,7 @@ export default ({ setGameBadge, setResultGame }) => {
       });
       setResultGame("loose");
     }
-  }, [numberInstructions]);
+  }, [numberInstructions, lifePoints]);
   return (
     <MoonGameContext.Provider value={moonContextValue}>
       <div className="moongame-container">

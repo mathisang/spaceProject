@@ -14,15 +14,15 @@ export default function Rocket({ progressProps }) {
     if (modMove < progressProps) {
       setModMove(modMove + 0.05);
     }
-    groupModel.current.position.y = 22 - modMove * 1.5;
+    groupModel.current.position.y = 24 - modMove * 1.5;
     if (progressProps < 9) {
       groupModel.current.rotation.y += 0.005;
     }
   });
 
   return (
-    <mesh ref={groupModel} rotation={[0, 0, 0]} position={[0, 22, 10]}>
-      <group scale={[0.25, 0.25, 0.25]}>
+    <mesh ref={groupModel} rotation={[0, 0, 0]} position={[0, 24, 8]}>
+      <group scale={[0.18, 0.18, 0.18]}>
         <mesh geometry={nodes.Cylinder002_0.geometry}>
           <meshStandardMaterial
             attach="material"

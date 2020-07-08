@@ -94,24 +94,25 @@ export default ({ isTimerOn, crInstr, setPts, pts, setPartResult }) => {
       <img className="nut" src={nut} />
       <img className="nut" src={nut} />
       <img className="nut" src={nut} />
-      <div className="image-container">
-        <img src={speaker} />
+      <div>
+        <div className="image-container">
+          <img src={speaker} />
+        </div>
+        <p>Houston</p>
+        <div className="buttons-container">
+          {buttons.map((button, index) => (
+            <button
+              className={`secondary-button ${
+                index === 2 || index === 4 ? "large" : ""
+              }`}
+              onClick={() => handleClick(index)}
+              key={index}
+            >
+              <img src={button.img} />
+            </button>
+          ))}
+        </div>
       </div>
-      <p>Houston</p>
-      <div className="buttons-container">
-        {buttons.map((button, index) => (
-          <button
-            className={`secondary-button ${
-              index === 2 || index === 4 ? "large" : ""
-            }`}
-            onClick={() => handleClick(index)}
-            key={index}
-          >
-            <img src={button.img} />
-          </button>
-        ))}
-      </div>
-      <div className="control-bar" />
     </div>
   );
 };

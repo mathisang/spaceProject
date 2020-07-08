@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useMemo } from "react";
+import React, { Suspense, useContext, useMemo, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "react-three-fiber";
 import "./scene.scss";
@@ -6,15 +6,18 @@ import Module from "./ProgressRocket";
 import Loading from "../../MiniGame/Loading";
 import Moon from "./Moon";
 import MoonGameContext from "../Context";
+import BackgroundSpace from "../../MiniGame/BackgroundSpace";
 
 export default () => {
   const { progress, setMoon } = useContext(MoonGameContext);
+  // state to handle rotation of background if 0 turn on x axis / if 1 turn on y axis
+  const [rotationBack, setRotationBack] = useState(0);
   return (
     <div className="scene">
       <Canvas
         sRGB
         gl={{ alpha: false }}
-        camera={{ position: [0, 20, -40] }}
+        camera={{ position: [0, 20, -40], near: 0.01, far: 10000 }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color("black"));
         }}
@@ -26,6 +29,7 @@ export default () => {
           intensity={1}
           castShadow
         />
+        <BackgroundSpace rotationBack={rotationBack} pointCount={500} />
         <Suspense fallback={<Loading />}>
           <Module progressProps={progress} />
           <Moon />

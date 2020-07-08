@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from "react";
 import { useFrame } from "react-three-fiber";
 
-export default function BackgroundSpace({ pointCount }) {
+export default function BackgroundSpace({ pointCount, rotationBack }) {
   const refPoints = useRef();
   const [positions] = useMemo(() => {
     let positions = [];
@@ -21,9 +21,11 @@ export default function BackgroundSpace({ pointCount }) {
     return [new Float32Array(positions)];
   }, [pointCount]);
   // fin
-  useFrame(
-    () => (refPoints.current.rotation.x = refPoints.current.rotation.x -= 0.001)
-  );
+  useFrame(() => {
+    rotationBack === 0
+      ? (refPoints.current.rotation.y = refPoints.current.rotation.y -= 0.0005)
+      : (refPoints.current.rotation.x = refPoints.current.rotation.x -= 0.001);
+  });
   return (
     <points ref={refPoints}>
       <bufferGeometry attach="geometry">

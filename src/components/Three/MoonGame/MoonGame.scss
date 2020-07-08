@@ -1,4 +1,6 @@
-
+body {
+  background: none!important;
+}
 
 .moongame-container {
   height: 100%;
@@ -23,3 +25,9 @@
     text-align: center;
   }
 }
+
+@media screen and (min-width:640px){
+  .health-container {
+    right: 30%;
+  }
+  }
