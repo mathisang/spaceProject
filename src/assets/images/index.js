@@ -1,6 +1,7 @@
 // Home
 export const shadowHome = require("./shadow_home.png");
 export const windowHome = require("./window_home.png");
+export const logo = require("./logo.svg");
 
 // Gauges
 export const dollarsBlue = require("./gauges/dollars_blue.png");

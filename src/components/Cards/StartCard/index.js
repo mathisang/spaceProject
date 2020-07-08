@@ -1,8 +1,13 @@
 import React from "react";
 import "./startCard.scss";
+import { logo } from "../../../assets/images/index";
 
 // Texte d'intro
-const HeadTitle = () => <div className="logo" />;
+const HeadTitle = () => (
+  <div className="logo">
+    <img src={logo} alt="" />
+  </div>
+);
 
 // Bouton Tutoriel
 const TutoButton = ({ startTutoriel }) => {

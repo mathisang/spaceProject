@@ -44,7 +44,7 @@ export default function ({ money, opinion, search, gameBadge }) {
       style={{
         background: `url("../../../assets/images/end/${
           winner === "usa" ? "end_usa" : "end_urss"
-        }.png") 100% 130% no-repeat,
+        }.png") 100% 140% no-repeat,
         url("../../../assets/images/cards/background_cards.png") top no-repeat,
         black`,
         backgroundSize: "100%",

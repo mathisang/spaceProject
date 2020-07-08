@@ -45,8 +45,14 @@ export default function ({ cardUnused, cardsData }) {
         return cardUnused[0];
         break;
       default:
-        return cardUnused[number];
-        break;
+        switch (cardUnused[2]) {
+          case 5:
+            return cardUnused[2];
+            break;
+          default:
+            return cardUnused[number];
+            break;
+        }
     }
   }
 
@@ -93,7 +99,7 @@ export default function ({ cardUnused, cardsData }) {
 
   // Affichage de la carte + réponses
   return (
-    <div className="randomCard">
+    <div className="randomCard" id="randomCard">
       {cardsData.map(
         (card, index) =>
           nextCard === card.id && (
