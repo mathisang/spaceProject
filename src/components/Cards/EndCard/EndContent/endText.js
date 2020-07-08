@@ -5,12 +5,12 @@ export default function ({ winner }) {
     usa: {
       title: "Victoire !",
       label:
-        "Vous avez triomphé ! Les États-Unis sont les premiers à envoyer un humain marcher sur la lune. Vous affirmez votre supériorité face à l’URSS.",
+        "C'est un petit pas pour l'homme, un bond de géant pour l'humanité.",
     },
     urss: {
       title: "Défaite",
       label:
-        "Vous y étiez presque ! L'URSS sont les premiers à envoyer un humain marcher sur la lune.",
+        "L’URSS a réussi à vous devancer et envoyer un homme dans l’espace avant vous.",
     },
   };
 

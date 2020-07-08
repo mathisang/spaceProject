@@ -2,9 +2,12 @@ import React from "react";
 
 export default function ({ money, opinion }) {
   const looseText = {
-    moneyText: "Votre argent est tombé à 0, vous êtes fauché !",
-    opinionText: "Votre opinion est tombé à 0, la population vous rejette !",
-    searchText: "Votre recherche est tombé à 0, l'URSS à 100 ans d'avance !",
+    moneyText:
+      "Les caisses sont vides et vous êtes renvoyé de la direction du programme spatial.",
+    opinionText:
+      "Le peuple est déçu de votre travail et veut vous brûler vivant sur la place publique.",
+    searchText:
+      "Vos chercheurs sont en grève à cause de terribles choix de direction (vous en gros).",
   };
 
   const Text = () => (

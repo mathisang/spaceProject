@@ -30,6 +30,20 @@ export default ({ onChangeStatus, startTutoriel }) => (
     <div className="listButtons">
       <StartButton onChangeStatus={onChangeStatus} />
       <TutoButton startTutoriel={startTutoriel} />
+      <span
+        style={{
+          position: "absolute",
+          bottom: "6px",
+          fontSize: "8px",
+          width: "95%",
+          textAlign: "center",
+        }}
+      >
+        Ce site a été réalisé à des fins pédagogiques dans le cadre du cursus
+        Bachelor de l’école HETIC. Les contenus présentés n'ont pas fait l'objet
+        d'une demande de droit d'utilisation. Ce site ne sera en aucun cas
+        exploité à des fins commerciales et ne sera pas publié
+      </span>
     </div>
   </div>
 );
