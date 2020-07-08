@@ -24,7 +24,9 @@ export default function BackgroundSpace({ pointCount, rotationBack }) {
   useFrame(() => {
     rotationBack === 0
       ? (refPoints.current.rotation.y = refPoints.current.rotation.y -= 0.0005)
-      : (refPoints.current.rotation.x = refPoints.current.rotation.x -= 0.001);
+      : rotationBack === 1
+      ? (refPoints.current.rotation.x = refPoints.current.rotation.x -= 0.001)
+      : (refPoints.current.rotation.y = refPoints.current.rotation.y -= 0.0001);
   });
   return (
     <points ref={refPoints}>

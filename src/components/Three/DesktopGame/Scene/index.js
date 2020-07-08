@@ -8,7 +8,8 @@ import "./scene.scss";
 import BackgroundSpace from "../../MiniGame/BackgroundSpace";
 
 export default function Scene() {
-  const [rotationBack, setRotationBack] = useState(0);
+  // state to handle different rotation on different axis and speed between components
+  const [rotationBack, setRotationBack] = useState(2);
   return (
     <div className="desktop-scene">
       <Canvas
@@ -23,7 +24,7 @@ export default function Scene() {
           intensity={0.7}
           castShadow
         />
-        <BackgroundSpace rotationBack={rotationBack} pointCount={2000} />
+        <BackgroundSpace rotationBack={rotationBack} pointCount={1500} />
         <Suspense fallback={<Loading />}>
           <Earth />
           <Moon />
