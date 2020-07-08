@@ -5,7 +5,7 @@ import "./randomCards.scss";
 import ButtonsRandom from "./ContentRandom/ButtonsRandom";
 import ContextRandom from "./ContentRandom/ContextRandom";
 import { useSpring, animated } from "react-spring";
-import { useDrag } from "react-use-gesture";
+import { useDrag, useGesture } from "react-use-gesture";
 
 export default function ({ cardUnused, cardsData, stepTutorial }) {
   const { gauge, setGauge } = useContext(GaugeContext);
@@ -14,7 +14,6 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
   const { selectedCardId, setSelectedCardId } = useContext(CardContext);
   const [nextCard, setNextCard] = useState(null);
   const [idButton, setIdButton] = useState(0);
-  /*const [{ background }, set] = useSpring(() => ({ background: "red" }));*/
   const [swipeState, setSwipe] = useState(0);
   const handleSwipe = (swipeX) => {
     swipeX === 1 && setSwipe(1);
@@ -24,6 +23,15 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
 
   const bindSwipe = useDrag(({ swipe: [swipeX, swipeY], down }) => {
     handleSwipe(swipeX);
+  });
+
+  const animSwipe = useSpring({
+    reset: true,
+    reverse: true,
+    opacity: 0,
+    transform: "translate3d(0, 50px, 0)",
+    from: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    config: { duration: 500 },
   });
 
   function randomNumber() {
@@ -57,16 +65,8 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
         return cardUnused[0];
         break;
       default:
-        switch (cardUnused[2]) {
-          case 5:
-            return cardUnused[2];
-            break;
-          default:
-            return cardUnused[number];
-            break;
-        }
-      //     return cardUnused[number];
-      //     break;
+        return cardUnused[number];
+        break;
     }
   }
 
@@ -116,7 +116,8 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
     <animated.div
       {...bindSwipe()}
       className="randomCard"
-      style={stepTutorial === 1 ? { zIndex: "99999" } : { zIndex: "unset" }}
+      // style={stepTutorial === 1 ? { zIndex: "99999" } : { zIndex: "unset" }}
+      style={animSwipe}
     >
       {cardsData.map(
         (card, index) =>

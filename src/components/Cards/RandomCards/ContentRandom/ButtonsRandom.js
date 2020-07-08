@@ -2,6 +2,8 @@ import React, { useMemo, useState, useEffect } from "react";
 import { swipeLeft, swipeRight } from "../../../../assets/images/index";
 import ModalRandom from "./ModalRandom";
 import ChoicesButtons from "./ChoicesButtons";
+import { useGesture } from "react-use-gesture";
+import { useSpring } from "react-spring";
 
 export default function ({
   nextCard,
@@ -15,7 +17,7 @@ export default function ({
   setChoose,
   stepTutorial,
   swipeState,
-  setSwipe
+  setSwipe,
 }) {
   // Détermine quelle réponse possède une conséquence
   const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
@@ -25,15 +27,13 @@ export default function ({
     setChoose(true);
   }
 
-  const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
-
   // Gestion de la réponse si c'est un swipe
   useEffect(() => {
     if (swipeState !== 0) {
       const cardSwipeId = document.getElementsByClassName("card")[0].id;
       const button1 = document.querySelectorAll(".randomButtons button")[0];
       const button2 = document.querySelectorAll(".randomButtons button")[1];
-      swipeState === 1 ? button1.click() : swipeState === -1 && button2.click()
+      swipeState === 1 ? button1.click() : swipeState === -1 && button2.click();
       setSwipe(0);
     }
   }, [swipeState]);
@@ -83,11 +83,7 @@ export default function ({
       {isSuccess == null && isChoose == null && (
         <div className="buttonsCard">
           <CardButtons card={card} value={1} orderButton={1} />
-          <CardButtons
-            card={card}
-            value={2}
-            orderButton={2}
-          />
+          <CardButtons card={card} value={2} orderButton={2} />
         </div>
       )}
       {isChoose !== null && (

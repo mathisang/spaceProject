@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   background: url('../../assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
 
