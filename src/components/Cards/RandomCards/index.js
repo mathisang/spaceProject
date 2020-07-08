@@ -4,6 +4,8 @@ import CardContext from "../CardContext";
 import "./randomCards.scss";
 import ButtonsRandom from "./ContentRandom/ButtonsRandom";
 import ContextRandom from "./ContentRandom/ContextRandom";
+import { useSpring, animated } from "react-spring";
+import { useDrag } from "react-use-gesture";
 
 export default function ({ cardUnused, cardsData, stepTutorial }) {
   const { gauge, setGauge } = useContext(GaugeContext);
@@ -12,7 +14,21 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
   const { selectedCardId, setSelectedCardId } = useContext(CardContext);
   const [nextCard, setNextCard] = useState(null);
   const [idButton, setIdButton] = useState(0);
+  /*const [{ background }, set] = useSpring(() => ({ background: "red" }));*/
+  const [swipeState, set] = useState(0);
+  const handleSwipe = (swipeX) => {
+    swipeX === 1 && set(1);
+    swipeX === -1 && set(-1);
+    swipeX === 0 && set(0);
+  };
 
+  const bindSwipe = useDrag(({ swipe: [swipeX, swipeY], down }) => {
+    handleSwipe(swipeX);
+  });
+
+  useEffect(() => {
+    console.log(swipeState);
+  }, [swipeState]);
   function randomNumber() {
     return Math.floor(Math.random() * cardUnused.length);
   }
@@ -100,7 +116,8 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
 
   // Affichage de la carte + réponses
   return (
-    <div
+    <animated.div
+      {...bindSwipe()}
       className="randomCard"
       style={stepTutorial === 1 ? { zIndex: "99999" } : { zIndex: "unset" }}
     >
@@ -130,6 +147,6 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
             </div>
           )
       )}
-    </div>
+    </animated.div>
   );
 }
