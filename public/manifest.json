@@ -1,8 +1,8 @@
 {
-  "name": "Space Game!",
-  "short_name": "SpaceGame",
-  "theme_color": "#2196f3",
-  "background_color": "#2196f3",
+  "name": "Space Project",
+  "short_name": "Space Project",
+  "theme_color": "#222240",
+  "background_color": "#F5F5EB",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
