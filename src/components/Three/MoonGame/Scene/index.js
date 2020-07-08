@@ -10,7 +10,7 @@ import BackgroundSpace from "../../MiniGame/BackgroundSpace";
 
 export default () => {
   const { progress, setMoon } = useContext(MoonGameContext);
-  // state to handle rotation of background if 0 turn on x axis / if 1 turn on y axis
+  // state to handle different rotation on different axis and speed between components
   const [rotationBack, setRotationBack] = useState(0);
   return (
     <div className="scene">

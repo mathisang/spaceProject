@@ -15,7 +15,7 @@ import LifePoints from "./LifePoints";
 export default ({ setGameBadge, gameBadge, setResultGame }) => {
   const difficulty = 1;
   const [isTouched, setTouched] = useState(false);
-  const [lifePoints, setLifePoints] = useState(difficulty === 0 ? 3 : 5);
+  const [lifePoints, setLifePoints] = useState(difficulty === 0 ? 1 : 3);
   const [isGameOn, setGameStatus] = useState(false);
   const [asteroid, setAsteroid] = useState(1);
   const [globalAsteroid, setGlobalAsteroid] = useState(0);

@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
-export default function Moon() {
-  const map = useLoader(THREE.TextureLoader, "three/moongame/moon/moon.jpg");
-  const moon = useRef();
+export default function Earth() {
+  const earthRef = useRef();
+  const map = useLoader(THREE.TextureLoader, "three/earth/earth.jpg");
   useFrame(() => {
-    moon.current.rotation.y += 0.0005;
+    earthRef.current.rotation.y -= 0.001;
   });
   return (
     <mesh
-      ref={moon}
-      position={[0, -35, 0]}
+      ref={earthRef}
+      position={[18, 5, -18]}
       scale={[1, 1, 1]}
       receiveShadow
       castShadow
     >
-      <sphereBufferGeometry attach="geometry" args={[50, 64, 64]} />
+      <sphereBufferGeometry attach="geometry" args={[1, 64, 64]} />
       <meshStandardMaterial attach="material" map={map} />
     </mesh>
   );
