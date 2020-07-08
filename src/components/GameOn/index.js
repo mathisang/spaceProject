@@ -112,7 +112,7 @@ export default function ({
             </div>
             <div
               className="contentScreen"
-              style={{ height: step.isActive !== false && "100vh" }}
+              style={{ height: step.isActive !== false && "100%" }}
             >
               <StepTimeline
                 year={year}

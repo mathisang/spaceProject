@@ -126,8 +126,8 @@ export default function ({
     <div
       className="miniGame"
       style={{
-        width: gameStatus !== false && nameGame === false && "100vw",
-        maxWidth: gameStatus !== false && nameGame === false && "100vw",
+        width: gameStatus !== false && nameGame === false && "100%",
+        maxWidth: gameStatus !== false && nameGame === false && "100%",
         padding: gameStatus !== false && nameGame === false && "unset",
       }}
     >

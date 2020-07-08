@@ -32,7 +32,7 @@
       height: 65%;
 
       img {
-        width: 128px;
+        width: 116px;
       }
     }
 
@@ -48,13 +48,14 @@
         button {
           width: 100%;
           height: 74px;
+          min-height: 74px;
           display: flex;
           align-items: center;
           text-align: left;
           margin-top: 0.75rem;
+          padding: 0 16px;
 
           img {
-            padding-left: 0.75rem;
             margin-right: 0.75rem;
           }
         }
@@ -71,6 +72,7 @@
 
           button {
             height: calc((74px * 2) + 0.75rem);
+            min-height: calc((74px * 2) + 0.75rem);
             width: 48%;
             padding: 0;
             background-image: url("../../../assets/images/cards/back_cards.png");
@@ -82,8 +84,8 @@
       }
 
       .modalAnswer {
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         background: rgba(0, 0, 0, 0.25);
         position: absolute;
         top: 0;
@@ -93,9 +95,9 @@
           background: $white;
           border-radius: 8px;
           position: absolute;
-          top: 25.4%;
-          width: 83%;
-          left: 16px;
+          top: 25%;
+          width: calc(100% - 64px);
+          margin: 0 16px;
           padding: 16px;
           display: flex;
           flex-direction: column;
@@ -126,6 +128,24 @@
   }
 }
 
+@media screen and (max-height: 800px) {
+  .randomCard {
+    .card {
+      p {
+        font-size: 17px;
+      }
+      .headerCard {
+        .iconCategory {
+          margin: 0 !important;
+          img {
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-height: 600px) {
   .randomCard {
     height: 84%;
@@ -137,7 +157,6 @@
       .headerCard {
         height: 58%;
         display: flex;
-        align-items: center;
 
         .iconCategory {
           display: none;
@@ -153,6 +172,7 @@
         .buttonsCard {
           button {
             height: 68px;
+            min-height: 68px;
             margin-top: 0.5rem;
           }
         }
@@ -160,13 +180,15 @@
           > div {
             button {
               height: calc(68px * 2);
+              min-height: calc(68px * 2);
             }
           }
         }
         .modalAnswer {
           > div {
-            width: 81.25%;
-            padding: 14px;
+            width: calc(100% - 48px);
+            padding: 12px;
+            margin: 0 12px;
           }
         }
       }
@@ -190,17 +212,16 @@
         }
       }
       .randomButtons {
+        .buttonsCard {
+          button {
+            padding: 0 24px;
+          }
+        }
         .modalAnswer {
-          max-width: 48vh;
-          min-width: 330px;
+          width: 48vh;
           margin: 0 auto;
           left: 50%;
           transform: translateX(-50%);
-
-          > div {
-            top: 24.4%;
-            width: 85.75%;
-          }
         }
       }
     }

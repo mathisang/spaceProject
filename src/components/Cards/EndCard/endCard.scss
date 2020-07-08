@@ -1,9 +1,9 @@
 @import "../../../index";
 
 .endScreen {
-  height: 100vh;
+  height: 100%;
   padding: 2rem 16px;
-  background: url("../../../assets/images/end/end_usa.png") 100% 130% no-repeat,
+  background: url("../../../assets/images/end/end_usa.png") 100% 140% no-repeat,
     url("../../../assets/images/cards/background_cards.png") top no-repeat,
     $neutralBlack;
   background-size: 100%;
