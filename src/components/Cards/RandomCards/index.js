@@ -44,16 +44,16 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
         return cardUnused[0];
         break;
       default:
-        // switch (cardUnused[2]) {
-        //   case 5:
-        //     return cardUnused[2];
-        //     break;
-        //   default:
-        //     return cardUnused[number];
-        //     break;
-        // }
-        return cardUnused[number];
-        break;
+        switch (cardUnused[2]) {
+          case 5:
+            return cardUnused[2];
+            break;
+          default:
+            return cardUnused[number];
+            break;
+        }
+      //     return cardUnused[number];
+      //     break;
     }
   }
 
@@ -62,7 +62,7 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
   function updateGauge(card, response, issue) {
     const typeList = ["money", "opinion", "search"];
     const updatedGauge = {};
-    const propertiesResult = issue === "win" ? "Success" : "Fail";
+    const propertiesResult = issue === "success" ? "Success" : "Fail";
     for (const type of typeList) {
       response === undefined
         ? (updatedGauge[type] =

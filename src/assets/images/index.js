@@ -10,6 +10,8 @@ export const opinionBlue = require("./gauges/opinion_blue.png");
 export const opinionWhite = require("./gauges/opinion_white.png");
 export const searchBlue = require("./gauges/search_blue.png");
 export const searchWhite = require("./gauges/search_white.png");
+export const upEffect = require("./gauges/up.svg");
+export const downEffect = require("./gauges/down.svg");
 
 // Cards
 export const backgroundCards = require("./cards/background_cards.png");
