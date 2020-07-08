@@ -14,6 +14,8 @@ export default function ({
   setGameBadge,
   gameData,
   stepCards,
+  lifePoints,
+  setLifePoints,
 }) {
   const numberEvent = step.id + 1;
   const [resultGame, setResultGame] = useState(null);
@@ -110,6 +112,8 @@ export default function ({
         setGameBadge={setGameBadge}
         gameBadge={gameBadge}
         setResultGame={setResultGame}
+        lifePoints={lifePoints}
+        setLifePoints={setLifePoints}
       />
     ) : (
       step.id === 1 && (
@@ -117,6 +121,8 @@ export default function ({
           setGameBadge={setGameBadge}
           gameBadge={gameBadge}
           setResultGame={setResultGame}
+          lifePoints={lifePoints}
+          setLifePoints={setLifePoints}
         />
       )
     );

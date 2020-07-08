@@ -64,3 +64,6 @@ export const iconLink = require("./end/link.png");
 
 // Event step
 export const live = require("./step_event/live.png");
+
+// Tutorial
+export const tapTutorial = require("./tap_tutorial.svg");

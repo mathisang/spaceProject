@@ -47,11 +47,15 @@ export default function ({
   }
   const [cardUnused, setCardUnused] = useState(arrayFull);
   const [stepTutorial, setStepTutorial] = useState(0);
+  const [lifePoints, setLifePoints] = useState(3);
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
     (gauge.money <= 0 || gauge.opinion <= 0 || gauge.search <= 0) &&
       setLoose(true);
+    gauge.money + gauge.opinion + gauge.search < 150
+      ? setLifePoints(1)
+      : setLifePoints(3);
   }, [gauge]);
 
   useEffect(() => {
@@ -96,6 +100,8 @@ export default function ({
             gameBadge={gameBadge}
             gameData={gameData}
             stepCards={stepData}
+            lifePoints={lifePoints}
+            setLifePoints={setLifePoints}
           />
         ) : (
           <div className="playScreen">
@@ -143,6 +149,7 @@ export default function ({
                   gameOn={gameOn}
                   setGameOn={setGameOn}
                   steps={stepData}
+                  lifePoints={lifePoints}
                 />
               ) : (
                 <RandomCard

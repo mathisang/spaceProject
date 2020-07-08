@@ -1,17 +1,15 @@
 import React, { useContext, useState } from "react";
 import "./step-card.scss";
-import MiniGame from "../../MiniGame";
 
 export default function ({
   step,
-  setStep,
-  setEnd,
   year,
   season,
   ListSeasons,
   gameOn,
   setGameOn,
   steps,
+  lifePoints,
 }) {
   function startGame() {
     setGameOn(true);
@@ -29,7 +27,7 @@ export default function ({
         <p className="gaugeManage">
           Suite à vos décisions, vous bénéficez de :
         </p>
-        <span className="numberLive">3 x</span>
+        <span className="numberLive">{lifePoints} x</span>
       </div>
     );
   };
@@ -54,9 +52,6 @@ export default function ({
           <Text step={step} />
           <MiniGameButton />
         </div>
-      )}
-      {gameOn === true && (
-        <MiniGame step={step} setStep={setStep} setEnd={setEnd} />
       )}
     </div>
   );
