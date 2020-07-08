@@ -129,6 +129,7 @@ export default function ({ cardUnused, cardsData, stepTutorial }) {
               />
               <ButtonsRandom
                 swipeState={swipeState}
+                setSwipe={setSwipe}
                 nextCard={nextCard}
                 setIdButton={setIdButton}
                 setSelectedCardId={setSelectedCardId}

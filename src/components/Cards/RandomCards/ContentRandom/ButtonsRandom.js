@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { swipeLeft, swipeRight } from "../../../../assets/images/index";
 import ModalRandom from "./ModalRandom";
 import ChoicesButtons from "./ChoicesButtons";
@@ -15,6 +15,7 @@ export default function ({
   setChoose,
   stepTutorial,
   swipeState,
+  setSwipe
 }) {
   // Détermine quelle réponse possède une conséquence
   const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
@@ -27,14 +28,13 @@ export default function ({
   const randomButtonId = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
 
   // Gestion de la réponse si c'est un swipe
-  useMemo(() => {
-    console.log(swipeState);
+  useEffect(() => {
     if (swipeState !== 0) {
       const cardSwipeId = document.getElementsByClassName("card")[0].id;
-      const button1 = document.querySelectorAll(".buttonsCard button")[0];
-      const button2 = document.querySelectorAll(".buttonsCard button")[1];
-      console.log(button1);
-      console.log(button2);
+      const button1 = document.querySelectorAll(".randomButtons button")[0];
+      const button2 = document.querySelectorAll(".randomButtons button")[1];
+      swipeState === 1 ? button1.click() : swipeState === -1 && button2.click()
+      setSwipe(0);
     }
   }, [swipeState]);
 
@@ -50,7 +50,6 @@ export default function ({
             : setSelectedCardId(card.id);
         }}
       >
-        {/*Corriger pour swipe gauche et droite tjrs au meme endroit*/}
         <img src={orderButton === 1 ? swipeRight : swipeLeft} alt="" />
         {card.choices[value - 1].label}
       </button>
@@ -83,10 +82,10 @@ export default function ({
     >
       {isSuccess == null && isChoose == null && (
         <div className="buttonsCard">
-          <CardButtons card={card} value={randomButtonId} orderButton={1} />
+          <CardButtons card={card} value={1} orderButton={1} />
           <CardButtons
             card={card}
-            value={randomButtonId === 1 ? 2 : 1}
+            value={2}
             orderButton={2}
           />
         </div>
