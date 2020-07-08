@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
 import "./randomCards.scss";

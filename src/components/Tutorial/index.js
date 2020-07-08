@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./tutorial.scss";
 
 export default function ({ setTutorialStatus, tutorialStep }) {
   const [stepTutorial, setStepTutorial] = useState(1);

@@ -1,0 +1,36 @@
+.tutorialStyle {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  .steps {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .tutorialStyle {
+    max-width: 48vh;
+    min-width: 330px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.25) !important;
+  }
+
+  .App .playScreen {
+    max-width: 48vh;
+    min-width: 330px;
+    margin: 0 auto;
+    background: url('../../assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
+  }
+}

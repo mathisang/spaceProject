@@ -20,9 +20,9 @@ export default function ({
   tutorialData,
 }) {
   const [gauge, setGauge] = useState({
-    money: 30,
-    opinion: 50,
-    search: 50,
+    money: 80,
+    opinion: 80,
+    search: 80,
   });
 
   const gaugeContextValue = { gauge, setGauge };

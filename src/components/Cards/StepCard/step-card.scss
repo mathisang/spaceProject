@@ -10,7 +10,7 @@ body {
   width: 91%;
   background: $white;
   border-radius: 8px;
-  padding: 1.5rem 1rem;
+  padding: 16px;
   color: $blue;
 
   .calendar {
@@ -64,7 +64,8 @@ body {
 @media screen and (max-height: 600px) {
   .boxStep {
     height: 77.25%;
-    width: 89.5%;
+    width: calc(100% - 24px);
+    padding: 12px;
 
     > div {
       height: 100%;
@@ -93,7 +94,6 @@ body {
 }
 @media screen and (min-width: 600px) {
   .boxStep {
-    padding: 2.5rem 16px;
     width: 92.5%;
 
     > div {
