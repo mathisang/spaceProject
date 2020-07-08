@@ -14,11 +14,15 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
     position: [0, 0, 0],
   }));
   const bind = useDrag(
-    ({ movement: [x] }) =>
+    ({ movement: [x], down }) => {
       set({
         position: [x / aspect, -4, 0],
-      }),
-    { eventOptions: { pointer: true } }
+      });
+    },
+    {
+      eventOptions: { pointer: true },
+      bounds: { left: -180, right: 180 },
+    }
   );
   // use cannon box declaration
   const [ref, api] = useBox(() => ({
@@ -44,6 +48,8 @@ export default function Rocket({ propsCannon, setTouched, isTouched }) {
     const t = state.clock.getElapsedTime();
     api.rotation.set(0, t * 0.8, 0);
     if (isMobile) {
+      /*api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
+      api.position.set(spring.position.payload[0].value, -4, 0);*/
       api.position.set(spring.position.payload[0].value, -4, 0);
     } else {
       api.position.set((state.mouse.x * state.viewport.width) / 2, -4, 0);
