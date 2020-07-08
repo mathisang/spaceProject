@@ -8,6 +8,23 @@ SASS<br />
 ThreeJS<br />
 React-three-fiber / react-spring
 
+### Justifications techniques
+
+Cette application web est un jeu interactif dans lequel le joueur incarne le programme spatial américain et doit parvenir à poser le premier pas sur la lune avant l’URSS.
+
+Notre projet étant un jeu, basé sur l’interaction avec le joueur nous avons jugé bon d’utiliser du client side rendering. Celui-ci nous permet de privilégier une application fluide, dynamique et performante au dépend de référencement ou de la résilience qui nous sont de moins grande utilité. 
+
+Nous avons préféré utiliser la bibliothèque React par rapport à Angular ou vue js par soucis de familiarité avec son environnement et d’habitude de travail. Nous avons pris soins de fonctionner uniquement avec des hooks (a partir de react v16.8) et des fonctions sans utiliser de Classes. Cela permet un code plus concis et la non-utilisation du “this”, qui peut parfois être source d’erreurs quand à sa référence.
+
+Nous avons également utilisé sass avec node-sass pour avoir un css plus lisible, mieux organisé et profiter du stockage de variables.
+
+L’ambiance et l’expérience de jeu étant essentielles au projet nous y avons intégré du webgl. L’utilisation du webgl se fait de plusieurs manières. La première via la librairie three js directement importée. Ayant fait de nombreux tests auparavant, l’utilisation de la librairie three js pur et react peut souvent être compliquée et peu optimisée. De nombreux problèmes de rendu peuvent se faire et le système de composant react est moins privilégié. C’est pourquoi nous avons également utilisé react-three-fiber.L’utilisation de cette librairie est bien plus simple et intuitive. De plus, le fonctionnement par composants est mieux optimisé et certaines fonctionnalités de three js comme les shaders, ou simplement la construction de modèles sont moins compliquées à utiliser. L’ajout de hooks spécifiques comme “useFrame”, hooks qui permet de mettre à jour les propriétés de rendu d’un objet 3D,  permettent d’éviter certains problèmes de rendu en optimisant la.performance.
+
+Autre avantages de cette librairie est sa compatibilité avec les librairies react-spring, use-cannon, et react-use-gesture.  Brièvement, use-cannon permet de gérer le système de gravité d’éléments 3D, utilisé dans le mini jeu flight game. React-use-gesture, permet de gérer les controls notamment sur mobile (drag, swipe…). Pour finir, react-spring permet de gérer les animations en étant compatible avec react-three-fiber étant du même créateur. L’ environnement et l’utilisation de ces librairies est similaire, avec une mise en valeur de hooks spécifiques  à chacune d’entres elles.
+
+Pour terminer, la mécanique et le principe de notre jeu convient particulièrement à des utilisateurs mobiles. C’est pourquoi nous avons fonctionné en mobile first et avons mis en place une PWA. 
+
+
 ## React Installation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -78,20 +95,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-### Justifications techniques
-
-Cette application web est un jeu interactif dans lequel le joueur incarne le programme spatial américain et doit parvenir à poser le premier sur la lune avant l’URSS.
-
-Notre projet étant un jeu, basé sur l’interaction avec le joueur nous avons jugé bon d’utiliser du client side rendering. Celui-ci nous permet de privilégier une application fluide, dynamique et performante au dépend de référencement ou de la résilience qui nous sont de moins grande utilité. 
-
-Nous avons préféré utiliser la bibliothèque React par rapport à Angular ou vue js par soucis de familiarité avec son environnement et d’habitude de travail. Nous avons pris soins de fonctionner uniquement avec des hooks (a partir de react v16.8) et des fonctions sans utiliser de Classes. Cela permet un code plus concis et la non-utilisation du “this”, qui peut parfois être source d’erreurs quand à sa référence.
-
-Nous avons également utilisé sass avec node-sass pour avoir un css plus lisible, mieux organisé et profiter du stockage de variables.
-
-L’ambiance et l’expérience de jeu étant essentielles au projet nous y avons intégré du webgl. L’utilisation du webgl se fait de plusieurs manières. La première via la librairie three js directement importée. Ayant fait de nombreux tests auparavant, l’utilisation de la librairie three js pur et react peut souvent être compliquée et peu optimisée. De nombreux problèmes de rendu peuvent se faire et le système de composant react est moins privilégié. C’est pourquoi nous avons également utilisé react-three-fiber.L’utilisation de cette librairie est bien plus simple et intuitive. De plus, le fonctionnement par composants est mieux optimisé et certaines fonctionnalités de three js comme les shaders, ou simplement la construction de modèles sont moins compliquées à utiliser. L’ajout de hooks spécifiques comme “useFrame”, hooks qui permet de mettre à jour les propriétés de rendu d’un objet 3D,  permettent d’éviter certains problèmes de rendu en optimisant la.performance.
-
-Autre avantages de cette librairie est sa compatibilité avec les librairies react-spring, use-cannon, et react-use-gesture.  Brièvement, use-cannon permet de gérer le système de gravité d’éléments 3D, utilisé dans le mini jeu flight game. React-use-gesture, permet de gérer les controls notamment sur mobile (drag, swipe…). Pour finir, react-spring permet de gérer les animations en étant compatible avec react-three-fiber étant du même créateur. L’ environnement et l’utilisation de ces librairies est similaire, avec une mise en valeur de hooks spécifiques  à chacune d’entres elles.
-
-Pour terminer, la mécanique et le principe de notre jeu convient particulièrement à des utilisateurs mobiles. C’est pourquoi nous avons fonctionné en mobile first et avons mis en place une PWA. 
-
