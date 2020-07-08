@@ -9,7 +9,7 @@ import {
   iconWelcome,
 } from "../../../../assets/images/index";
 
-export default function ({ card, isChoose }) {
+export default function ({ card, isChoose, stepTutorial }) {
   const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
 
   const arrayIcon = {
@@ -23,7 +23,14 @@ export default function ({ card, isChoose }) {
   };
 
   return (
-    <div className="headerCard">
+    <div
+      className="headerCard"
+      style={
+        stepTutorial === 2
+          ? { zIndex: "99999", background: "#F5F5EB" }
+          : { zIndex: "unset" }
+      }
+    >
       {isChoose !== null ? (
         <div>
           <div className="iconCategory">

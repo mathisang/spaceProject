@@ -13,6 +13,7 @@ export default function ({
   updateGauge,
   isChoose,
   setChoose,
+  stepTutorial,
 }) {
   // Détermine quelle réponse possède une conséquence
   const consequence = isChoose !== null && card.choices[0].consequence ? 0 : 1;
@@ -59,7 +60,14 @@ export default function ({
   };
 
   return (
-    <div className="randomButtons">
+    <div
+      className="randomButtons"
+      style={
+        stepTutorial === 3
+          ? { zIndex: "99999", background: "#F5F5EB" }
+          : { zIndex: "unset" }
+      }
+    >
       {isSuccess == null && isChoose == null && (
         <div className="buttonsCard">
           <CardButtons card={card} value={randomButtonId} orderButton={1} />

@@ -20,9 +20,9 @@ export default function ({
   tutorialData,
 }) {
   const [gauge, setGauge] = useState({
-    money: 80,
-    opinion: 80,
-    search: 80,
+    money: 30,
+    opinion: 50,
+    search: 50,
   });
 
   const gaugeContextValue = { gauge, setGauge };
@@ -46,6 +46,7 @@ export default function ({
     arrayFull.push(i);
   }
   const [cardUnused, setCardUnused] = useState(arrayFull);
+  const [stepTutorial, setStepTutorial] = useState(0);
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
@@ -73,6 +74,8 @@ export default function ({
           <Tutorial
             setTutorialStatus={setTutorialStatus}
             tutorialStep={tutorialData}
+            stepTutorial={stepTutorial}
+            setStepTutorial={setStepTutorial}
           />
         )}
         {isLoose || isEnd ? (
@@ -97,6 +100,11 @@ export default function ({
         ) : (
           <div className="playScreen">
             <div
+              style={
+                stepTutorial > 3 && stepTutorial < 7
+                  ? { zIndex: "99999" }
+                  : { zIndex: "unset" }
+              }
               className={`headerScreen ${
                 step.isActive !== false && "hideHeader"
               }`}
@@ -107,8 +115,9 @@ export default function ({
                 year={year}
                 setYear={setYear}
                 ListSeasons={ListSeasons}
+                stepTutorial={stepTutorial}
               />
-              <Gauge />
+              <Gauge stepTutorial={stepTutorial} />
             </div>
             <div
               className="contentScreen"
@@ -121,6 +130,7 @@ export default function ({
                 rocketPosition={rocketPosition}
                 setRocketPosition={setRocketPosition}
                 gameBadge={gameBadge}
+                stepTutorial={stepTutorial}
               />
               {step.isActive ? (
                 <StepCard
@@ -135,7 +145,11 @@ export default function ({
                   steps={stepData}
                 />
               ) : (
-                <RandomCard cardsData={cardsData} cardUnused={cardUnused} />
+                <RandomCard
+                  cardsData={cardsData}
+                  cardUnused={cardUnused}
+                  stepTutorial={stepTutorial}
+                />
               )}
             </div>
           </div>

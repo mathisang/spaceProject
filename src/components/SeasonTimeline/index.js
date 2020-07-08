@@ -2,7 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import CardContext from "../Cards/CardContext";
 import "./season.scss";
 
-export default function ({ year, setYear, season, setSeason, ListSeasons }) {
+export default function ({
+  year,
+  setYear,
+  season,
+  setSeason,
+  ListSeasons,
+  stepTutorial,
+}) {
   const { selectedCardId, setSelectedCardId } = useContext(CardContext);
 
   function setCurrentDate() {
@@ -23,7 +30,14 @@ export default function ({ year, setYear, season, setSeason, ListSeasons }) {
   }, [selectedCardId]);
 
   return (
-    <div className="calendar">
+    <div
+      className="calendar"
+      style={
+        stepTutorial === 4 || stepTutorial === 5
+          ? { opacity: ".35" }
+          : { opacity: "1" }
+      }
+    >
       <div className="currentSeason stat">{ListSeasons[season]}</div>
       <div className="currentYear year">{year}</div>
     </div>
