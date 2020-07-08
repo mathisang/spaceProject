@@ -17,7 +17,7 @@ import {
 import StartCounter from "../MiniGame/StartCounter";
 import LifePoints from "../MiniGame/LifePoints";
 
-export default ({ setGameBadge, setResultGame }) => {
+export default ({ setGameBadge, setResultGame, setLifePoints, lifePoints }) => {
   const [
     { numberInstructions, btnClicked, buttons, progress },
     setMoon,
@@ -46,7 +46,6 @@ export default ({ setGameBadge, setResultGame }) => {
   const [isGameOn, setGameStatus] = useState(false);
   const [isTimerOn, setTimer] = useState(true);
   const [currentInstructions, setCurrentInstructions] = useState([0]);
-  const [lifePoints, setLifePoints] = useState(3);
   const [partResult, setPartResult] = useState({ win: false, fail: false });
   let moonDifficulty = [
     { time: 5000, maxInst: 2 },

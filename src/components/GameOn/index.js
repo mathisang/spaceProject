@@ -46,11 +46,16 @@ export default function ({
     arrayFull.push(i);
   }
   const [cardUnused, setCardUnused] = useState(arrayFull);
+  const [stepTutorial, setStepTutorial] = useState(0);
+  const [lifePoints, setLifePoints] = useState(3);
 
   // Si une jauge atteins 0 afficher l'écran Loose
   useEffect(() => {
     (gauge.money <= 0 || gauge.opinion <= 0 || gauge.search <= 0) &&
       setLoose(true);
+    gauge.money + gauge.opinion + gauge.search < 150
+      ? setLifePoints(1)
+      : setLifePoints(3);
   }, [gauge]);
 
   useEffect(() => {
@@ -73,6 +78,8 @@ export default function ({
           <Tutorial
             setTutorialStatus={setTutorialStatus}
             tutorialStep={tutorialData}
+            stepTutorial={stepTutorial}
+            setStepTutorial={setStepTutorial}
           />
         )}
         {isLoose || isEnd ? (
@@ -93,10 +100,17 @@ export default function ({
             gameBadge={gameBadge}
             gameData={gameData}
             stepCards={stepData}
+            lifePoints={lifePoints}
+            setLifePoints={setLifePoints}
           />
         ) : (
           <div className="playScreen">
             <div
+              style={
+                stepTutorial > 3 && stepTutorial < 7
+                  ? { zIndex: "99999" }
+                  : { zIndex: "unset" }
+              }
               className={`headerScreen ${
                 step.isActive !== false && "hideHeader"
               }`}
@@ -107,8 +121,9 @@ export default function ({
                 year={year}
                 setYear={setYear}
                 ListSeasons={ListSeasons}
+                stepTutorial={stepTutorial}
               />
-              <Gauge />
+              <Gauge stepTutorial={stepTutorial} />
             </div>
             <div
               className="contentScreen"
@@ -121,6 +136,7 @@ export default function ({
                 rocketPosition={rocketPosition}
                 setRocketPosition={setRocketPosition}
                 gameBadge={gameBadge}
+                stepTutorial={stepTutorial}
               />
               {step.isActive ? (
                 <StepCard
@@ -133,9 +149,14 @@ export default function ({
                   gameOn={gameOn}
                   setGameOn={setGameOn}
                   steps={stepData}
+                  lifePoints={lifePoints}
                 />
               ) : (
-                <RandomCard cardsData={cardsData} cardUnused={cardUnused} />
+                <RandomCard
+                  cardsData={cardsData}
+                  cardUnused={cardUnused}
+                  stepTutorial={stepTutorial}
+                />
               )}
             </div>
           </div>

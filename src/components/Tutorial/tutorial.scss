@@ -1,0 +1,102 @@
+@import "../../index";
+
+.tutorialStyle {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  .steps {
+    width: calc(100% - 64px);
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 16px;
+    border-radius: 4px;
+    text-align: left;
+    color: $blue;
+
+    .headTuto {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+
+      h4 {
+        margin: 0;
+      }
+
+      span {
+        color: rgba($blue, .64);
+      }
+    }
+
+    .statutStep {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      p {
+        margin: 1.5rem 0;
+      }
+
+      button {
+        width: 100%;
+        height: 50px;
+      }
+
+      a {
+        margin-top: 1rem;
+        font-size: 17px;
+      }
+    }
+
+  }
+  .tapNext {
+    width: 138px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    color: $brown;
+
+    p {
+      margin-top: .5rem;
+    }
+   }
+}
+
+@media screen and (max-height: 600px) {
+  .tutorialStyle {
+    .steps {
+      padding: 12px;
+      width: calc(100% - 48px);
+    }
+  }
+}
+@media screen and (min-width: 600px) {
+  .tutorialStyle {
+    max-width: 48vh;
+    min-width: 330px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .App .playScreen {
+    max-width: 48vh;
+    min-width: 330px;
+    margin: 0 auto;
+    background: url('../../assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
+  }
+}

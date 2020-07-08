@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../cards.scss";
 import GaugeContext from "../../Gauge/GaugeContext";
 import CardContext from "../CardContext";
 import "./randomCards.scss";
 import ButtonsRandom from "./ContentRandom/ButtonsRandom";
 import ContextRandom from "./ContentRandom/ContextRandom";
 
-export default function ({ cardUnused, cardsData }) {
+export default function ({ cardUnused, cardsData, stepTutorial }) {
   const { gauge, setGauge } = useContext(GaugeContext);
   const [isSuccess, setSuccess] = useState(null);
   const [isChoose, setChoose] = useState(null);
@@ -45,14 +44,16 @@ export default function ({ cardUnused, cardsData }) {
         return cardUnused[0];
         break;
       default:
-        switch (cardUnused[2]) {
-          case 5:
-            return cardUnused[2];
-            break;
-          default:
-            return cardUnused[number];
-            break;
-        }
+        // switch (cardUnused[2]) {
+        //   case 5:
+        //     return cardUnused[2];
+        //     break;
+        //   default:
+        //     return cardUnused[number];
+        //     break;
+        // }
+        return cardUnused[number];
+        break;
     }
   }
 
@@ -99,12 +100,19 @@ export default function ({ cardUnused, cardsData }) {
 
   // Affichage de la carte + réponses
   return (
-    <div className="randomCard" id="randomCard">
+    <div
+      className="randomCard"
+      style={stepTutorial === 1 ? { zIndex: "99999" } : { zIndex: "unset" }}
+    >
       {cardsData.map(
         (card, index) =>
           nextCard === card.id && (
             <div className="card" key={index}>
-              <ContextRandom card={card} isChoose={isChoose} />
+              <ContextRandom
+                card={card}
+                isChoose={isChoose}
+                stepTutorial={stepTutorial}
+              />
               <ButtonsRandom
                 nextCard={nextCard}
                 setIdButton={setIdButton}
@@ -117,6 +125,7 @@ export default function ({ cardUnused, cardsData }) {
                 card={card}
                 cards={cardsData}
                 updateGauge={updateGauge}
+                stepTutorial={stepTutorial}
               />
             </div>
           )

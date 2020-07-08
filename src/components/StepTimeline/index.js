@@ -16,6 +16,7 @@ export default function ({
   setRocketPosition,
   rocketPosition,
   gameBadge,
+  stepTutorial,
 }) {
   useEffect(() => {
     year === 1958
@@ -26,7 +27,14 @@ export default function ({
   const flagName = gameBadge.flightGame === "usa" ? flagUsa : flagUrss;
 
   return (
-    <div className="timeline">
+    <div
+      className="timeline"
+      style={
+        stepTutorial === 7 || stepTutorial === 8
+          ? { zIndex: "99999" }
+          : { zIndex: "unset" }
+      }
+    >
       <div>
         <img src={earth} alt="" />
       </div>

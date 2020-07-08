@@ -11,7 +11,7 @@ import {
 } from "../../assets/images/index";
 
 // Affichage des jauges
-export default function () {
+export default function ({ stepTutorial }) {
   const { gauge, setGauge } = useContext(GaugeContext);
 
   function showAmount(type) {
@@ -23,7 +23,10 @@ export default function () {
   }
 
   return (
-    <div className="rowGauges">
+    <div
+      className="rowGauges"
+      style={stepTutorial === 6 ? { opacity: ".35" } : { opacity: "1" }}
+    >
       <div className="boxGauge">
         <img src={dollarsBlue} alt="" />
         <span className="stat">Argent</span>

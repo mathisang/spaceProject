@@ -5,6 +5,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: url('../../assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
 
   .headerScreen {
     background: $white;
@@ -25,7 +26,6 @@
     background-size: 100%;
     display: flex;
     flex-direction: column;
-    background: url('../../assets/images/cards/background_cards.png') center repeat, linear-gradient(#201F3D, #282747);
   }
 }
 
@@ -45,11 +45,11 @@
     }
   }
 }
-
-@media screen and (min-width: 600px) {
-  .playScreen {
-    .contentScreen {
-      background: unset;
-    }
-  }
-}
+//
+//@media screen and (min-width: 600px) {
+//  .playScreen {
+//    .contentScreen {
+//      background: unset;
+//    }
+//  }
+//}
