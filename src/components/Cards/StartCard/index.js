@@ -31,6 +31,7 @@ export default ({ onChangeStatus, startTutoriel }) => (
       <StartButton onChangeStatus={onChangeStatus} />
       <TutoButton startTutoriel={startTutoriel} />
       <span
+        className="copyright"
         style={{
           position: "absolute",
           bottom: "6px",
