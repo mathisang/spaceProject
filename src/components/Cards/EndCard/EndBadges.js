@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  firstExit,
+  firstFlight,
   firstStep,
   flagUrss,
   flagUsa,
@@ -19,7 +19,9 @@ export default function ({ gameBadge }) {
           />
         </div>
         <span>
-          {image === firstExit ? "Première sortie" : "Premier pas sur la lune"}
+          {image === firstFlight
+            ? "Première sortie dans l'espace"
+            : "Premier pas sur la lune"}
         </span>
       </div>
     );
@@ -27,7 +29,7 @@ export default function ({ gameBadge }) {
 
   return (
     <div className="badgesList">
-      <Badge image={firstExit} winner={gameBadge.flightGame} />
+      <Badge image={firstFlight} winner={gameBadge.flightGame} />
       <Badge image={firstStep} winner={gameBadge.moonGame} />
     </div>
   );

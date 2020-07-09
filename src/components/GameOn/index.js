@@ -20,7 +20,7 @@ export default function ({
   tutorialData,
 }) {
   const [gauge, setGauge] = useState({
-    money: 30,
+    money: 10,
     opinion: 50,
     search: 50,
   });

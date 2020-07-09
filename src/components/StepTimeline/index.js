@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useSpring, animated } from "react-spring";
 import {
   earth,
   moon,
@@ -26,6 +27,10 @@ export default function ({
 
   const flagName = gameBadge.flightGame === "usa" ? flagUsa : flagUrss;
 
+  const positionRocket = useSpring({
+    left: rocketPosition + `%`,
+  });
+
   return (
     <div
       className="timeline"
@@ -38,11 +43,11 @@ export default function ({
       <div>
         <img src={earth} alt="" />
       </div>
-      <div className="rocketStep" style={{ left: rocketPosition + `%` }}>
+      <animated.div className="rocketStep" style={positionRocket}>
         <img src={rocket} alt="" />
-      </div>
+      </animated.div>
       <div className="stepHelmet">
-        <img src={step.id <= 1 ? helmet : step.id > 1 && flagName} alt="" />
+        <img src={step.id === 0 ? helmet : step.id > 0 && flagName} alt="" />
       </div>
       <div>
         <img src={moon} alt="" />

@@ -41,7 +41,10 @@ export default function ({
   const RulesGame = () => {
     return (
       <div className="gameRules">
-        <div className="videoTuto">
+        <div
+          className="videoTuto"
+          style={{ height: step.id === 0 ? "71%" : "63%" }}
+        >
           <video video autobuffer autoPlay loop>
             <source id="mp4" src={urlVideo} type="video/mp4" />
           </video>

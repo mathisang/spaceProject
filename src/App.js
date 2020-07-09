@@ -5,6 +5,7 @@ import GameOn from "./components/GameOn";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import SceneDesktop from "./components/Three/DesktopGame/Scene/index";
 import { isBrowser } from "react-device-detect";
+import MoonGame from "./components/Three/MoonGame";
 
 function App() {
   const [isGameOn, setGameStatus] = useState(false);

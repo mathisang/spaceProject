@@ -78,7 +78,7 @@ export default function ({
             <div className="statutStep">
               <h4 className="titleBig">Vous êtes fin prêt !</h4>
               <p className="description">
-                Vous connaisez maintenant les bases, bonne chance.
+                Vous connaissez maintenant les bases, bonne chance.
               </p>
               <button className="small" onClick={playGame}>
                 Jouer
