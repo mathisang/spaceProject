@@ -54,8 +54,11 @@
       }
     }
     button:active {
-      opacity: 0.5;
       box-shadow: none;
+      background: #9B8C8D;
+    }
+    button:hover {
+      background: #9B8C8D;
     }
     .secondary-button.large {
       padding: 4% 15%;
