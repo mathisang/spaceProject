@@ -17,7 +17,7 @@ function App() {
   const [stepData, setStepData] = useState([]);
   const [tutorialData, setTutorialData] = useState([]);
   useEffect(() => {
-    fetch("https://vps791823.ovh.net/api/cards", {
+    fetch("https://mathisangibaud.fr/api/cards", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => setCardsData(data));
 
-    fetch("https://vps791823.ovh.net/api/games", {
+    fetch("https://mathisangibaud.fr/api/games", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => setGameData(data));
 
-    fetch("https://vps791823.ovh.net/api/step_cards", {
+    fetch("https://mathisangibaud.fr/api/step_cards", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => setStepData(data));
 
-    fetch("https://vps791823.ovh.net/api/step_tutorials", {
+    fetch("https://mathisangibaud.fr/api/step_tutorials", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
