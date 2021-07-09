@@ -22,6 +22,7 @@ function App() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      mode: "cors"
     })
       .then((response) => response.json())
       .then((data) => setCardsData(data));
@@ -31,6 +32,7 @@ function App() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      mode: "cors"
     })
       .then((response) => response.json())
       .then((data) => setGameData(data));
@@ -40,6 +42,7 @@ function App() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      mode: "cors"
     })
       .then((response) => response.json())
       .then((data) => setStepData(data));
@@ -49,6 +52,7 @@ function App() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      mode: "cors"
     })
       .then((response) => response.json())
       .then((data) => setTutorialData(data));
